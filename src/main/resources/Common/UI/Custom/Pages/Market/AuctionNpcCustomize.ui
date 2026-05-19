@@ -1,0 +1,150 @@
+$C = "../BetterShopCommon.ui";
+
+$C.@PageOverlay #AuctionNpcCustomizeRoot {
+  $C.@DecoratedContainer {
+    Anchor: (Width: 460, Height: 620, Right: 40);
+
+    #Title {
+      $C.@Title { @Text = ""; }
+      Label #PageTitle {
+        Style: (FontSize: 18, TextColor: #f5e8c8, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, HorizontalAlignment: Center);
+        Text: "EDIT NPC";
+        Anchor: (Horizontal: 0, Height: 28);
+      }
+    }
+
+    #Content {
+      LayoutMode: Top;
+      Padding: (Full: 18);
+
+      Group #NameSection {
+        Anchor: (Horizontal: 0, Height: 70, Bottom: 14);
+        LayoutMode: Top;
+
+        Label #SectionName {
+          Style: (FontSize: 12, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+          Text: "NPC NAME";
+          Anchor: (Horizontal: 0, Height: 16, Bottom: 6);
+        }
+
+        Group #NameRow {
+          Anchor: (Horizontal: 0, Height: 40);
+          LayoutMode: Left;
+
+          $C.@TextField #NameInput {
+            @Anchor = (Right: 8);
+            FlexWeight: 1;
+            PlaceholderText: "Citizen name";
+          }
+
+          $C.@SmallSecondaryTextButton #NameApplyButton {
+            @Anchor = (Width: 130);
+            @Text = "APPLY";
+          }
+        }
+      }
+
+      Group #SkinSection {
+        Anchor: (Horizontal: 0, Height: 160, Bottom: 14);
+        LayoutMode: Top;
+
+        Label #SectionSkin {
+          Style: (FontSize: 12, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+          Text: "SKIN USERNAME";
+          Anchor: (Horizontal: 0, Height: 16, Bottom: 6);
+        }
+
+        Group #SkinRow {
+          Anchor: (Horizontal: 0, Height: 40, Bottom: 8);
+          LayoutMode: Left;
+
+          $C.@TextField #SkinInput {
+            @Anchor = (Right: 8);
+            FlexWeight: 1;
+            PlaceholderText: "e.g. GilloDaby";
+          }
+
+          $C.@SmallSecondaryTextButton #SkinApplyButton {
+            @Anchor = (Width: 130);
+            @Text = "APPLY";
+          }
+        }
+
+        $C.@SmallSecondaryTextButton #SkinUseMineButton {
+          @Anchor = (Horizontal: 0, Bottom: 8);
+          @Text = "USE MY SKIN";
+        }
+
+        $C.@SmallTertiaryTextButton #SkinCustomizerButton {
+          @Anchor = (Horizontal: 0);
+          @Text = "OPEN SKIN CUSTOMIZER";
+        }
+      }
+
+      Group #AnimSection {
+        Anchor: (Horizontal: 0, Height: 110, Bottom: 16);
+        LayoutMode: Top;
+
+        Label #SectionAnim {
+          Style: (FontSize: 12, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+          Text: "DEFAULT ANIMATION";
+          Anchor: (Horizontal: 0, Height: 16, Bottom: 6);
+        }
+
+        Group #AnimRow {
+          Anchor: (Horizontal: 0, Height: 40, Bottom: 6);
+          LayoutMode: Left;
+
+          Group #AnimDropdownWrap {
+            Anchor: (Width: 286, Height: 36, Right: 8);
+            LayoutMode: Top;
+            $C.@DropdownBox #AnimDropdown {
+              Anchor: (Width: 286, Height: 36);
+              NoItemsText: "No animations";
+              Style: (
+                ...$C.@DefaultDropdownBoxStyle,
+                SearchInputStyle: DropdownBoxSearchInputStyle(
+                  Anchor: (Height: 20),
+                  Padding: (Left: 28, Right: 24),
+                  PlaceholderText: "Search...",
+                  PlaceholderStyle: (TextColor: #3d5a85, RenderUppercase: true, FontSize: 14),
+                  Icon: (Texture: "Common/SearchIcon.png", Width: 16, Height: 16, Offset: 9),
+                  ClearButtonStyle: $C.@ClearButtonStyle
+                )
+              );
+              ShowSearchInput: true;
+            }
+          }
+
+          $C.@SmallSecondaryTextButton #AnimApplyButton {
+            @Anchor = (Width: 130);
+            @Text = "APPLY";
+          }
+        }
+
+        Label #AnimHelp {
+          Style: (FontSize: 10, TextColor: #6e5839, VerticalAlignment: Center, Wrap: true);
+          Text: "Pick an animation or leave (None) to disable.";
+          Anchor: (Horizontal: 0, Height: 18);
+        }
+      }
+
+      Group #FooterRow {
+        Anchor: (Horizontal: 0, Height: 48, Top: 4);
+        LayoutMode: Left;
+
+        $C.@CancelTextButton #DeleteNpcButton {
+          @Anchor = (Width: 200, Right: 8);
+          @Text = "DELETE NPC";
+        }
+
+        Group { FlexWeight: 1; }
+
+        $C.@SecondaryTextButton #CloseButton {
+          @Anchor = (Width: 160);
+          @Text = "CLOSE";
+        }
+      }
+    }
+  }
+}

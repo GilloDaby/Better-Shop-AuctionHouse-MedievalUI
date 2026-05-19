@@ -1,0 +1,11 @@
+$C = "../BetterShopCommon.ui";
+
+Group {
+  Anchor: (Width: 200, Height: 38, Right: 6, Bottom: 6);
+  LayoutMode: Top;
+
+  $C.@SmallSecondaryTextButton #FolderButton {
+    @Anchor = (Width: 200, Height: 38);
+    @Text = "Folder";
+  }
+}

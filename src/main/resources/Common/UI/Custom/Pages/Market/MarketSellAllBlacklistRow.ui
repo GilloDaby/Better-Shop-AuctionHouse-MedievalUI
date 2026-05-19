@@ -1,0 +1,33 @@
+$C = "../BetterShopCommon.ui";
+
+Group {
+  Anchor: (Horizontal: 0, Height: 44, Bottom: 6);
+  LayoutMode: Left;
+  Padding: (Left: 10, Right: 10, Top: 6, Bottom: 6);
+  Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+  Group #ItemIconWrap {
+    Anchor: (Width: 32, Height: 32, Right: 10);
+    Background: (TexturePath: "Textures/MedievalShop/Rarities/SlotCommon.png", Border: 8);
+
+    Group {
+      Anchor: (Full: 0);
+      LayoutMode: CenterMiddle;
+
+      ItemIcon #ItemIcon {
+        Anchor: (Width: 24, Height: 24);
+      }
+    }
+  }
+
+  Label #ItemName {
+    Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center);
+    Text: "Item";
+    FlexWeight: 1;
+  }
+
+  $C.@SmallCancelTextButton #RemoveButton {
+    @Anchor = (Width: 36, Height: 28);
+    @Text = "X";
+  }
+}

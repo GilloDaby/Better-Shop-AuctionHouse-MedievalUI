@@ -1,0 +1,151 @@
+$C = "../BetterShopCommon.ui";
+
+$C.@PageOverlay {
+  LayoutMode: Middle;
+
+  $C.@DecoratedContainer {
+    Anchor: (Width: 1080, Height: 720);
+
+    #Title {
+      $C.@Title {
+        @Text = "";
+      }
+      Label #PageTitle {
+        Style: (FontSize: 22, TextColor: #f5e8c8, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center);
+        Text: "SELL ALL BLACKLIST";
+        Anchor: (Height: 30);
+      }
+    }
+
+    #Content {
+      LayoutMode: Top;
+      Padding: (Full: 16);
+
+      Group #HeroCard {
+        Anchor: (Horizontal: 0, Height: 78, Bottom: 12);
+        LayoutMode: Top;
+        Padding: (Left: 18, Right: 18, Top: 12, Bottom: 12);
+        Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerFullPatch.png", Border: 14);
+
+        Label #HeroTitle {
+          Style: (FontSize: 16, TextColor: #f5e8c8, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center, VerticalAlignment: Center);
+          Text: "SELL ALL BLACKLIST";
+          Anchor: (Horizontal: 0, Height: 22, Bottom: 4);
+        }
+
+        Label #HeroSubtitle {
+          Style: (FontSize: 11, TextColor: #9c8463, HorizontalAlignment: Center, VerticalAlignment: Center, Wrap: true);
+          Text: "Click inventory items below to block them from /sell all.";
+          Anchor: (Horizontal: 0, Height: 18);
+        }
+      }
+
+      Group #BodyRow {
+        FlexWeight: 1;
+        LayoutMode: Left;
+
+        Group #BlacklistPanel {
+          Anchor: (Width: 360, Right: 14);
+          LayoutMode: Top;
+          Padding: (Left: 12, Right: 12, Top: 12, Bottom: 12);
+          Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPatch.png", Border: 14);
+
+          Label #BlacklistTitle {
+            Style: (FontSize: 12, TextColor: #c9b181, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+            Text: "BLACKLISTED ITEMS";
+            Anchor: (Height: 20, Bottom: 4);
+          }
+
+          Label #BlacklistCount {
+            Style: (FontSize: 11, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center);
+            Text: "0 item(s)";
+            Anchor: (Height: 16, Bottom: 6);
+          }
+
+          Group #BlacklistDivider {
+            Anchor: (Horizontal: 0, Height: 4, Bottom: 8);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerSectionSeparator.png", HorizontalBorder: 4);
+          }
+
+          Group #BlacklistScroll {
+            FlexWeight: 1;
+            LayoutMode: TopScrolling;
+            ScrollbarStyle: $C.@DefaultScrollbarStyle;
+            Padding: (Right: 6);
+
+            Group #BlacklistList {
+              LayoutMode: Top;
+            }
+          }
+        }
+
+        Group #InventoryPanel {
+          FlexWeight: 1;
+          LayoutMode: Top;
+          Padding: (Left: 12, Right: 12, Top: 12, Bottom: 12);
+          Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPatch.png", Border: 14);
+
+          Label #InventoryTitle {
+            Style: (FontSize: 12, TextColor: #c9b181, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+            Text: "INVENTORY";
+            Anchor: (Height: 20, Bottom: 4);
+          }
+
+          Label #StatusLabel {
+            Style: (FontSize: 11, TextColor: #d4a849, RenderBold: true, VerticalAlignment: Center);
+            Text: "Ready";
+            Anchor: (Height: 16, Bottom: 6);
+          }
+
+          Group #InventoryDivider {
+            Anchor: (Horizontal: 0, Height: 4, Bottom: 8);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerSectionSeparator.png", HorizontalBorder: 4);
+          }
+
+          Group {
+            FlexWeight: 1;
+            LayoutMode: CenterMiddle;
+
+            Group #PlayerInventoryGrid {
+              Anchor: (Width: 612);
+              LayoutMode: Top;
+
+              Group #PlayerInventoryRow1 {
+                Anchor: (Horizontal: 0, Height: 64, Bottom: 4);
+                LayoutMode: Left;
+              }
+              Group #PlayerInventoryRow2 {
+                Anchor: (Horizontal: 0, Height: 64, Bottom: 4);
+                LayoutMode: Left;
+              }
+              Group #PlayerInventoryRow3 {
+                Anchor: (Horizontal: 0, Height: 64, Bottom: 4);
+                LayoutMode: Left;
+              }
+              Group #PlayerInventoryRow4 {
+                Anchor: (Horizontal: 0, Height: 64, Bottom: 4);
+                LayoutMode: Left;
+              }
+              Group #PlayerInventoryRow5 {
+                Anchor: (Horizontal: 0, Height: 64);
+                LayoutMode: Left;
+              }
+            }
+          }
+        }
+      }
+
+      Group #ActionButtons {
+        Anchor: (Horizontal: 0, Height: 44, Top: 14);
+        LayoutMode: Left;
+
+        Group { FlexWeight: 1; }
+
+        $C.@SmallCancelTextButton #BackButton {
+          @Anchor = (Width: 200, Height: 36);
+          @Text = "BACK";
+        }
+      }
+    }
+  }
+}

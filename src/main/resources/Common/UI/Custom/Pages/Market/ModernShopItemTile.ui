@@ -1,0 +1,145 @@
+$C = "../BetterShopCommon.ui";
+
+Group {
+  Anchor: (Width: 132, Height: 168, Right: 6, Bottom: 6);
+  LayoutMode: Top;
+
+  Button #ModernTile {
+    Anchor: (Full: 0);
+    LayoutMode: Top;
+    Padding: (Left: 6, Right: 6, Top: 6, Bottom: 6);
+    Style: (
+      Default: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8)),
+      Hovered: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 8)),
+      Pressed: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 8))
+    );
+
+    Group #ModernTileIconWrap {
+      Anchor: (Width: 116, Height: 76, Bottom: 6);
+      Background: (TexturePath: "Textures/MedievalShop/Rarities/SlotCommon.png", Border: 12);
+
+      Group #ModernTileSellableOverlay {
+        Visible: false;
+        Anchor: (Full: 0);
+        Background: (TexturePath: "../../Common/HeaderTabSelectedBackground.png", Border: 10);
+      }
+
+      Group #ModernTileIconCenter {
+        Anchor: (Full: 0);
+        LayoutMode: CenterMiddle;
+
+        AssetImage #ModernTileIconAsset {
+          Anchor: (Width: 56, Height: 56);
+          Visible: false;
+        }
+
+        ItemIcon #ModernTileIcon {
+          Anchor: (Width: 56, Height: 56);
+        }
+      }
+
+      Label #ModernTileQtyBadge {
+        Visible: false;
+        Anchor: (Width: 36, Height: 18, Right: 4, Bottom: 4);
+        Style: (FontSize: 11, TextColor: #ffffff, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center);
+        Background: (TexturePath: "../../Textures/MedievalShop/Patches/Buttons/Tertiary.png", Border: 6);
+        Text: "x1";
+      }
+
+      Label #ModernTileCartBadge {
+        Visible: false;
+        Anchor: (Width: 36, Height: 18, Left: 4, Top: 4);
+        Style: (FontSize: 11, TextColor: #ffffff, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center);
+        Background: (Color: #16a34a);
+        Text: "x1";
+      }
+
+      Group #ModernTileSelectedRing {
+        Visible: false;
+        Anchor: (Full: 0);
+        OutlineColor: #e8a93b;
+        OutlineSize: 2;
+      }
+
+      Group #ModernTileLockOverlay {
+        Visible: false;
+        Anchor: (Full: 0);
+        LayoutMode: CenterMiddle;
+        Background: (Color: #050810(0.7));
+      }
+
+      Label #ModernTileLockBadge {
+        Visible: false;
+        Anchor: (Width: 76, Height: 18, Bottom: 4);
+        Style: (FontSize: 10, TextColor: #ffffff, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, HorizontalAlignment: Center, VerticalAlignment: Center);
+        Background: (Color: #b91c1c);
+        Text: "LOCKED";
+      }
+
+      Label #ModernTileTrackedLabel {
+        Visible: false;
+        Anchor: (Width: 60, Height: 14, Right: 4, Top: 4);
+        Style: (FontSize: 8, TextColor: #ffffff, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, HorizontalAlignment: Center, VerticalAlignment: Center);
+        Background: (Color: #0284c7);
+        Text: "TRACKED";
+      }
+
+      Label #ModernTileStockBadge {
+        Visible: false;
+        Anchor: (Width: 70, Height: 14, Left: 4, Bottom: 4);
+        Style: (FontSize: 8, TextColor: #ffffff, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, HorizontalAlignment: Center, VerticalAlignment: Center, ShrinkTextToFit: true, MinShrinkTextToFitFontSize: 7);
+        Background: (Color: #16a34a);
+        Text: "100 LEFT";
+      }
+    }
+
+    Label #ModernTileName {
+      Anchor: (Width: 116, Height: 24, Bottom: 4);
+      Style: (FontSize: 11, TextColor: #f5e8c8, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center, Wrap: true, ShrinkTextToFit: true, MinShrinkTextToFitFontSize: 9);
+      Text: "Item";
+    }
+
+    Group #ModernTilePricesRow {
+      Anchor: (Width: 116, Height: 36);
+      LayoutMode: Left;
+
+      Group #ModernTileBuyPricePill {
+        Anchor: (Width: 58, Height: 36, Right: 4);
+        LayoutMode: Top;
+        Padding: (Left: 2, Right: 2, Top: 2, Bottom: 2);
+        Background: (TexturePath: "../../Textures/MedievalShop/Patches/Buttons/Tertiary.png", Border: 6);
+
+        Label #ModernTileBuyLabel {
+          Style: (FontSize: 8, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, HorizontalAlignment: Center, VerticalAlignment: Center);
+          Text: "BUY";
+          Anchor: (Height: 11);
+        }
+
+        Label #ModernTileBuyPrice {
+          Style: (FontSize: 12, TextColor: #e8a93b, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center, ShrinkTextToFit: true, MinShrinkTextToFitFontSize: 7);
+          Text: "$0";
+          Anchor: (Height: 18);
+        }
+      }
+
+      Group #ModernTileSellPricePill {
+        Anchor: (Width: 58, Height: 36);
+        LayoutMode: Top;
+        Padding: (Left: 2, Right: 2, Top: 2, Bottom: 2);
+        Background: (TexturePath: "../../Textures/MedievalShop/Patches/Buttons/Tertiary.png", Border: 6);
+
+        Label #ModernTileSellLabel {
+          Style: (FontSize: 8, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, HorizontalAlignment: Center, VerticalAlignment: Center);
+          Text: "SELL";
+          Anchor: (Height: 11);
+        }
+
+        Label #ModernTileSellPrice {
+          Style: (FontSize: 12, TextColor: #94d2bd, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center, ShrinkTextToFit: true, MinShrinkTextToFitFontSize: 7);
+          Text: "$0";
+          Anchor: (Height: 18);
+        }
+      }
+    }
+  }
+}

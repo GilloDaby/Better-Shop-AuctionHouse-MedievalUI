@@ -1,0 +1,108 @@
+$C = "../BetterShopCommon.ui";
+
+Group {
+  Anchor: (Width: 122, Height: 100, Right: 6);
+  LayoutMode: Top;
+  Padding: (Left: 4, Right: 4, Top: 4, Bottom: 4);
+  Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+  Group #CartItemRow1 {
+    Anchor: (Height: 32, Bottom: 2);
+    LayoutMode: Left;
+
+    Group #CartItemIconWrap {
+      Anchor: (Width: 32, Height: 32, Right: 4);
+      LayoutMode: CenterMiddle;
+      Background: (TexturePath: "Textures/MedievalShop/Rarities/SlotCommon.png", Border: 8);
+
+      AssetImage #CartItemIconAsset {
+        Anchor: (Width: 24, Height: 24);
+        Visible: false;
+      }
+
+      ItemIcon #CartItemIcon {
+        Anchor: (Width: 24, Height: 24);
+      }
+    }
+
+    Group {
+      FlexWeight: 1;
+      LayoutMode: Top;
+
+      Label #CartItemName {
+        Style: (FontSize: 10, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, ShrinkTextToFit: true, MinShrinkTextToFitFontSize: 8);
+        Text: "Item";
+        Anchor: (Height: 14);
+      }
+
+      Label #CartItemQty {
+        Style: (FontSize: 10, TextColor: #9c8463, VerticalAlignment: Center);
+        Text: "x1";
+        Anchor: (Height: 14);
+      }
+    }
+  }
+
+  Group #CartItemRow2 {
+    Anchor: (Height: 22, Bottom: 2);
+
+    Label #CartItemSubtotal {
+      Style: (FontSize: 11, TextColor: #e8a93b, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center);
+      Text: "$0";
+    }
+  }
+
+  Group { FlexWeight: 1; }
+
+  Group #CartItemActionsRow {
+    Anchor: (Height: 18);
+    LayoutMode: Left;
+
+    Button #CartItemMinus {
+      Anchor: (Width: 24, Height: 18, Right: 2);
+      LayoutMode: CenterMiddle;
+      Style: (
+        Default: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/Buttons/Secondary.png", Border: 8)),
+        Hovered: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/Buttons/Secondary_Hovered.png", Border: 8)),
+        Pressed: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/Buttons/Secondary_Pressed.png", Border: 8))
+      );
+
+      Label {
+        Style: (FontSize: 12, TextColor: #c9b181, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center);
+        Text: "-";
+      }
+    }
+
+    Button #CartItemPlus {
+      Anchor: (Width: 24, Height: 18, Right: 2);
+      LayoutMode: CenterMiddle;
+      Style: (
+        Default: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/Buttons/Secondary.png", Border: 8)),
+        Hovered: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/Buttons/Secondary_Hovered.png", Border: 8)),
+        Pressed: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/Buttons/Secondary_Pressed.png", Border: 8))
+      );
+
+      Label {
+        Style: (FontSize: 12, TextColor: #c9b181, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center);
+        Text: "+";
+      }
+    }
+
+    Group { FlexWeight: 1; }
+
+    Button #CartItemRemove {
+      Anchor: (Width: 24, Height: 18);
+      LayoutMode: CenterMiddle;
+      Style: (
+        Default: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/Buttons/Destructive.png", Border: 8)),
+        Hovered: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/Buttons/Destructive_Hovered.png", Border: 8)),
+        Pressed: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/Buttons/Destructive_Pressed.png", Border: 8))
+      );
+
+      Label {
+        Style: (FontSize: 11, TextColor: #fee2e2, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center);
+        Text: "X";
+      }
+    }
+  }
+}

@@ -1,0 +1,79 @@
+Group #ShopPriceTrackerRoot {
+  Anchor: (Left: 0, Right: 0, Bottom: 64, Height: 36);
+  LayoutMode: Left;
+
+  Group {
+    FlexWeight: 1;
+  }
+
+  Group #ShopPriceTrackerOffsetLeft {
+    Anchor: (Width: 0);
+  }
+
+  Group #ShopPriceTracker {
+    Anchor: (Width: 214, Height: 36);
+    LayoutMode: CenterMiddle;
+    Background: (Color: #0a1520(0.82));
+    Visible: false;
+
+    Group {
+      LayoutMode: Left;
+      Anchor: (Height: 24);
+
+      ItemSlot #TrackedItemIcon {
+        Anchor: (Width: 24, Height: 24);
+        ShowQualityBackground: true;
+        ShowQuantity: false;
+      }
+
+      Group {
+        Anchor: (Width: 6);
+      }
+
+      Label #TrackedItemPrice {
+        Text: "";
+        Style: (FontSize: 12, TextColor: #ffffff, RenderBold: true, VerticalAlignment: Center);
+      }
+
+      Group {
+        Anchor: (Width: 4);
+      }
+
+      Label #TrackedItemTrendUp {
+        Text: "";
+        Style: (FontSize: 11, TextColor: #22c55e, RenderBold: true, VerticalAlignment: Center);
+        Visible: false;
+      }
+
+      Label #TrackedItemTrendNeutral {
+        Text: "";
+        Style: (FontSize: 11, TextColor: #ffffff, RenderBold: true, VerticalAlignment: Center);
+        Visible: false;
+      }
+
+      Label #TrackedItemTrendDown {
+        Text: "";
+        Style: (FontSize: 11, TextColor: #ef4444, RenderBold: true, VerticalAlignment: Center);
+        Visible: false;
+      }
+
+      Group {
+        Anchor: (Width: 6);
+      }
+
+      Label #TrackedItemOrder {
+        Text: "";
+        Style: (FontSize: 10, TextColor: #9cbcff, RenderBold: true, VerticalAlignment: Center);
+        Visible: false;
+      }
+    }
+  }
+
+  Group #ShopPriceTrackerOffsetRight {
+    Anchor: (Width: 0);
+  }
+
+  Group {
+    FlexWeight: 1;
+  }
+}

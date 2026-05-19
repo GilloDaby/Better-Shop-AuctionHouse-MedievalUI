@@ -1,0 +1,1925 @@
+$C = "../BetterShopCommon.ui";
+
+$C.@PageOverlay {
+  LayoutMode: Middle;
+
+  Group #AuctionMainPanel {
+    Anchor: (Width: 1240, Height: 960);
+    LayoutMode: Top;
+
+  $C.@DecoratedContainer #ModernAuctionRoot {
+    Anchor: (Full: 0);
+
+    #Title {
+      $C.@Title {
+        @Text = "";
+      }
+      Label #ModernAuctionPageTitle {
+        Style: (FontSize: 24, TextColor: #f5e8c8, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center, VerticalAlignment: Center);
+        Anchor: (Full: 0);
+      }
+    }
+
+    #Content {
+      LayoutMode: Top;
+      Padding: (Horizontal: 14, Top: 2, Bottom: 14);
+
+      Group #AuctionHeaderBar {
+        Anchor: (Height: 64, Bottom: 10);
+        LayoutMode: Left;
+        Padding: (Left: 16, Right: 16, Top: 8, Bottom: 8);
+        Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerFullPatch.png", Border: 14);
+
+        Group #AuctionBalanceCard {
+          Anchor: (Width: 290, Height: 48, Right: 16);
+          LayoutMode: Top;
+          Padding: (Left: 14, Right: 14, Top: 4, Bottom: 4);
+          Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 8);
+
+          Label #AuctionBalanceCaption {
+            Style: (FontSize: 10, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+            Text: "WALLET BALANCE";
+            Anchor: (Height: 14);
+          }
+
+          Label #AuctionBalanceValue {
+            Style: (FontSize: 19, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center);
+            Text: "$0.00";
+            Anchor: (Height: 24);
+          }
+        }
+
+        Group #AuctionSearchGroup {
+          Anchor: (Width: 280, Height: 48);
+          LayoutMode: CenterMiddle;
+
+          $C.@CompactTextField #AuctionSearchInput {
+            @Anchor = (Width: 280, Height: 40);
+            @PlaceholderText = "Search listings...";
+            @CollapsedWidth = 280;
+            @ExpandedWidth = 280;
+          }
+        }
+
+        Group { FlexWeight: 1; }
+
+        Group #AuctionSortGroup {
+          Anchor: (Width: 160, Height: 48);
+          LayoutMode: Top;
+
+          $C.@DropdownBox #AuctionSortDropdown {
+            @Anchor = (Horizontal: 0, Height: 32, Top: 8);
+            DropdownEntry { Value: "expiry_soon"; Text: "Ending Soon"; }
+            DropdownEntry { Value: "expiry_late"; Text: "Ending Late"; }
+            DropdownEntry { Value: "price_low_high"; Text: "Price: Low"; }
+            DropdownEntry { Value: "price_high_low"; Text: "Price: High"; }
+            DropdownEntry { Value: "name_asc"; Text: "Name: A>Z"; }
+            DropdownEntry { Value: "name_desc"; Text: "Name: Z>A"; }
+          }
+        }
+
+        Group #AuctionRarityGroup {
+          Anchor: (Width: 160, Height: 48, Left: 8);
+          LayoutMode: Top;
+
+          $C.@DropdownBox #AuctionRarityDropdown {
+            @Anchor = (Horizontal: 0, Height: 32, Top: 8);
+            Value: "";
+            DropdownEntry { Value: "";          Text: "All rarities"; }
+            DropdownEntry { Value: "common";    Text: "Common"; }
+            DropdownEntry { Value: "uncommon";  Text: "Uncommon"; }
+            DropdownEntry { Value: "rare";      Text: "Rare"; }
+            DropdownEntry { Value: "epic";      Text: "Epic"; }
+            DropdownEntry { Value: "legendary"; Text: "Legendary"; }
+            DropdownEntry { Value: "sort_up";   Text: "Sort: Rarity Up"; }
+            DropdownEntry { Value: "sort_down"; Text: "Sort: Rarity Down"; }
+          }
+        }
+
+        Group { FlexWeight: 1; }
+
+        Group #AuctionCloseGroup {
+          Anchor: (Width: 100, Height: 48);
+          LayoutMode: CenterMiddle;
+
+          $C.@SmallCancelTextButton #AuctionCloseButton {
+            @Anchor = (Width: 100);
+            @Text = "CLOSE";
+          }
+        }
+      }
+
+      Group #AuctionAdminTitleRow {
+        Visible: false;
+        Anchor: (Horizontal: 0, Height: 44, Bottom: 10);
+        LayoutMode: Left;
+        Padding: (Left: 16, Right: 16, Top: 6, Bottom: 6);
+        Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerFullPatch.png", Border: 14);
+
+        Label #AuctionAdminTitleLabel {
+          Style: (FontSize: 10, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+          Text: "PAGE TITLE";
+          Anchor: (Width: 100, Height: 32);
+        }
+
+        $C.@TextField #AuctionAdminTitleInput {
+          @Anchor = (Height: 32, Right: 8);
+          FlexWeight: 1;
+          PlaceholderText: "Auction House";
+        }
+
+        $C.@SmallSecondaryTextButton #AuctionAdminTitleUpdateButton {
+          @Anchor = (Width: 140, Height: 32, Right: 8);
+          @Text = "UPDATE TITLE";
+        }
+
+        $C.@SmallBuyTextButton #AuctionAdminManageCategoriesButton {
+          @Anchor = (Width: 200, Height: 32);
+          @Text = "MANAGE CATEGORIES";
+        }
+      }
+
+
+      Group #AuctionBodyRow {
+        FlexWeight: 1;
+        LayoutMode: Left;
+
+        Group #AuctionSidebarPanel {
+          Anchor: (Width: 220, Right: 12);
+          LayoutMode: Top;
+          Padding: (Left: 8, Right: 8, Top: 10, Bottom: 10);
+          Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPatch.png", Border: 14);
+
+          Label #AuctionSidebarCategoriesTitle {
+            Style: (FontSize: 13, TextColor: #cbd5e1, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center, VerticalAlignment: Center);
+            Text: "CATEGORIES";
+            Anchor: (Height: 22, Bottom: 6);
+          }
+
+          Group #AuctionSidebarCatDivider {
+            Anchor: (Height: 4, Bottom: 8);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerSectionSeparator.png", HorizontalBorder: 4);
+          }
+
+          Group #AuctionSidebarCategoriesScroll {
+            FlexWeight: 1;
+            LayoutMode: TopScrolling;
+            ScrollbarStyle: $C.@DefaultScrollbarStyle;
+            Padding: (Right: 4);
+
+            Group #AuctionSidebarCategoriesList {
+              Anchor: (Horizontal: 0);
+              LayoutMode: Top;
+            }
+          }
+
+          Group #AuctionSidebarTabsDivider {
+            Anchor: (Horizontal: 0, Height: 4, Bottom: 8, Top: 8);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerSectionSeparator.png", HorizontalBorder: 4);
+          }
+
+          Label #AuctionSidebarTitle {
+            Style: (FontSize: 13, TextColor: #cbd5e1, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center, VerticalAlignment: Center);
+            Text: "FILTERS";
+            Anchor: (Height: 22, Bottom: 8);
+          }
+
+          $C.@SmallTextButton #AuctionTabAll {
+            @Anchor = (Horizontal: 0, Bottom: 6);
+            @Text = "ALL LISTINGS";
+          }
+
+          $C.@SmallSecondaryTextButton #AuctionTabMine {
+            @Anchor = (Horizontal: 0, Bottom: 6);
+            @Text = "MY LISTINGS";
+          }
+
+          $C.@SmallSecondaryTextButton #AuctionTabExpired {
+            @Anchor = (Horizontal: 0, Bottom: 6);
+            @Text = "EXPIRED";
+          }
+
+          $C.@SmallSecondaryTextButton #AuctionTabSold {
+            @Anchor = (Horizontal: 0);
+            @Text = "RECENTLY SOLD";
+          }
+        }
+
+        Group #AuctionGridArea {
+          FlexWeight: 1;
+          LayoutMode: Top;
+
+          Group #AuctionGridHeader {
+            Anchor: (Height: 44, Bottom: 8);
+            LayoutMode: Left;
+            Padding: (Left: 16, Right: 16, Top: 6, Bottom: 6);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+            Label #AuctionGridTitle {
+              Style: (FontSize: 18, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center);
+              Text: "All Listings";
+              FlexWeight: 1;
+            }
+
+            Group #AuctionViewModeWrap {
+              Anchor: (Width: 130, Height: 32, Right: 12);
+              LayoutMode: Top;
+
+              $C.@DropdownBox #AuctionViewModeDropdown {
+                @Anchor = (Horizontal: 0, Height: 32);
+                Value: "tiles";
+                DropdownEntry { Value: "tiles"; Text: "Tiles"; }
+                DropdownEntry { Value: "list";  Text: "List";  }
+              }
+            }
+
+
+            Label #AuctionResultCount {
+              Style: (FontSize: 12, TextColor: #9c8463, VerticalAlignment: Center);
+              Text: "0 listings";
+              Anchor: (Width: 130, Height: 18);
+            }
+          }
+
+          Group #AuctionGridScroll {
+            FlexWeight: 1;
+            LayoutMode: TopScrolling;
+            ScrollbarStyle: $C.@TranslucentScrollbarStyle;
+
+            Group #AuctionListingGrid {
+              LayoutMode: LeftCenterWrap;
+            }
+
+            Group #AuctionListingGridList {
+              Visible: false;
+              Anchor: (Horizontal: 0);
+              LayoutMode: Top;
+            }
+
+            Label #AuctionEmptyState {
+              Visible: false;
+              Style: (FontSize: 14, TextColor: #6e5839, HorizontalAlignment: Center, VerticalAlignment: Center, Wrap: true);
+              Text: "No listings to display.";
+              Anchor: (Height: 64);
+            }
+          }
+
+          Group #AuctionPaginationBar {
+            Visible: false;
+            Anchor: (Height: 36, Top: 8);
+            LayoutMode: Left;
+            Padding: (Horizontal: 8);
+
+            $C.@SmallSecondaryTextButton #AuctionPagePrev {
+              @Anchor = (Width: 140);
+              @Text = "< Previous";
+            }
+
+            Label #AuctionPageInfo {
+              FlexWeight: 1;
+              Style: (FontSize: 13, TextColor: #f5e8c8, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center);
+              Text: "";
+            }
+
+            $C.@SmallSecondaryTextButton #AuctionPageNext {
+              @Anchor = (Width: 140);
+              @Text = "Next >";
+            }
+          }
+        }
+
+        Group #AuctionDetailsPanel {
+          Anchor: (Width: 290);
+          LayoutMode: Top;
+          Padding: (Left: 12, Right: 12, Top: 15, Bottom: 10);
+          Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPatch.png", Border: 14);
+
+          Group #AuctionDetailsTitleRow {
+            Anchor: (Height: 22, Top: 5, Bottom: 6);
+            LayoutMode: Left;
+
+            Label #AuctionDetailsTitle {
+              Style: (FontSize: 13, TextColor: #c9b181, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center, VerticalAlignment: Center);
+              Text: "LISTING DETAILS";
+              FlexWeight: 1;
+            }
+          }
+
+          Group #AuctionDetailsDivider {
+            Anchor: (Height: 4, Bottom: 8);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerSectionSeparator.png", HorizontalBorder: 4);
+          }
+
+          Group #AuctionDetailsPlaceholder {
+            FlexWeight: 1;
+            LayoutMode: TopScrolling;
+            ScrollbarStyle: $C.@DefaultScrollbarStyle;
+            Padding: (Top: 4, Bottom: 4);
+
+            Label #AuctionDetailsPlaceholderText {
+              Style: (FontSize: 11, TextColor: #475569, HorizontalAlignment: Center, VerticalAlignment: Center, Wrap: true);
+              Text: "Click a listing to see its full details.";
+              Anchor: (Horizontal: 0, Height: 28, Bottom: 10);
+            }
+
+            Label #AuctionTopSellersCaption {
+              Style: (FontSize: 11, TextColor: #cbd5e1, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center, VerticalAlignment: Center);
+              Text: "TOP SELLERS";
+              Anchor: (Horizontal: 0, Height: 16, Bottom: 6);
+            }
+
+            Group #AuctionDetailsTopSellersDivider {
+              Anchor: (Horizontal: 0, Height: 4, Bottom: 8);
+              Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerSectionSeparator.png", HorizontalBorder: 4);
+            }
+
+            Group #AuctionTopSellersList {
+              Anchor: (Horizontal: 0);
+              LayoutMode: Top;
+              Padding: (Bottom: 10);
+            }
+
+            Label #AuctionLatestCaption {
+              Style: (FontSize: 11, TextColor: #cbd5e1, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center, VerticalAlignment: Center);
+              Text: "LATEST PURCHASES";
+              Anchor: (Horizontal: 0, Height: 16, Bottom: 6);
+            }
+
+            Group #AuctionDetailsLatestDivider {
+              Anchor: (Horizontal: 0, Height: 4, Bottom: 8);
+              Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerSectionSeparator.png", HorizontalBorder: 4);
+            }
+
+            Group #AuctionLatestList {
+              Anchor: (Horizontal: 0);
+              LayoutMode: Top;
+            }
+          }
+
+          Group #AuctionDetailsContent {
+            FlexWeight: 1;
+            LayoutMode: TopScrolling;
+            ScrollbarStyle: $C.@DefaultScrollbarStyle;
+            Padding: (Right: 4);
+            Visible: false;
+
+            Group #AuctionDetailsHeader {
+              Anchor: (Height: 80, Bottom: 8);
+              LayoutMode: Left;
+              Padding: (Left: 8, Right: 8, Top: 8, Bottom: 8);
+              Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+              Group #AuctionDetailsIconWrapper {
+                Anchor: (Width: 60, Height: 60, Right: 8);
+                LayoutMode: CenterMiddle;
+                Background: (TexturePath: "Textures/MedievalShop/Rarities/SlotCommon.png", Border: 12);
+
+                AssetImage #AuctionDetailsItemIconAsset {
+                  Anchor: (Width: 48, Height: 48);
+                  Visible: false;
+                }
+
+                ItemIcon #AuctionDetailsItemIcon {
+                  Anchor: (Width: 48, Height: 48);
+                }
+              }
+
+              Group {
+                FlexWeight: 1;
+                LayoutMode: CenterMiddle;
+
+                Group #AuctionDetailsTextStack {
+                  Anchor: (Full: 0);
+                  LayoutMode: Top;
+
+                  Label #AuctionDetailsItemName {
+                    Style: (FontSize: 15, TextColor: #f5e8c8, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center, Wrap: true);
+                    Text: "Item";
+                    Anchor: (Height: 32, Bottom: 4);
+                  }
+
+                  Group #AuctionDetailsRarityWrap {
+                    Anchor: (Height: 20);
+                    LayoutMode: CenterMiddle;
+
+                    Label #AuctionDetailsRarityBadge {
+                      Style: (FontSize: 10, TextColor: #c9b181, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center, VerticalAlignment: Center);
+                      Text: "COMMON";
+                      Anchor: (Width: 86, Height: 20);
+                      Background: (TexturePath: "../../Textures/MedievalShop/Patches/Buttons/Tertiary.png", Border: 8);
+                    }
+                  }
+                }
+              }
+            }
+
+            Label #AuctionDetailsSellerCaption {
+              Style: (FontSize: 10, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+              Text: "SELLER";
+              Anchor: (Height: 14, Bottom: 2);
+            }
+
+            Label #AuctionDetailsSellerName {
+              Style: (FontSize: 13, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center);
+              Text: "Unknown";
+              Anchor: (Height: 18, Bottom: 8);
+            }
+
+            Label #AuctionDetailsExpiryCaption {
+              Style: (FontSize: 10, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+              Text: "EXPIRES IN";
+              Anchor: (Height: 14, Bottom: 2);
+            }
+
+            Label #AuctionDetailsExpiry {
+              Style: (FontSize: 13, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center);
+              Text: "—";
+              Anchor: (Height: 18, Bottom: 8);
+            }
+
+            Label #AuctionDetailsAmountCaption {
+              Style: (FontSize: 10, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+              Text: "QUANTITY";
+              Anchor: (Height: 14, Bottom: 2);
+            }
+
+            Label #AuctionDetailsAmount {
+              Style: (FontSize: 13, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center);
+              Text: "x1";
+              Anchor: (Height: 18, Bottom: 8);
+            }
+
+            Label #AuctionDetailsStatsTitle {
+              Style: (FontSize: 11, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+              Text: "STATS";
+              Anchor: (Height: 18, Bottom: 6);
+            }
+
+            Group #AuctionDetailsStatsList {
+              LayoutMode: Top;
+              Padding: (Bottom: 6);
+            }
+
+            Label #AuctionDetailsNoStats {
+              Visible: false;
+              Style: (FontSize: 11, TextColor: #5e3e1f, HorizontalAlignment: Center, VerticalAlignment: Center, Wrap: true);
+              Text: "No stats on this item.";
+              Anchor: (Height: 28, Bottom: 6);
+            }
+
+            Group #AuctionDetailsBuySectionDivider {
+              Anchor: (Height: 4, Bottom: 6);
+              Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerSectionSeparator.png", HorizontalBorder: 4);
+            }
+
+            Label #AuctionDetailsPriceLabel {
+              Style: (FontSize: 12, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center, VerticalAlignment: Center);
+              Text: "BUYOUT";
+              Anchor: (Height: 18, Bottom: 6);
+            }
+
+            Group #AuctionDetailsPriceCard {
+              Anchor: (Height: 56, Bottom: 8);
+              LayoutMode: Top;
+              Padding: (Left: 10, Right: 10, Top: 6, Bottom: 6);
+              Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 8);
+
+              Label #AuctionDetailsPriceCaption {
+                Style: (FontSize: 9, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center, VerticalAlignment: Center);
+                Text: "TOTAL PRICE";
+                Anchor: (Height: 14, Bottom: 2);
+              }
+
+              Label #AuctionDetailsPrice {
+                Style: (FontSize: 18, TextColor: #e8a93b, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center, ShrinkTextToFit: true, MinShrinkTextToFitFontSize: 10);
+                Text: "$0";
+                Anchor: (Height: 26);
+              }
+            }
+
+            Group #AuctionDetailsQtySection {
+              Visible: false;
+              Anchor: (Horizontal: 0);
+              LayoutMode: Top;
+
+              Label #AuctionDetailsQtyCaption {
+                Style: (FontSize: 9, TextColor: #94a3b8, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center, VerticalAlignment: Center);
+                Text: "HOW MANY?";
+                Anchor: (Height: 12, Bottom: 4);
+              }
+
+              $C.@NumberField #AuctionDetailsQtyInput {
+                @Anchor = (Horizontal: 0, Bottom: 6);
+                Value: 1;
+              }
+
+              Group #AuctionDetailsTotalCard {
+                Anchor: (Horizontal: 0, Height: 38, Bottom: 8);
+                LayoutMode: Top;
+                Padding: (Left: 10, Right: 10, Top: 4, Bottom: 4);
+                Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+                Label #AuctionDetailsTotalCaption {
+                  Style: (FontSize: 9, TextColor: #94a3b8, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center, VerticalAlignment: Center);
+                  Text: "TOTAL";
+                  Anchor: (Height: 12, Bottom: 2);
+                }
+
+                Label #AuctionDetailsTotalValue {
+                  Style: (FontSize: 14, TextColor: #ffffff, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center, ShrinkTextToFit: true, MinShrinkTextToFitFontSize: 8);
+                  Text: "$0";
+                  Anchor: (Height: 18);
+                }
+              }
+            }
+
+
+            $C.@SmallBuyTextButton #AuctionDetailsBuyButton {
+              @Anchor = (Horizontal: 0, Bottom: 8);
+              @Text = "BUY NOW";
+            }
+
+            $C.@SmallSecondaryTextButton #AuctionDetailsEditButton {
+              @Anchor = (Horizontal: 0, Bottom: 6);
+              @Text = "EDIT LISTING";
+              Visible: false;
+            }
+
+            $C.@SmallSecondaryTextButton #AuctionDetailsHistoryButton {
+              @Anchor = (Horizontal: 0, Bottom: 6);
+              @Text = "VIEW HISTORY";
+              Visible: false;
+            }
+
+            $C.@SmallSellTextButton #AuctionDetailsReturnButton {
+              @Anchor = (Horizontal: 0, Bottom: 6);
+              @Text = "RETURN TO INVENTORY";
+              Visible: false;
+            }
+
+            $C.@SmallCancelTextButton #AuctionDetailsCancelButton {
+              @Anchor = (Horizontal: 0);
+              @Text = "CANCEL LISTING";
+              Visible: false;
+            }
+          }
+        }
+      }
+
+      Group #AuctionBottomBar {
+        Anchor: (Height: 64, Top: 12);
+        LayoutMode: Left;
+        Padding: (Left: 14, Right: 14, Top: 8, Bottom: 8);
+        Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerFullPatch.png", Border: 14);
+
+        Group #AuctionFooterStatActive {
+          Anchor: (Width: 120, Height: 44);
+          LayoutMode: Top;
+          Padding: (Right: 8);
+
+          Label #AuctionActiveCountCaption {
+            Style: (FontSize: 9, TextColor: #94a3b8, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, HorizontalAlignment: Center, VerticalAlignment: Center);
+            Text: "ACTIVE LISTINGS";
+            Anchor: (Height: 12, Bottom: 2);
+          }
+
+          Label #AuctionActiveCount {
+            Style: (FontSize: 18, TextColor: #f8fafc, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center);
+            Text: "0";
+            Anchor: (Height: 24);
+          }
+        }
+
+        Group #AuctionFooterStatMine {
+          Anchor: (Width: 120, Height: 44);
+          LayoutMode: Top;
+          Padding: (Right: 12);
+
+          Label #AuctionMyCountCaption {
+            Style: (FontSize: 9, TextColor: #94a3b8, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, HorizontalAlignment: Center, VerticalAlignment: Center);
+            Text: "YOUR LISTINGS";
+            Anchor: (Height: 12, Bottom: 2);
+          }
+
+          Label #AuctionMyCount {
+            Style: (FontSize: 18, TextColor: #94d2bd, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center);
+            Text: "0";
+            Anchor: (Height: 24);
+          }
+        }
+
+        Label #AuctionBottomHelp {
+          Style: (FontSize: 12, TextColor: #94a3b8, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center);
+          Text: "List your own items for sale on the auction house";
+          FlexWeight: 1;
+        }
+
+        $C.@SmallBuyTextButton #AuctionSellItemButton {
+          @Anchor = (Width: 220);
+          @Text = "+ NEW LISTING";
+        }
+      }
+
+      Group #AuctionAdminBottomBar {
+        Visible: false;
+        Anchor: (Height: 64, Top: 12);
+        LayoutMode: Left;
+        Padding: (Left: 14, Right: 14, Top: 8, Bottom: 8);
+        Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerFullPatch.png", Border: 14);
+
+        Group #AuctionAdminInfoGroup {
+          Anchor: (Width: 220, Right: 10);
+          LayoutMode: Top;
+
+          Label #AuctionAdminInfoTag {
+            Style: (FontSize: 9, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+            Text: "ADMIN";
+            Anchor: (Height: 12, Bottom: 2);
+          }
+
+          Label #AuctionAdminInfoTitle {
+            Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, Wrap: true);
+            Text: "Select a listing to edit";
+            Anchor: (Horizontal: 0, Height: 30);
+          }
+        }
+
+        Group #AuctionAdminPriceGroup {
+          Anchor: (Width: 240, Height: 48, Right: 10);
+          LayoutMode: Top;
+          Visible: false;
+
+          Label {
+            Style: (FontSize: 9, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+            Text: "OVERRIDE PRICE";
+            Anchor: (Height: 12, Bottom: 2);
+          }
+
+          Group {
+            Anchor: (Horizontal: 0, Height: 30);
+            LayoutMode: Left;
+
+            $C.@TextField #AuctionAdminPriceInput {
+              @Anchor = (Height: 30, Right: 6);
+              FlexWeight: 1;
+              PlaceholderText: "0";
+            }
+
+            $C.@SmallBuyTextButton #AuctionAdminUpdatePriceButton {
+              @Anchor = (Width: 70, Height: 30);
+              @Text = "SET";
+            }
+          }
+        }
+
+        Group { FlexWeight: 1; }
+
+        Group #AuctionAdminActionsGroup {
+          Anchor: (Width: 460, Height: 48);
+          LayoutMode: Top;
+          Visible: false;
+
+          Label {
+            Style: (FontSize: 9, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+            Text: "QUICK ACTIONS";
+            Anchor: (Height: 12, Bottom: 2);
+          }
+
+          Group {
+            Anchor: (Horizontal: 0, Height: 30);
+            LayoutMode: Left;
+
+            $C.@SmallSecondaryTextButton #AuctionAdminForceReturnButton {
+              @Anchor = (Width: 140, Height: 30, Right: 6);
+              @Text = "REFUND";
+            }
+
+            $C.@SmallSecondaryTextButton #AuctionAdminForceExpireButton {
+              @Anchor = (Width: 140, Height: 30, Right: 6);
+              @Text = "FORCE EXPIRE";
+            }
+
+            $C.@SmallCancelTextButton #AuctionAdminDeleteButton {
+              @Anchor = (Width: 160, Height: 30);
+              @Text = "DELETE LISTING";
+            }
+          }
+        }
+      }
+    }
+  }
+  }
+
+  Group #AuctionSellOverlay {
+        Visible: false;
+        Anchor: (Width: 1240, Height: 960);
+        LayoutMode: Top;
+        Padding: (Full: 0);
+        Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerFullPatch.png", Border: 14);
+
+        Group #AuctionSellHeader {
+          Anchor: (Height: 72, Bottom: 10);
+          LayoutMode: Left;
+          Padding: (Left: 20, Right: 14);
+          Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerHeader.png", Border: 14);
+
+          Group #AuctionSellHeaderText {
+            FlexWeight: 1;
+            LayoutMode: CenterMiddle;
+
+            Group #AuctionSellTitleStack {
+              Anchor: (Width: 600, Height: 46);
+              LayoutMode: Top;
+
+              Label #AuctionSellTitle {
+                Style: (FontSize: 18, TextColor: #f5e8c8, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center, VerticalAlignment: Center);
+                Text: "CREATE LISTING";
+                Anchor: (Height: 24, Bottom: 2);
+              }
+
+              Label #AuctionSellSubtitle {
+                Style: (FontSize: 12, TextColor: #9c8463, HorizontalAlignment: Center, VerticalAlignment: Center);
+                Text: "Pick an item from your inventory then set a price";
+                Anchor: (Height: 18);
+              }
+            }
+          }
+
+          Group #AuctionSellCloseGroup {
+            Anchor: (Width: 48);
+            LayoutMode: CenterMiddle;
+
+            Button #AuctionSellCloseButton {
+              Anchor: (Width: 40, Height: 40);
+              Style: (
+                Default: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerCloseButton.png", Border: 6)),
+                Hovered: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerCloseButtonHovered.png", Border: 6)),
+                Pressed: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerCloseButtonPressed.png", Border: 6))
+              );
+            }
+          }
+        }
+
+        Group #AuctionSellBody {
+          FlexWeight: 1;
+          LayoutMode: Left;
+
+          Group #AuctionSellInventoryPanel {
+            FlexWeight: 1;
+            LayoutMode: Top;
+            Padding: (Left: 14, Right: 14, Top: 10, Bottom: 10);
+
+            Label #AuctionSellInventoryTitle {
+              Style: (FontSize: 13, TextColor: #c9b181, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+              Text: "YOUR INVENTORY";
+              Anchor: (Height: 22, Bottom: 6);
+            }
+
+            Group #AuctionSellInventoryDivider {
+              Anchor: (Horizontal: 0, Height: 4, Bottom: 8);
+              Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerSectionSeparator.png", HorizontalBorder: 4);
+            }
+
+            Group #AuctionSellInventoryScroll {
+              FlexWeight: 1;
+              LayoutMode: TopScrolling;
+              ScrollbarStyle: $C.@DefaultScrollbarStyle;
+
+              Group #AuctionSellInventoryGrid {
+                LayoutMode: LeftCenterWrap;
+              }
+            }
+          }
+
+          Group #AuctionSellFormPanel {
+            Anchor: (Width: 360);
+            LayoutMode: Top;
+            Padding: (Left: 14, Right: 14, Top: 10, Bottom: 10);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPatch.png", Border: 14);
+
+            Label #AuctionSellFormTitle {
+              Style: (FontSize: 13, TextColor: #c9b181, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+              Text: "LISTING DETAILS";
+              Anchor: (Height: 22, Bottom: 6);
+            }
+
+            Group #AuctionSellFormDivider {
+              Anchor: (Horizontal: 0, Height: 4, Bottom: 10);
+              Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerSectionSeparator.png", HorizontalBorder: 4);
+            }
+
+            Group #AuctionSellSelectedHeader {
+              Anchor: (Horizontal: 0, Height: 80, Bottom: 10);
+              LayoutMode: Left;
+              Padding: (Left: 8, Right: 8, Top: 8, Bottom: 8);
+              Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+              Group #AuctionSellSelectedIconWrap {
+                Anchor: (Width: 60, Height: 60, Right: 8);
+                LayoutMode: CenterMiddle;
+                Background: (TexturePath: "Textures/MedievalShop/Rarities/SlotCommon.png", Border: 12);
+
+                AssetImage #AuctionSellSelectedIconAsset {
+                  Anchor: (Width: 48, Height: 48);
+                  Visible: false;
+                }
+
+                ItemIcon #AuctionSellSelectedIcon {
+                  Anchor: (Width: 48, Height: 48);
+                  Visible: false;
+                }
+              }
+
+              Group {
+                FlexWeight: 1;
+                LayoutMode: CenterMiddle;
+
+                Group #AuctionSellSelectedStack {
+                  Anchor: (Full: 0);
+                  LayoutMode: Top;
+
+                  Label #AuctionSellSelectedName {
+                    Style: (FontSize: 14, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, Wrap: true);
+                    Text: "Pick an item";
+                    Anchor: (Height: 30);
+                  }
+
+                  Label #AuctionSellSelectedHint {
+                    Style: (FontSize: 11, TextColor: #9c8463, VerticalAlignment: Center);
+                    Text: "Click a slot on the left";
+                    Anchor: (Height: 18);
+                  }
+                }
+              }
+            }
+
+            Label #AuctionSellQtyCaption {
+              Style: (FontSize: 10, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+              Text: "QUANTITY";
+              Anchor: (Height: 14, Bottom: 4);
+            }
+
+            $C.@NumberField #AuctionSellQtyInput {
+              @Anchor = (Horizontal: 0, Bottom: 10);
+            }
+
+            Group #AuctionSellListingTypeRow {
+              Anchor: (Horizontal: 0, Height: 30, Bottom: 10);
+              LayoutMode: Left;
+
+              $C.@SmallTextButton #AuctionSellTypeFixed {
+                @Anchor = (Width: 156, Right: 6);
+                @Text = "FIXED PRICE";
+              }
+
+              $C.@SmallSecondaryTextButton #AuctionSellTypeAuction {
+                @Anchor = (Width: 156);
+                @Text = "AUCTION";
+              }
+            }
+
+            Group #AuctionSellPaymentModeRow {
+              Anchor: (Horizontal: 0, Height: 30, Bottom: 10);
+              LayoutMode: Left;
+
+              $C.@SmallTextButton #AuctionSellModeDigital {
+                @Anchor = (Width: 156, Right: 6);
+                @Text = "DIGITAL";
+              }
+
+              $C.@SmallSecondaryTextButton #AuctionSellModeBarter {
+                @Anchor = (Width: 156);
+                @Text = "BARTER";
+              }
+            }
+
+            Label #AuctionSellCategoryCaption {
+              Style: (FontSize: 10, TextColor: #94a3b8, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+              Text: "CATEGORY";
+              Anchor: (Height: 14, Bottom: 4);
+            }
+
+            Group #AuctionSellCategoryGroup {
+              Anchor: (Horizontal: 0, Height: 32, Bottom: 10);
+              LayoutMode: Top;
+
+              $C.@DropdownBox #AuctionSellCategoryDropdown {
+                @Anchor = (Horizontal: 0, Height: 32);
+                Value: "uncategorized";
+                DropdownEntry { Value: "uncategorized"; Text: "Uncategorized"; }
+              }
+            }
+
+            Label #AuctionSellPriceCaption {
+              Style: (FontSize: 10, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+              Text: "PRICE (TOTAL)";
+              Anchor: (Height: 14, Bottom: 4);
+            }
+
+            $C.@NumberField #AuctionSellPriceInput {
+              @Anchor = (Horizontal: 0, Bottom: 10);
+            }
+
+            Group #AuctionSellPriceUnitRow {
+              Anchor: (Horizontal: 0, Height: 22, Bottom: 10);
+              LayoutMode: Left;
+
+              Label #AuctionSellPriceUnitCaption {
+                Style: (FontSize: 10, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+                Text: "PRICE PER UNIT:";
+                FlexWeight: 1;
+              }
+
+              Label #AuctionSellPriceUnitValue {
+                Style: (FontSize: 12, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+                Text: "—";
+                Anchor: (Width: 140);
+              }
+            }
+
+            Group #AuctionSellPriceSuggestionRow {
+              Visible: false;
+              Anchor: (Horizontal: 0, Height: 78, Bottom: 12);
+              LayoutMode: Top;
+              Padding: (Full: 8);
+              Background: (Color: #0b1424);
+              OutlineColor: #1e293b;
+              OutlineSize: 1;
+
+              Label #AuctionSellSuggestionCaption {
+                Style: (FontSize: 9, TextColor: #94a3b8, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+                Text: "MARKET PRICE";
+                Anchor: (Height: 12, Bottom: 4);
+              }
+
+              Group #AuctionSellSuggestionStatsRow {
+                Anchor: (Horizontal: 0, Height: 16, Bottom: 6);
+                LayoutMode: Left;
+
+                Label #AuctionSellSuggestionMedian {
+                  Style: (FontSize: 13, TextColor: #ffd166, RenderBold: true, VerticalAlignment: Center);
+                  Text: "Median: —";
+                  FlexWeight: 1;
+                }
+
+                Label #AuctionSellSuggestionMinMax {
+                  Style: (FontSize: 10, TextColor: #6b7280, VerticalAlignment: Center, HorizontalAlignment: End);
+                  Text: "";
+                  Anchor: (Width: 180);
+                }
+              }
+
+              Group #AuctionSellSparklineRow {
+                Anchor: (Horizontal: 0, Height: 32);
+                LayoutMode: Left;
+                Padding: (Right: 0);
+
+                Group #AuctionSellSparkSlot0 {
+                  Anchor: (Width: 10, Height: 32, Right: 2);
+                  Group #AuctionSellSpark0 { Anchor: (Width: 6, Height: 0, Bottom: 0); Background: (Color: #ffd166); }
+                }
+                Group #AuctionSellSparkSlot1 {
+                  Anchor: (Width: 10, Height: 32, Right: 2);
+                  Group #AuctionSellSpark1 { Anchor: (Width: 6, Height: 0, Bottom: 0); Background: (Color: #ffd166); }
+                }
+                Group #AuctionSellSparkSlot2 {
+                  Anchor: (Width: 10, Height: 32, Right: 2);
+                  Group #AuctionSellSpark2 { Anchor: (Width: 6, Height: 0, Bottom: 0); Background: (Color: #ffd166); }
+                }
+                Group #AuctionSellSparkSlot3 {
+                  Anchor: (Width: 10, Height: 32, Right: 2);
+                  Group #AuctionSellSpark3 { Anchor: (Width: 6, Height: 0, Bottom: 0); Background: (Color: #ffd166); }
+                }
+                Group #AuctionSellSparkSlot4 {
+                  Anchor: (Width: 10, Height: 32, Right: 2);
+                  Group #AuctionSellSpark4 { Anchor: (Width: 6, Height: 0, Bottom: 0); Background: (Color: #ffd166); }
+                }
+                Group #AuctionSellSparkSlot5 {
+                  Anchor: (Width: 10, Height: 32, Right: 2);
+                  Group #AuctionSellSpark5 { Anchor: (Width: 6, Height: 0, Bottom: 0); Background: (Color: #ffd166); }
+                }
+                Group #AuctionSellSparkSlot6 {
+                  Anchor: (Width: 10, Height: 32, Right: 2);
+                  Group #AuctionSellSpark6 { Anchor: (Width: 6, Height: 0, Bottom: 0); Background: (Color: #ffd166); }
+                }
+                Group #AuctionSellSparkSlot7 {
+                  Anchor: (Width: 10, Height: 32);
+                  Group #AuctionSellSpark7 { Anchor: (Width: 6, Height: 0, Bottom: 0); Background: (Color: #ffd166); }
+                }
+              }
+            }
+
+            Group #AuctionSellBarterSection {
+              Visible: false;
+              Anchor: (Horizontal: 0);
+              LayoutMode: Top;
+
+              Label #AuctionSellBarterCaption {
+                Style: (FontSize: 10, TextColor: #9d7e2c, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+                Text: "REQUIRED ITEM (ID)";
+                Anchor: (Height: 14, Bottom: 4);
+              }
+
+              $C.@TextField #AuctionSellBarterItemInput {
+                @Anchor = (Horizontal: 0, Bottom: 8);
+              }
+
+              Label #AuctionSellBarterQtyCaption {
+                Style: (FontSize: 10, TextColor: #9d7e2c, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+                Text: "REQUIRED QTY";
+                Anchor: (Height: 14, Bottom: 4);
+              }
+
+              $C.@NumberField #AuctionSellBarterQtyInput {
+                @Anchor = (Horizontal: 0, Bottom: 10);
+              }
+            }
+
+            Label #AuctionSellDaysCaption {
+              Style: (FontSize: 10, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+              Text: "DURATION (DAYS)";
+              Anchor: (Height: 14, Bottom: 4);
+            }
+
+            $C.@NumberField #AuctionSellDaysInput {
+              @Anchor = (Horizontal: 0, Bottom: 10);
+            }
+
+            $C.@SmallTertiaryTextButton #AuctionSellPromoToggle {
+              @Anchor = (Horizontal: 0, Height: 28, Bottom: 8);
+              @Text = "+ ADD PROMOTION";
+            }
+
+            Group #AuctionSellPromoSection {
+              Visible: false;
+              Anchor: (Horizontal: 0);
+              LayoutMode: Top;
+
+              Label #AuctionSellPromoPercentCaption {
+                Style: (FontSize: 10, TextColor: #ef4444, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+                Text: "PROMO % OFF";
+                Anchor: (Height: 14, Bottom: 4);
+              }
+
+              $C.@NumberField #AuctionSellPromoPercent {
+                @Anchor = (Horizontal: 0, Bottom: 8);
+                Value: 0;
+              }
+
+              Label #AuctionSellPromoDaysCaption {
+                Style: (FontSize: 10, TextColor: #ef4444, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+                Text: "PROMO DURATION (DAYS)";
+                Anchor: (Height: 14, Bottom: 4);
+              }
+
+              $C.@NumberField #AuctionSellPromoDays {
+                @Anchor = (Horizontal: 0, Bottom: 10);
+                Value: 1;
+              }
+            }
+
+            Group #AuctionSellAnnounceCheck {
+              Anchor: (Horizontal: 0, Height: 26, Bottom: 6);
+              LayoutMode: Left;
+
+              $C.@CheckBox #CheckBox {
+                Anchor: (Width: 22, Height: 22, Right: 8);
+                Value: false;
+              }
+
+              Label #AuctionSellAnnounceLabel {
+                Style: (FontSize: 11, TextColor: #cbd5e1, VerticalAlignment: Center);
+                Text: "Announce in chat (+10%)";
+                FlexWeight: 1;
+              }
+            }
+
+            Group #AuctionSellFeaturedCheck {
+              Anchor: (Horizontal: 0, Height: 26, Bottom: 6);
+              LayoutMode: Left;
+
+              $C.@CheckBox #CheckBox {
+                Anchor: (Width: 22, Height: 22, Right: 8);
+                Value: false;
+              }
+
+              Label #AuctionSellFeaturedLabel {
+                Style: (FontSize: 11, TextColor: #cbd5e1, VerticalAlignment: Center);
+                Text: "Feature this listing (+10% fee)";
+                FlexWeight: 1;
+              }
+            }
+
+            Group #AuctionSellTaxRow {
+              Anchor: (Horizontal: 0, Height: 18, Bottom: 10);
+              LayoutMode: Left;
+
+              Label #AuctionSellTaxLabel {
+                Style: (FontSize: 10, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+                Text: "TAX:";
+                FlexWeight: 1;
+              }
+
+              Label #AuctionSellTaxValue {
+                Style: (FontSize: 11, TextColor: #ef4444, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+                Text: "$0";
+                Anchor: (Width: 120);
+              }
+            }
+
+            Group #AuctionSellPayoutRow {
+              Anchor: (Horizontal: 0, Height: 18, Bottom: 12);
+              LayoutMode: Left;
+
+              Label #AuctionSellPayoutLabel {
+                Style: (FontSize: 10, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+                Text: "YOU RECEIVE:";
+                FlexWeight: 1;
+              }
+
+              Label #AuctionSellPayoutValue {
+                Style: (FontSize: 12, TextColor: #94d2bd, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+                Text: "$0";
+                Anchor: (Width: 120);
+              }
+            }
+
+            $C.@SmallBuyTextButton #AuctionSellConfirmButton {
+              @Anchor = (Horizontal: 0);
+              @Text = "LIST FOR SALE";
+            }
+          }
+        }
+      }
+
+      Group #AuctionBuyConfirmOverlay {
+        Visible: false;
+        Anchor: (Width: 480, Height: 380);
+        LayoutMode: CenterMiddle;
+
+        Group #AuctionBuyConfirmDialog {
+          Anchor: (Width: 480, Height: 380);
+          LayoutMode: Top;
+          Padding: (Full: 16);
+          Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerFullPatch.png", Border: 14);
+
+          Label #AuctionBuyConfirmTitle {
+            Style: (FontSize: 18, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center, VerticalAlignment: Center);
+            Text: "CONFIRM PURCHASE";
+            Anchor: (Height: 28, Bottom: 6);
+          }
+
+          Group #AuctionBuyConfirmDivider {
+            Anchor: (Horizontal: 0, Height: 4, Bottom: 12);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerSectionSeparator.png", HorizontalBorder: 4);
+          }
+
+          Group #AuctionBuyConfirmHeader {
+            Anchor: (Horizontal: 0, Height: 80, Bottom: 12);
+            LayoutMode: Left;
+            Padding: (Left: 8, Right: 8, Top: 8, Bottom: 8);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+            Group #AuctionBuyConfirmIconWrap {
+              Anchor: (Width: 60, Height: 60, Right: 12);
+              LayoutMode: CenterMiddle;
+              Background: (TexturePath: "Textures/MedievalShop/Rarities/SlotCommon.png", Border: 12);
+
+              AssetImage #AuctionBuyConfirmIconAsset {
+                Anchor: (Width: 48, Height: 48);
+                Visible: false;
+              }
+
+              ItemIcon #AuctionBuyConfirmIcon {
+                Anchor: (Width: 48, Height: 48);
+              }
+            }
+
+            Group {
+              FlexWeight: 1;
+              LayoutMode: CenterMiddle;
+
+              Group #AuctionBuyConfirmStack {
+                Anchor: (Full: 0);
+                LayoutMode: Top;
+
+                Label #AuctionBuyConfirmName {
+                  Style: (FontSize: 16, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, Wrap: true);
+                  Text: "Item";
+                  Anchor: (Height: 26);
+                }
+
+                Label #AuctionBuyConfirmSeller {
+                  Style: (FontSize: 11, TextColor: #9c8463, VerticalAlignment: Center);
+                  Text: "from Seller";
+                  Anchor: (Height: 18);
+                }
+              }
+            }
+          }
+
+          Label #AuctionBuyConfirmQtyCaption {
+            Style: (FontSize: 10, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+            Text: "QUANTITY";
+            Anchor: (Height: 14, Bottom: 4);
+          }
+
+          $C.@NumberField #AuctionBuyConfirmQtyInput {
+            @Anchor = (Horizontal: 0, Bottom: 10);
+          }
+
+          Group #AuctionBuyConfirmTotalCard {
+            Anchor: (Horizontal: 0, Height: 56, Bottom: 14);
+            LayoutMode: Top;
+            Padding: (Left: 12, Right: 12, Top: 6, Bottom: 6);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 8);
+
+            Label #AuctionBuyConfirmTotalCaption {
+              Style: (FontSize: 9, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center, VerticalAlignment: Center);
+              Text: "TOTAL PRICE";
+              Anchor: (Height: 14, Bottom: 2);
+            }
+
+            Label #AuctionBuyConfirmTotal {
+              Style: (FontSize: 19, TextColor: #e8a93b, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center, ShrinkTextToFit: true, MinShrinkTextToFitFontSize: 10);
+              Text: "$0";
+              Anchor: (Height: 26);
+            }
+          }
+
+          Group #AuctionBuyConfirmActions {
+            Anchor: (Horizontal: 0, Height: 32);
+            LayoutMode: Left;
+
+            $C.@SmallBuyTextButton #AuctionBuyConfirmYes {
+              @Anchor = (Width: 220, Right: 8);
+              @Text = "CONFIRM PURCHASE";
+            }
+
+            $C.@SmallCancelTextButton #AuctionBuyConfirmNo {
+              @Anchor = (Width: 220);
+              @Text = "CANCEL";
+            }
+          }
+        }
+      }
+
+      Group #AuctionRateSellerOverlay {
+        Visible: false;
+        Anchor: (Width: 480, Height: 360);
+        LayoutMode: CenterMiddle;
+
+        Group #AuctionRateSellerDialog {
+          Anchor: (Width: 480, Height: 360);
+          LayoutMode: Top;
+          Padding: (Full: 16);
+          Background: (TexturePath: "../../Common/ContainerFullPatch.png", Border: 14);
+
+          Label #AuctionRateSellerTitle {
+            Style: (FontSize: 18, TextColor: #ffd166, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center, VerticalAlignment: Center);
+            Text: "RATE THIS SELLER";
+            Anchor: (Height: 28, Bottom: 6);
+          }
+
+          Group #AuctionRateSellerDivider {
+            Anchor: (Horizontal: 0, Height: 4, Bottom: 12);
+            Background: (TexturePath: "../../Common/ContainerSectionSeparator.png", HorizontalBorder: 4);
+          }
+
+          Group #AuctionRateSellerHeader {
+            Anchor: (Horizontal: 0, Height: 70, Bottom: 12);
+            LayoutMode: Left;
+            Padding: (Left: 8, Right: 8, Top: 8, Bottom: 8);
+            Background: (TexturePath: "../../Common/ContainerPanelPatch.png", Border: 8);
+
+            Group #AuctionRateSellerIconWrap {
+              Anchor: (Width: 54, Height: 54, Right: 12);
+              LayoutMode: CenterMiddle;
+              Background: (TexturePath: "Textures/ModernShop/Rarities/SlotCommon.png", Border: 12);
+
+              AssetImage #AuctionRateSellerIconAsset {
+                Anchor: (Width: 44, Height: 44);
+                Visible: false;
+              }
+
+              ItemIcon #AuctionRateSellerIcon {
+                Anchor: (Width: 44, Height: 44);
+              }
+            }
+
+            Group {
+              FlexWeight: 1;
+              LayoutMode: CenterMiddle;
+
+              Label #AuctionRateSellerSubtitle {
+                Style: (FontSize: 13, TextColor: #cbd5e1, VerticalAlignment: Center, Wrap: true);
+                Text: "How was your purchase?";
+                Anchor: (Full: 0);
+              }
+            }
+          }
+
+          Group #AuctionRateStarsRow {
+            Anchor: (Horizontal: 0, Height: 56, Bottom: 8);
+            LayoutMode: CenterMiddle;
+
+            Group #AuctionRateStarsRowInner {
+              Anchor: (Width: 320, Height: 56);
+              LayoutMode: Left;
+
+              Button #AuctionRateStar1 {
+                Anchor: (Width: 56, Height: 56, Right: 10);
+                Style: $C.@TertiaryButtonStyle;
+                Label #AuctionRateStar1Filled {
+                  Style: (FontSize: 30, TextColor: #facc15, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center);
+                  Text: "*";
+                  Anchor: (Full: 0);
+                  Visible: false;
+                }
+                Label #AuctionRateStar1Empty {
+                  Style: (FontSize: 30, TextColor: #475569, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center);
+                  Text: "*";
+                  Anchor: (Full: 0);
+                }
+              }
+
+              Button #AuctionRateStar2 {
+                Anchor: (Width: 56, Height: 56, Right: 10);
+                Style: $C.@TertiaryButtonStyle;
+                Label #AuctionRateStar2Filled {
+                  Style: (FontSize: 30, TextColor: #facc15, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center);
+                  Text: "*";
+                  Anchor: (Full: 0);
+                  Visible: false;
+                }
+                Label #AuctionRateStar2Empty {
+                  Style: (FontSize: 30, TextColor: #475569, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center);
+                  Text: "*";
+                  Anchor: (Full: 0);
+                }
+              }
+
+              Button #AuctionRateStar3 {
+                Anchor: (Width: 56, Height: 56, Right: 10);
+                Style: $C.@TertiaryButtonStyle;
+                Label #AuctionRateStar3Filled {
+                  Style: (FontSize: 30, TextColor: #facc15, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center);
+                  Text: "*";
+                  Anchor: (Full: 0);
+                  Visible: false;
+                }
+                Label #AuctionRateStar3Empty {
+                  Style: (FontSize: 30, TextColor: #475569, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center);
+                  Text: "*";
+                  Anchor: (Full: 0);
+                }
+              }
+
+              Button #AuctionRateStar4 {
+                Anchor: (Width: 56, Height: 56, Right: 10);
+                Style: $C.@TertiaryButtonStyle;
+                Label #AuctionRateStar4Filled {
+                  Style: (FontSize: 30, TextColor: #facc15, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center);
+                  Text: "*";
+                  Anchor: (Full: 0);
+                  Visible: false;
+                }
+                Label #AuctionRateStar4Empty {
+                  Style: (FontSize: 30, TextColor: #475569, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center);
+                  Text: "*";
+                  Anchor: (Full: 0);
+                }
+              }
+
+              Button #AuctionRateStar5 {
+                Anchor: (Width: 56, Height: 56);
+                Style: $C.@TertiaryButtonStyle;
+                Label #AuctionRateStar5Filled {
+                  Style: (FontSize: 30, TextColor: #facc15, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center);
+                  Text: "*";
+                  Anchor: (Full: 0);
+                  Visible: false;
+                }
+                Label #AuctionRateStar5Empty {
+                  Style: (FontSize: 30, TextColor: #475569, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center);
+                  Text: "*";
+                  Anchor: (Full: 0);
+                }
+              }
+            }
+          }
+
+          Label #AuctionRateSellerHint {
+            Style: (FontSize: 11, TextColor: #94a3b8, HorizontalAlignment: Center, VerticalAlignment: Center);
+            Text: "Pick a star to submit your rating.";
+            Anchor: (Height: 16, Bottom: 12);
+          }
+
+          Group #AuctionRateSellerActions {
+            Anchor: (Horizontal: 0, Height: 32);
+            LayoutMode: Left;
+
+            $C.@SmallBuyTextButton #AuctionRateSellerSubmit {
+              @Anchor = (Width: 220, Right: 8);
+              @Text = "SUBMIT RATING";
+            }
+
+            $C.@SmallTertiaryTextButton #AuctionRateSellerSkip {
+              @Anchor = (Width: 220);
+              @Text = "SKIP";
+            }
+          }
+        }
+      }
+
+      Group #AuctionEditOverlay {
+        Visible: false;
+        Anchor: (Width: 940, Height: 680);
+        LayoutMode: CenterMiddle;
+
+        Group #AuctionEditDialog {
+          Anchor: (Width: 940, Height: 680);
+          LayoutMode: Top;
+          Padding: (Full: 16);
+          Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerFullPatch.png", Border: 14);
+
+          Label #AuctionEditTitle {
+            Style: (FontSize: 20, TextColor: #f5e8c8, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center, VerticalAlignment: Center);
+            Text: "EDIT LISTING";
+            Anchor: (Height: 30, Bottom: 6);
+          }
+
+          Group #AuctionEditDivider {
+            Anchor: (Horizontal: 0, Height: 4, Bottom: 12);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerSectionSeparator.png", HorizontalBorder: 4);
+          }
+
+          Group #AuctionEditBody {
+            FlexWeight: 1;
+            LayoutMode: Left;
+
+            // ─────────── LEFT: form column ───────────
+            Group #AuctionEditFormColumn {
+              Anchor: (Width: 500, Right: 14);
+              LayoutMode: Top;
+              Padding: (Left: 14, Right: 14, Top: 12, Bottom: 12);
+              Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPatch.png", Border: 14);
+
+              Group #AuctionEditHeader {
+                Anchor: (Horizontal: 0, Height: 80, Bottom: 14);
+                LayoutMode: Left;
+                Padding: (Left: 8, Right: 8, Top: 8, Bottom: 8);
+                Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 8);
+
+                Group #AuctionEditIconWrap {
+                  Anchor: (Width: 60, Height: 60, Right: 12);
+                  LayoutMode: CenterMiddle;
+                  Background: (TexturePath: "Textures/MedievalShop/Rarities/SlotCommon.png", Border: 12);
+
+                  AssetImage #AuctionEditIconAsset {
+                    Anchor: (Width: 48, Height: 48);
+                    Visible: false;
+                  }
+
+                  ItemIcon #AuctionEditIcon {
+                    Anchor: (Width: 48, Height: 48);
+                  }
+                }
+
+                Group {
+                  FlexWeight: 1;
+                  LayoutMode: CenterMiddle;
+
+                  Group #AuctionEditStack {
+                    Anchor: (Full: 0);
+                    LayoutMode: Top;
+
+                    Label #AuctionEditName {
+                      Style: (FontSize: 16, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, Wrap: true);
+                      Text: "Item";
+                      Anchor: (Height: 26);
+                    }
+
+                    Label #AuctionEditAmount {
+                      Style: (FontSize: 11, TextColor: #9c8463, VerticalAlignment: Center);
+                      Text: "x1";
+                      Anchor: (Height: 18);
+                    }
+                  }
+                }
+              }
+
+              Label #AuctionEditPriceCaption {
+                Style: (FontSize: 10, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+                Text: "NEW PRICE";
+                Anchor: (Height: 14, Bottom: 4);
+              }
+
+              $C.@NumberField #AuctionEditPriceInput {
+                @Anchor = (Horizontal: 0, Bottom: 8);
+              }
+
+              $C.@SmallBuyTextButton #AuctionEditSavePriceButton {
+                @Anchor = (Horizontal: 0, Bottom: 14);
+                @Text = "UPDATE PRICE";
+              }
+
+              Label #AuctionEditCategoryCaption {
+                Style: (FontSize: 10, TextColor: #94a3b8, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+                Text: "CATEGORY";
+                Anchor: (Height: 14, Bottom: 4);
+              }
+
+              Group #AuctionEditCategoryGroup {
+                Anchor: (Horizontal: 0, Height: 32, Bottom: 6);
+                LayoutMode: Top;
+
+                $C.@DropdownBox #AuctionEditCategoryDropdown {
+                  @Anchor = (Horizontal: 0, Height: 32);
+                  Value: "uncategorized";
+                  DropdownEntry { Value: "uncategorized"; Text: "Uncategorized"; }
+                }
+              }
+
+              $C.@SmallSecondaryTextButton #AuctionEditCategorySaveButton {
+                @Anchor = (Horizontal: 0, Bottom: 14);
+                @Text = "UPDATE CATEGORY";
+              }
+
+
+              Group #AuctionEditPromoDivider {
+                Anchor: (Horizontal: 0, Height: 4, Bottom: 10);
+                Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerSectionSeparator.png", HorizontalBorder: 4);
+              }
+
+              Label #AuctionEditPromoCaption {
+                Style: (FontSize: 11, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center, VerticalAlignment: Center);
+                Text: "LIMITED PROMOTION";
+                Anchor: (Height: 16, Bottom: 6);
+              }
+
+              Group #AuctionEditPromoRow {
+                Anchor: (Horizontal: 0, Height: 32, Bottom: 6);
+                LayoutMode: Left;
+
+                $C.@NumberField #AuctionEditPromoPercent {
+                  @Anchor = (Width: 110, Right: 6);
+                }
+
+                Label #AuctionEditPromoUnit {
+                  Style: (FontSize: 11, TextColor: #9c8463, RenderBold: true, VerticalAlignment: Center);
+                  Text: "% OFF";
+                  Anchor: (Width: 60, Height: 32, Right: 12);
+                }
+
+                $C.@NumberField #AuctionEditPromoDays {
+                  @Anchor = (Width: 90, Right: 6);
+                }
+
+                Label #AuctionEditPromoDaysUnit {
+                  Style: (FontSize: 11, TextColor: #9c8463, RenderBold: true, VerticalAlignment: Center);
+                  Text: "DAYS";
+                  Anchor: (Width: 60, Height: 32);
+                }
+              }
+
+              $C.@SmallBuyTextButton #AuctionEditApplyPromoButton {
+                @Anchor = (Horizontal: 0, Bottom: 14);
+                @Text = "APPLY PROMOTION";
+              }
+
+              Group #AuctionEditFeaturedDivider {
+                Anchor: (Horizontal: 0, Height: 4, Bottom: 10);
+                Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerSectionSeparator.png", HorizontalBorder: 4);
+              }
+
+              Label #AuctionEditFeaturedCaption {
+                Style: (FontSize: 11, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center, VerticalAlignment: Center);
+                Text: "FEATURED LISTING";
+                Anchor: (Height: 16, Bottom: 4);
+              }
+
+              Label #AuctionEditFeaturedHint {
+                Style: (FontSize: 9, TextColor: #9c8463, HorizontalAlignment: Center, VerticalAlignment: Center, Wrap: true);
+                Text: "Featured listings appear at the top of MY LISTINGS with a gold star badge.";
+                Anchor: (Horizontal: 0, Height: 22, Bottom: 6);
+              }
+
+              Group #AuctionEditFeaturedRow {
+                Anchor: (Horizontal: 0, Height: 32, Bottom: 14);
+                LayoutMode: Left;
+
+                Group #AuctionEditFeaturedStatusWrap {
+                  FlexWeight: 1;
+                  Anchor: (Height: 32, Right: 8);
+                  LayoutMode: CenterMiddle;
+                  Padding: (Left: 10, Right: 10);
+                  Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 8);
+
+                  Label #AuctionEditFeaturedStatus {
+                    Style: (FontSize: 11, TextColor: #9c8463, RenderBold: true, VerticalAlignment: Center, ShrinkTextToFit: true, MinShrinkTextToFitFontSize: 9);
+                    Text: "OFF";
+                  }
+                }
+
+                $C.@SmallSecondaryTextButton #AuctionEditFeaturedButton {
+                  @Anchor = (Width: 140, Height: 32);
+                  @Text = "TOGGLE";
+                }
+              }
+
+              Group { FlexWeight: 1; }
+
+              Group #AuctionEditActionsDivider {
+                Anchor: (Horizontal: 0, Height: 4, Bottom: 10);
+                Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerSectionSeparator.png", HorizontalBorder: 4);
+              }
+
+              Group #AuctionEditActions {
+                Anchor: (Horizontal: 0, Height: 36);
+                LayoutMode: Left;
+
+                $C.@SmallSecondaryTextButton #AuctionEditCloseButton {
+                  @Anchor = (Height: 36, Right: 8);
+                  @Text = "CLOSE";
+                  FlexWeight: 1;
+                }
+
+                $C.@SmallCancelTextButton #AuctionEditRemoveButton {
+                  @Anchor = (Height: 36);
+                  @Text = "REMOVE LISTING";
+                  FlexWeight: 1;
+                }
+              }
+            }
+
+            // ─────────── RIGHT: live preview column ───────────
+            Group #AuctionEditPreviewColumn {
+              FlexWeight: 1;
+              LayoutMode: Top;
+              Padding: (Left: 14, Right: 14, Top: 12, Bottom: 12);
+              Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPatch.png", Border: 14);
+
+              Label #AuctionEditPreviewTitle {
+                Style: (FontSize: 12, TextColor: #c9b181, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center, VerticalAlignment: Center);
+                Text: "LIVE PREVIEW";
+                Anchor: (Horizontal: 0, Height: 20, Bottom: 6);
+              }
+
+              Group #AuctionEditPreviewDivider {
+                Anchor: (Horizontal: 0, Height: 4, Bottom: 14);
+                Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerSectionSeparator.png", HorizontalBorder: 4);
+              }
+
+              Group #AuctionEditPreviewTileWrap {
+                Anchor: (Horizontal: 0, Height: 290, Bottom: 12);
+                LayoutMode: CenterMiddle;
+
+                Group #AuctionEditPreviewTile {
+                  Anchor: (Width: 200, Height: 280);
+                  LayoutMode: Top;
+                  Padding: (Left: 8, Right: 8, Top: 8, Bottom: 8);
+                  Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+                  Group #AuctionEditPreviewIconWrap {
+                    Anchor: (Horizontal: 0, Height: 124, Bottom: 6);
+                    Background: (TexturePath: "Textures/MedievalShop/Rarities/SlotCommon.png", Border: 12);
+
+                    Group #AuctionEditPreviewIconCenter {
+                      Anchor: (Full: 0);
+                      LayoutMode: CenterMiddle;
+
+                      AssetImage #AuctionEditPreviewIconAsset {
+                        Anchor: (Width: 88, Height: 88);
+                        Visible: false;
+                      }
+
+                      ItemIcon #AuctionEditPreviewIcon {
+                        Anchor: (Width: 88, Height: 88);
+                      }
+                    }
+
+                    Label #AuctionEditPreviewQtyBadge {
+                      Visible: false;
+                      Anchor: (Width: 42, Height: 20, Right: 4, Bottom: 4);
+                      Style: (FontSize: 12, TextColor: #ffffff, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center);
+                      Background: (TexturePath: "../../Textures/MedievalShop/Patches/Buttons/Tertiary.png", Border: 6);
+                      Text: "x1";
+                    }
+
+                    Label #AuctionEditPreviewFeaturedBadge {
+                      Visible: false;
+                      Anchor: (Width: 80, Height: 18, Left: 4, Top: 4);
+                      Style: (FontSize: 9, TextColor: #1a1a00, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, HorizontalAlignment: Center, VerticalAlignment: Center);
+                      Background: (Color: #e8a93b);
+                      Text: "FEATURED";
+                    }
+
+                    Label #AuctionEditPreviewPromoBadge {
+                      Visible: false;
+                      Anchor: (Width: 60, Height: 18, Right: 4, Top: 4);
+                      Style: (FontSize: 9, TextColor: #ffffff, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center);
+                      Background: (Color: #b91c1c);
+                      Text: "-25%";
+                    }
+                  }
+
+                  Label #AuctionEditPreviewName {
+                    Anchor: (Horizontal: 0, Height: 32, Bottom: 4);
+                    Style: (FontSize: 13, TextColor: #f5e8c8, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center, Wrap: true, ShrinkTextToFit: true, MinShrinkTextToFitFontSize: 10);
+                    Text: "Item";
+                  }
+
+                  Label #AuctionEditPreviewExpiry {
+                    Anchor: (Horizontal: 0, Height: 14, Bottom: 6);
+                    Style: (FontSize: 9, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, HorizontalAlignment: Center, VerticalAlignment: Center);
+                    Text: "—";
+                  }
+
+                  Group #AuctionEditPreviewPricePill {
+                    Anchor: (Horizontal: 0, Height: 36);
+                    LayoutMode: CenterMiddle;
+                    Padding: (Left: 8, Right: 8);
+                    Background: (TexturePath: "../../Textures/MedievalShop/Patches/Buttons/Tertiary.png", Border: 6);
+
+                    Label #AuctionEditPreviewPrice {
+                      Style: (FontSize: 14, TextColor: #4ade80, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center, ShrinkTextToFit: true, MinShrinkTextToFitFontSize: 9);
+                      Text: "$0";
+                    }
+                  }
+                }
+              }
+
+              Group #AuctionEditPreviewSummary {
+                Anchor: (Horizontal: 0, Height: 158, Bottom: 8);
+                LayoutMode: Top;
+                Padding: (Left: 12, Right: 12, Top: 10, Bottom: 10);
+                Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 8);
+
+                Label #AuctionEditSummaryTitle {
+                  Style: (FontSize: 11, TextColor: #c9b181, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+                  Text: "DETAILS";
+                  Anchor: (Horizontal: 0, Height: 16, Bottom: 8);
+                }
+
+                Group #AuctionEditSummaryRowOriginal {
+                  Anchor: (Horizontal: 0, Height: 16, Bottom: 4);
+                  LayoutMode: Left;
+
+                  Label #AuctionEditSummaryLblOriginal {
+                    Style: (FontSize: 10, TextColor: #6e5839, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center);
+                    Text: "ORIGINAL";
+                    Anchor: (Width: 100, Height: 16);
+                  }
+
+                  Label #AuctionEditSummaryOriginal {
+                    Style: (FontSize: 10, TextColor: #c9b181, RenderBold: true, VerticalAlignment: Center);
+                    Text: "—";
+                    FlexWeight: 1;
+                  }
+                }
+
+                Group #AuctionEditSummaryRowNew {
+                  Anchor: (Horizontal: 0, Height: 16, Bottom: 4);
+                  LayoutMode: Left;
+
+                  Label #AuctionEditSummaryLblNew {
+                    Style: (FontSize: 10, TextColor: #6e5839, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center);
+                    Text: "NEW";
+                    Anchor: (Width: 100, Height: 16);
+                  }
+
+                  Label #AuctionEditSummaryNew {
+                    Style: (FontSize: 10, TextColor: #4ade80, RenderBold: true, VerticalAlignment: Center);
+                    Text: "—";
+                    FlexWeight: 1;
+                  }
+                }
+
+                Group #AuctionEditSummaryRowPromo {
+                  Anchor: (Horizontal: 0, Height: 16, Bottom: 4);
+                  LayoutMode: Left;
+
+                  Label #AuctionEditSummaryLblPromotion {
+                    Style: (FontSize: 10, TextColor: #6e5839, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center);
+                    Text: "PROMOTION";
+                    Anchor: (Width: 100, Height: 16);
+                  }
+
+                  Label #AuctionEditSummaryPromo {
+                    Style: (FontSize: 10, TextColor: #c9b181, RenderBold: true, VerticalAlignment: Center);
+                    Text: "None";
+                    FlexWeight: 1;
+                  }
+                }
+
+                Group #AuctionEditSummaryRowFeatured {
+                  Anchor: (Horizontal: 0, Height: 16, Bottom: 4);
+                  LayoutMode: Left;
+
+                  Label #AuctionEditSummaryLblFeatured {
+                    Style: (FontSize: 10, TextColor: #6e5839, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center);
+                    Text: "FEATURED";
+                    Anchor: (Width: 100, Height: 16);
+                  }
+
+                  Label #AuctionEditSummaryFeatured {
+                    Style: (FontSize: 10, TextColor: #c9b181, RenderBold: true, VerticalAlignment: Center);
+                    Text: "OFF";
+                    FlexWeight: 1;
+                  }
+                }
+
+                Group #AuctionEditSummaryRowExpiry {
+                  Anchor: (Horizontal: 0, Height: 16, Bottom: 4);
+                  LayoutMode: Left;
+
+                  Label #AuctionEditSummaryLblExpires {
+                    Style: (FontSize: 10, TextColor: #6e5839, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center);
+                    Text: "EXPIRES";
+                    Anchor: (Width: 100, Height: 16);
+                  }
+
+                  Label #AuctionEditSummaryExpiry {
+                    Style: (FontSize: 10, TextColor: #c9b181, RenderBold: true, VerticalAlignment: Center);
+                    Text: "—";
+                    FlexWeight: 1;
+                  }
+                }
+              }
+
+              Group { FlexWeight: 1; }
+            }
+          }
+        }
+      }
+
+      Group #AuctionHistoryOverlay {
+        Visible: false;
+        Anchor: (Width: 1240, Height: 960);
+        LayoutMode: Top;
+        Padding: (Full: 0);
+        Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerFullPatch.png", Border: 14);
+
+        Group #AuctionHistoryHeader {
+          Anchor: (Height: 72, Bottom: 10);
+          LayoutMode: Left;
+          Padding: (Left: 20, Right: 14);
+          Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerHeader.png", Border: 14);
+
+          Group {
+            FlexWeight: 1;
+            LayoutMode: CenterMiddle;
+
+            Group #AuctionHistoryTitleStack {
+              Anchor: (Width: 600, Height: 46);
+              LayoutMode: Top;
+
+              Label #AuctionHistoryTitle {
+                Style: (FontSize: 18, TextColor: #f5e8c8, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center, VerticalAlignment: Center);
+                Text: "LISTING HISTORY";
+                Anchor: (Height: 24, Bottom: 2);
+              }
+
+              Label #AuctionHistorySubtitle {
+                Style: (FontSize: 12, TextColor: #9c8463, HorizontalAlignment: Center, VerticalAlignment: Center);
+                Text: "Buyers and sales for this listing";
+                Anchor: (Height: 18);
+              }
+            }
+          }
+
+          Group #AuctionHistoryCloseGroup {
+            Anchor: (Width: 48);
+            LayoutMode: CenterMiddle;
+
+            Button #AuctionHistoryCloseButton {
+              Anchor: (Width: 40, Height: 40);
+              Style: (
+                Default: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerCloseButton.png", Border: 6)),
+                Hovered: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerCloseButtonHovered.png", Border: 6)),
+                Pressed: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerCloseButtonPressed.png", Border: 6))
+              );
+            }
+          }
+        }
+
+        Group #AuctionHistoryBody {
+          FlexWeight: 1;
+          LayoutMode: TopScrolling;
+          ScrollbarStyle: $C.@DefaultScrollbarStyle;
+          Padding: (Left: 14, Right: 14, Top: 8, Bottom: 14);
+
+          Group #AuctionHistoryList {
+            LayoutMode: Top;
+          }
+
+          Label #AuctionHistoryEmpty {
+            Visible: false;
+            Style: (FontSize: 13, TextColor: #6e5839, HorizontalAlignment: Center, VerticalAlignment: Center, Wrap: true);
+            Text: "No purchase history yet.";
+            Anchor: (Height: 60);
+          }
+        }
+      }
+}

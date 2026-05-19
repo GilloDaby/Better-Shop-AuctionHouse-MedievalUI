@@ -1,0 +1,72 @@
+$C = "../BetterShopCommon.ui";
+
+Group {
+  Anchor: (Horizontal: 0, Height: 64, Bottom: 8);
+  LayoutMode: Left;
+  Padding: (Left: 10, Right: 10, Top: 6, Bottom: 6);
+  Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+  Group #ModernRequestClaimIconWrap {
+    Anchor: (Width: 52, Height: 52, Right: 12);
+    Background: (TexturePath: "Textures/MedievalShop/Rarities/SlotCommon.png", Border: 10);
+
+    Group #ModernRequestClaimIconCenter {
+      Anchor: (Full: 0);
+      LayoutMode: CenterMiddle;
+
+      AssetImage #ModernRequestClaimIconAsset {
+        Anchor: (Width: 40, Height: 40);
+        Visible: false;
+      }
+
+      ItemIcon #ModernRequestClaimIcon {
+        Anchor: (Width: 40, Height: 40);
+      }
+    }
+
+    Label #ModernRequestClaimQty {
+      Anchor: (Width: 28, Height: 14, Right: 2, Bottom: 2);
+      Style: (FontSize: 9, TextColor: #ffffff, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center);
+      Background: (Color: #16a34a);
+      Text: "x1";
+    }
+  }
+
+  Group {
+    FlexWeight: 1;
+    LayoutMode: CenterMiddle;
+
+    Group #ModernRequestClaimStack {
+      Anchor: (Full: 0);
+      LayoutMode: Top;
+
+      Label #ModernRequestClaimName {
+        Style: (FontSize: 13, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, Wrap: true);
+        Text: "Item";
+        Anchor: (Height: 18);
+      }
+
+      Label #ModernRequestClaimMeta {
+        Style: (FontSize: 10, TextColor: #9c8463, VerticalAlignment: Center);
+        Text: "from Buyer";
+        Anchor: (Height: 14);
+      }
+
+      Label #ModernRequestClaimAge {
+        Style: (FontSize: 9, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center);
+        Text: "JUST NOW";
+        Anchor: (Height: 12);
+      }
+    }
+  }
+
+  Group #ModernRequestClaimActionGroup {
+    Anchor: (Width: 110, Height: 52);
+    LayoutMode: CenterMiddle;
+
+    $C.@SmallBuyTextButton #ModernRequestClaimButton {
+      @Anchor = (Width: 110, Height: 36);
+      @Text = "CLAIM";
+    }
+  }
+}

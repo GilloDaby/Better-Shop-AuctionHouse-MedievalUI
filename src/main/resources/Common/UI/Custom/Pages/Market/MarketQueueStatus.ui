@@ -1,0 +1,2381 @@
+$C = "../BetterShopCommon.ui";
+
+$C.@PageOverlay {
+  LayoutMode: Middle;
+
+  $C.@DecoratedContainer {
+    Anchor: (Width: 980, Height: 720);
+
+    #Title {
+      $C.@Title {
+        @Text = "";
+      }
+      Label #TitleText {
+        Style: (FontSize: 22, TextColor: #f5e8c8, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center);
+        Text: "BONUS & DISCOUNT QUEUE";
+        Anchor: (Height: 30);
+      }
+    }
+
+    #Content {
+      LayoutMode: Top;
+      Padding: (Full: 16);
+
+      Group #StatusRow {
+        Anchor: (Horizontal: 0, Height: 110, Bottom: 14);
+        LayoutMode: Left;
+
+        Group #SellBoostCard {
+          Anchor: (Width: 460, Height: 110, Right: 12);
+          LayoutMode: Top;
+          Padding: (Left: 16, Right: 16, Top: 12, Bottom: 12);
+          Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerFullPatch.png", Border: 14);
+
+          Label #SellBoostBadge {
+            Style: (FontSize: 10, TextColor: #4ade80, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center, VerticalAlignment: Center);
+            Text: "SELL BONUS";
+            Anchor: (Horizontal: 0, Height: 14, Bottom: 4);
+          }
+
+          Label #SellBoostTimer {
+            Style: (FontSize: 24, TextColor: #e8a93b, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center, ShrinkTextToFit: true, MinShrinkTextToFitFontSize: 14);
+            Text: "";
+            Anchor: (Horizontal: 0, Height: 32, Bottom: 4);
+          }
+
+          Label #SellBoostMain {
+            Style: (FontSize: 12, TextColor: #4ade80, HorizontalAlignment: Center, VerticalAlignment: Center, Wrap: true);
+            Text: "—";
+            Anchor: (Horizontal: 0, Height: 18);
+          }
+        }
+
+        Group #BuyDiscountCard {
+          FlexWeight: 1;
+          LayoutMode: Top;
+          Padding: (Left: 16, Right: 16, Top: 12, Bottom: 12);
+          Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerFullPatch.png", Border: 14);
+
+          Label #BuyDiscountBadge {
+            Style: (FontSize: 10, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center, VerticalAlignment: Center);
+            Text: "SHOP DISCOUNT";
+            Anchor: (Horizontal: 0, Height: 14, Bottom: 4);
+          }
+
+          Label #BuyDiscountTimer {
+            Style: (FontSize: 24, TextColor: #e8a93b, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center, ShrinkTextToFit: true, MinShrinkTextToFitFontSize: 14);
+            Text: "";
+            Anchor: (Horizontal: 0, Height: 32, Bottom: 4);
+          }
+
+          Label #BuyDiscountMain {
+            Style: (FontSize: 12, TextColor: #d4a849, HorizontalAlignment: Center, VerticalAlignment: Center, Wrap: true);
+            Text: "—";
+            Anchor: (Horizontal: 0, Height: 18);
+          }
+        }
+      }
+
+      Group #FilterRow {
+        Anchor: (Horizontal: 0, Height: 36, Bottom: 12);
+        LayoutMode: Left;
+
+        $C.@SmallTextButton #FilterAll {
+          @Anchor = (Width: 100, Height: 36, Right: 6);
+          @Text = "ALL";
+        }
+
+        $C.@SmallSecondaryTextButton #FilterSell {
+          @Anchor = (Width: 160, Height: 36, Right: 6);
+          @Text = "SELL BONUS";
+        }
+
+        $C.@SmallSecondaryTextButton #FilterBuy {
+          @Anchor = (Width: 180, Height: 36);
+          @Text = "SHOP DISCOUNT";
+        }
+
+        Group { FlexWeight: 1; }
+
+        Label #EntryCountLabel {
+          Style: (FontSize: 11, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center, HorizontalAlignment: End);
+          Text: "0 entries";
+          Anchor: (Width: 110, Height: 36);
+        }
+      }
+
+      Group #QueueListPanel {
+        FlexWeight: 1;
+        LayoutMode: Top;
+        Padding: (Left: 12, Right: 12, Top: 12, Bottom: 12);
+        Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPatch.png", Border: 14);
+
+        Group #QueueHeader {
+          Anchor: (Horizontal: 0, Height: 22, Bottom: 6);
+          LayoutMode: Left;
+          Padding: (Left: 12, Right: 12);
+
+          Label {
+            Style: (FontSize: 10, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+            Text: "PLAYER";
+            Anchor: (Width: 130);
+          }
+
+          Label {
+            Style: (FontSize: 10, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+            Text: "TYPE";
+            Anchor: (Width: 110);
+          }
+
+          Label {
+            Style: (FontSize: 10, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+            Text: "CATEGORY";
+            FlexWeight: 1;
+          }
+
+          Label {
+            Style: (FontSize: 10, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center, HorizontalAlignment: End);
+            Text: "BONUS";
+            Anchor: (Width: 80);
+          }
+
+          Label {
+            Style: (FontSize: 10, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center, HorizontalAlignment: End);
+            Text: "REMAINING";
+            Anchor: (Width: 110);
+          }
+
+          Label {
+            Style: (FontSize: 10, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center, HorizontalAlignment: Center);
+            Text: "STATUS";
+            Anchor: (Width: 90);
+          }
+        }
+
+        Group #QueueHeaderDivider {
+          Anchor: (Horizontal: 0, Height: 4, Bottom: 8);
+          Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerSectionSeparator.png", HorizontalBorder: 4);
+        }
+
+        Group #QueueRows {
+          FlexWeight: 1;
+          LayoutMode: TopScrolling;
+          ScrollbarStyle: $C.@DefaultScrollbarStyle;
+          Padding: (Right: 6);
+
+          Group #QueueRow0 {
+            Visible: false;
+            Anchor: (Horizontal: 0, Height: 36, Bottom: 4);
+            LayoutMode: Left;
+            Padding: (Left: 12, Right: 12, Top: 4, Bottom: 4);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+            Label #QueueRowPlayer0 {
+              Style: (FontSize: 11, TextColor: #d4a849, RenderBold: true, VerticalAlignment: Center);
+              Anchor: (Width: 130, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowType0 {
+              Style: (FontSize: 10, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowName0 {
+              Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, Wrap: true);
+              FlexWeight: 1;
+              Text: "";
+            }
+
+            Label #QueueRowPercent0 {
+              Style: (FontSize: 13, TextColor: #4ade80, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 80, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowTime0 {
+              Style: (FontSize: 11, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowSlot0 {
+              Style: (FontSize: 9, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center, HorizontalAlignment: Center);
+              Anchor: (Width: 90, Height: 28);
+              Text: "";
+            }
+          }
+
+          Group #QueueRow1 {
+            Visible: false;
+            Anchor: (Horizontal: 0, Height: 36, Bottom: 4);
+            LayoutMode: Left;
+            Padding: (Left: 12, Right: 12, Top: 4, Bottom: 4);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+            Label #QueueRowPlayer1 {
+              Style: (FontSize: 11, TextColor: #d4a849, RenderBold: true, VerticalAlignment: Center);
+              Anchor: (Width: 130, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowType1 {
+              Style: (FontSize: 10, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowName1 {
+              Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, Wrap: true);
+              FlexWeight: 1;
+              Text: "";
+            }
+
+            Label #QueueRowPercent1 {
+              Style: (FontSize: 13, TextColor: #4ade80, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 80, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowTime1 {
+              Style: (FontSize: 11, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowSlot1 {
+              Style: (FontSize: 9, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center, HorizontalAlignment: Center);
+              Anchor: (Width: 90, Height: 28);
+              Text: "";
+            }
+          }
+
+          Group #QueueRow2 {
+            Visible: false;
+            Anchor: (Horizontal: 0, Height: 36, Bottom: 4);
+            LayoutMode: Left;
+            Padding: (Left: 12, Right: 12, Top: 4, Bottom: 4);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+            Label #QueueRowPlayer2 {
+              Style: (FontSize: 11, TextColor: #d4a849, RenderBold: true, VerticalAlignment: Center);
+              Anchor: (Width: 130, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowType2 {
+              Style: (FontSize: 10, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowName2 {
+              Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, Wrap: true);
+              FlexWeight: 1;
+              Text: "";
+            }
+
+            Label #QueueRowPercent2 {
+              Style: (FontSize: 13, TextColor: #4ade80, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 80, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowTime2 {
+              Style: (FontSize: 11, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowSlot2 {
+              Style: (FontSize: 9, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center, HorizontalAlignment: Center);
+              Anchor: (Width: 90, Height: 28);
+              Text: "";
+            }
+          }
+
+          Group #QueueRow3 {
+            Visible: false;
+            Anchor: (Horizontal: 0, Height: 36, Bottom: 4);
+            LayoutMode: Left;
+            Padding: (Left: 12, Right: 12, Top: 4, Bottom: 4);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+            Label #QueueRowPlayer3 {
+              Style: (FontSize: 11, TextColor: #d4a849, RenderBold: true, VerticalAlignment: Center);
+              Anchor: (Width: 130, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowType3 {
+              Style: (FontSize: 10, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowName3 {
+              Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, Wrap: true);
+              FlexWeight: 1;
+              Text: "";
+            }
+
+            Label #QueueRowPercent3 {
+              Style: (FontSize: 13, TextColor: #4ade80, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 80, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowTime3 {
+              Style: (FontSize: 11, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowSlot3 {
+              Style: (FontSize: 9, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center, HorizontalAlignment: Center);
+              Anchor: (Width: 90, Height: 28);
+              Text: "";
+            }
+          }
+
+          Group #QueueRow4 {
+            Visible: false;
+            Anchor: (Horizontal: 0, Height: 36, Bottom: 4);
+            LayoutMode: Left;
+            Padding: (Left: 12, Right: 12, Top: 4, Bottom: 4);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+            Label #QueueRowPlayer4 {
+              Style: (FontSize: 11, TextColor: #d4a849, RenderBold: true, VerticalAlignment: Center);
+              Anchor: (Width: 130, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowType4 {
+              Style: (FontSize: 10, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowName4 {
+              Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, Wrap: true);
+              FlexWeight: 1;
+              Text: "";
+            }
+
+            Label #QueueRowPercent4 {
+              Style: (FontSize: 13, TextColor: #4ade80, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 80, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowTime4 {
+              Style: (FontSize: 11, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowSlot4 {
+              Style: (FontSize: 9, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center, HorizontalAlignment: Center);
+              Anchor: (Width: 90, Height: 28);
+              Text: "";
+            }
+          }
+
+          Group #QueueRow5 {
+            Visible: false;
+            Anchor: (Horizontal: 0, Height: 36, Bottom: 4);
+            LayoutMode: Left;
+            Padding: (Left: 12, Right: 12, Top: 4, Bottom: 4);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+            Label #QueueRowPlayer5 {
+              Style: (FontSize: 11, TextColor: #d4a849, RenderBold: true, VerticalAlignment: Center);
+              Anchor: (Width: 130, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowType5 {
+              Style: (FontSize: 10, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowName5 {
+              Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, Wrap: true);
+              FlexWeight: 1;
+              Text: "";
+            }
+
+            Label #QueueRowPercent5 {
+              Style: (FontSize: 13, TextColor: #4ade80, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 80, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowTime5 {
+              Style: (FontSize: 11, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowSlot5 {
+              Style: (FontSize: 9, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center, HorizontalAlignment: Center);
+              Anchor: (Width: 90, Height: 28);
+              Text: "";
+            }
+          }
+
+          Group #QueueRow6 {
+            Visible: false;
+            Anchor: (Horizontal: 0, Height: 36, Bottom: 4);
+            LayoutMode: Left;
+            Padding: (Left: 12, Right: 12, Top: 4, Bottom: 4);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+            Label #QueueRowPlayer6 {
+              Style: (FontSize: 11, TextColor: #d4a849, RenderBold: true, VerticalAlignment: Center);
+              Anchor: (Width: 130, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowType6 {
+              Style: (FontSize: 10, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowName6 {
+              Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, Wrap: true);
+              FlexWeight: 1;
+              Text: "";
+            }
+
+            Label #QueueRowPercent6 {
+              Style: (FontSize: 13, TextColor: #4ade80, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 80, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowTime6 {
+              Style: (FontSize: 11, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowSlot6 {
+              Style: (FontSize: 9, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center, HorizontalAlignment: Center);
+              Anchor: (Width: 90, Height: 28);
+              Text: "";
+            }
+          }
+
+          Group #QueueRow7 {
+            Visible: false;
+            Anchor: (Horizontal: 0, Height: 36, Bottom: 4);
+            LayoutMode: Left;
+            Padding: (Left: 12, Right: 12, Top: 4, Bottom: 4);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+            Label #QueueRowPlayer7 {
+              Style: (FontSize: 11, TextColor: #d4a849, RenderBold: true, VerticalAlignment: Center);
+              Anchor: (Width: 130, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowType7 {
+              Style: (FontSize: 10, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowName7 {
+              Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, Wrap: true);
+              FlexWeight: 1;
+              Text: "";
+            }
+
+            Label #QueueRowPercent7 {
+              Style: (FontSize: 13, TextColor: #4ade80, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 80, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowTime7 {
+              Style: (FontSize: 11, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowSlot7 {
+              Style: (FontSize: 9, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center, HorizontalAlignment: Center);
+              Anchor: (Width: 90, Height: 28);
+              Text: "";
+            }
+          }
+
+          Group #QueueRow8 {
+            Visible: false;
+            Anchor: (Horizontal: 0, Height: 36, Bottom: 4);
+            LayoutMode: Left;
+            Padding: (Left: 12, Right: 12, Top: 4, Bottom: 4);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+            Label #QueueRowPlayer8 {
+              Style: (FontSize: 11, TextColor: #d4a849, RenderBold: true, VerticalAlignment: Center);
+              Anchor: (Width: 130, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowType8 {
+              Style: (FontSize: 10, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowName8 {
+              Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, Wrap: true);
+              FlexWeight: 1;
+              Text: "";
+            }
+
+            Label #QueueRowPercent8 {
+              Style: (FontSize: 13, TextColor: #4ade80, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 80, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowTime8 {
+              Style: (FontSize: 11, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowSlot8 {
+              Style: (FontSize: 9, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center, HorizontalAlignment: Center);
+              Anchor: (Width: 90, Height: 28);
+              Text: "";
+            }
+          }
+
+          Group #QueueRow9 {
+            Visible: false;
+            Anchor: (Horizontal: 0, Height: 36, Bottom: 4);
+            LayoutMode: Left;
+            Padding: (Left: 12, Right: 12, Top: 4, Bottom: 4);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+            Label #QueueRowPlayer9 {
+              Style: (FontSize: 11, TextColor: #d4a849, RenderBold: true, VerticalAlignment: Center);
+              Anchor: (Width: 130, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowType9 {
+              Style: (FontSize: 10, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowName9 {
+              Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, Wrap: true);
+              FlexWeight: 1;
+              Text: "";
+            }
+
+            Label #QueueRowPercent9 {
+              Style: (FontSize: 13, TextColor: #4ade80, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 80, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowTime9 {
+              Style: (FontSize: 11, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowSlot9 {
+              Style: (FontSize: 9, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center, HorizontalAlignment: Center);
+              Anchor: (Width: 90, Height: 28);
+              Text: "";
+            }
+          }
+
+          Group #QueueRow10 {
+            Visible: false;
+            Anchor: (Horizontal: 0, Height: 36, Bottom: 4);
+            LayoutMode: Left;
+            Padding: (Left: 12, Right: 12, Top: 4, Bottom: 4);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+            Label #QueueRowPlayer10 {
+              Style: (FontSize: 11, TextColor: #d4a849, RenderBold: true, VerticalAlignment: Center);
+              Anchor: (Width: 130, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowType10 {
+              Style: (FontSize: 10, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowName10 {
+              Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, Wrap: true);
+              FlexWeight: 1;
+              Text: "";
+            }
+
+            Label #QueueRowPercent10 {
+              Style: (FontSize: 13, TextColor: #4ade80, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 80, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowTime10 {
+              Style: (FontSize: 11, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowSlot10 {
+              Style: (FontSize: 9, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center, HorizontalAlignment: Center);
+              Anchor: (Width: 90, Height: 28);
+              Text: "";
+            }
+          }
+
+          Group #QueueRow11 {
+            Visible: false;
+            Anchor: (Horizontal: 0, Height: 36, Bottom: 4);
+            LayoutMode: Left;
+            Padding: (Left: 12, Right: 12, Top: 4, Bottom: 4);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+            Label #QueueRowPlayer11 {
+              Style: (FontSize: 11, TextColor: #d4a849, RenderBold: true, VerticalAlignment: Center);
+              Anchor: (Width: 130, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowType11 {
+              Style: (FontSize: 10, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowName11 {
+              Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, Wrap: true);
+              FlexWeight: 1;
+              Text: "";
+            }
+
+            Label #QueueRowPercent11 {
+              Style: (FontSize: 13, TextColor: #4ade80, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 80, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowTime11 {
+              Style: (FontSize: 11, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowSlot11 {
+              Style: (FontSize: 9, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center, HorizontalAlignment: Center);
+              Anchor: (Width: 90, Height: 28);
+              Text: "";
+            }
+          }
+
+          Group #QueueRow12 {
+            Visible: false;
+            Anchor: (Horizontal: 0, Height: 36, Bottom: 4);
+            LayoutMode: Left;
+            Padding: (Left: 12, Right: 12, Top: 4, Bottom: 4);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+            Label #QueueRowPlayer12 {
+              Style: (FontSize: 11, TextColor: #d4a849, RenderBold: true, VerticalAlignment: Center);
+              Anchor: (Width: 130, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowType12 {
+              Style: (FontSize: 10, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowName12 {
+              Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, Wrap: true);
+              FlexWeight: 1;
+              Text: "";
+            }
+
+            Label #QueueRowPercent12 {
+              Style: (FontSize: 13, TextColor: #4ade80, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 80, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowTime12 {
+              Style: (FontSize: 11, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowSlot12 {
+              Style: (FontSize: 9, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center, HorizontalAlignment: Center);
+              Anchor: (Width: 90, Height: 28);
+              Text: "";
+            }
+          }
+
+          Group #QueueRow13 {
+            Visible: false;
+            Anchor: (Horizontal: 0, Height: 36, Bottom: 4);
+            LayoutMode: Left;
+            Padding: (Left: 12, Right: 12, Top: 4, Bottom: 4);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+            Label #QueueRowPlayer13 {
+              Style: (FontSize: 11, TextColor: #d4a849, RenderBold: true, VerticalAlignment: Center);
+              Anchor: (Width: 130, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowType13 {
+              Style: (FontSize: 10, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowName13 {
+              Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, Wrap: true);
+              FlexWeight: 1;
+              Text: "";
+            }
+
+            Label #QueueRowPercent13 {
+              Style: (FontSize: 13, TextColor: #4ade80, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 80, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowTime13 {
+              Style: (FontSize: 11, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowSlot13 {
+              Style: (FontSize: 9, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center, HorizontalAlignment: Center);
+              Anchor: (Width: 90, Height: 28);
+              Text: "";
+            }
+          }
+
+          Group #QueueRow14 {
+            Visible: false;
+            Anchor: (Horizontal: 0, Height: 36, Bottom: 4);
+            LayoutMode: Left;
+            Padding: (Left: 12, Right: 12, Top: 4, Bottom: 4);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+            Label #QueueRowPlayer14 {
+              Style: (FontSize: 11, TextColor: #d4a849, RenderBold: true, VerticalAlignment: Center);
+              Anchor: (Width: 130, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowType14 {
+              Style: (FontSize: 10, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowName14 {
+              Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, Wrap: true);
+              FlexWeight: 1;
+              Text: "";
+            }
+
+            Label #QueueRowPercent14 {
+              Style: (FontSize: 13, TextColor: #4ade80, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 80, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowTime14 {
+              Style: (FontSize: 11, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowSlot14 {
+              Style: (FontSize: 9, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center, HorizontalAlignment: Center);
+              Anchor: (Width: 90, Height: 28);
+              Text: "";
+            }
+          }
+
+          Group #QueueRow15 {
+            Visible: false;
+            Anchor: (Horizontal: 0, Height: 36, Bottom: 4);
+            LayoutMode: Left;
+            Padding: (Left: 12, Right: 12, Top: 4, Bottom: 4);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+            Label #QueueRowPlayer15 {
+              Style: (FontSize: 11, TextColor: #d4a849, RenderBold: true, VerticalAlignment: Center);
+              Anchor: (Width: 130, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowType15 {
+              Style: (FontSize: 10, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowName15 {
+              Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, Wrap: true);
+              FlexWeight: 1;
+              Text: "";
+            }
+
+            Label #QueueRowPercent15 {
+              Style: (FontSize: 13, TextColor: #4ade80, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 80, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowTime15 {
+              Style: (FontSize: 11, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowSlot15 {
+              Style: (FontSize: 9, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center, HorizontalAlignment: Center);
+              Anchor: (Width: 90, Height: 28);
+              Text: "";
+            }
+          }
+
+          Group #QueueRow16 {
+            Visible: false;
+            Anchor: (Horizontal: 0, Height: 36, Bottom: 4);
+            LayoutMode: Left;
+            Padding: (Left: 12, Right: 12, Top: 4, Bottom: 4);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+            Label #QueueRowPlayer16 {
+              Style: (FontSize: 11, TextColor: #d4a849, RenderBold: true, VerticalAlignment: Center);
+              Anchor: (Width: 130, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowType16 {
+              Style: (FontSize: 10, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowName16 {
+              Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, Wrap: true);
+              FlexWeight: 1;
+              Text: "";
+            }
+
+            Label #QueueRowPercent16 {
+              Style: (FontSize: 13, TextColor: #4ade80, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 80, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowTime16 {
+              Style: (FontSize: 11, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowSlot16 {
+              Style: (FontSize: 9, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center, HorizontalAlignment: Center);
+              Anchor: (Width: 90, Height: 28);
+              Text: "";
+            }
+          }
+
+          Group #QueueRow17 {
+            Visible: false;
+            Anchor: (Horizontal: 0, Height: 36, Bottom: 4);
+            LayoutMode: Left;
+            Padding: (Left: 12, Right: 12, Top: 4, Bottom: 4);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+            Label #QueueRowPlayer17 {
+              Style: (FontSize: 11, TextColor: #d4a849, RenderBold: true, VerticalAlignment: Center);
+              Anchor: (Width: 130, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowType17 {
+              Style: (FontSize: 10, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowName17 {
+              Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, Wrap: true);
+              FlexWeight: 1;
+              Text: "";
+            }
+
+            Label #QueueRowPercent17 {
+              Style: (FontSize: 13, TextColor: #4ade80, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 80, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowTime17 {
+              Style: (FontSize: 11, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowSlot17 {
+              Style: (FontSize: 9, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center, HorizontalAlignment: Center);
+              Anchor: (Width: 90, Height: 28);
+              Text: "";
+            }
+          }
+
+          Group #QueueRow18 {
+            Visible: false;
+            Anchor: (Horizontal: 0, Height: 36, Bottom: 4);
+            LayoutMode: Left;
+            Padding: (Left: 12, Right: 12, Top: 4, Bottom: 4);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+            Label #QueueRowPlayer18 {
+              Style: (FontSize: 11, TextColor: #d4a849, RenderBold: true, VerticalAlignment: Center);
+              Anchor: (Width: 130, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowType18 {
+              Style: (FontSize: 10, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowName18 {
+              Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, Wrap: true);
+              FlexWeight: 1;
+              Text: "";
+            }
+
+            Label #QueueRowPercent18 {
+              Style: (FontSize: 13, TextColor: #4ade80, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 80, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowTime18 {
+              Style: (FontSize: 11, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowSlot18 {
+              Style: (FontSize: 9, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center, HorizontalAlignment: Center);
+              Anchor: (Width: 90, Height: 28);
+              Text: "";
+            }
+          }
+
+          Group #QueueRow19 {
+            Visible: false;
+            Anchor: (Horizontal: 0, Height: 36, Bottom: 4);
+            LayoutMode: Left;
+            Padding: (Left: 12, Right: 12, Top: 4, Bottom: 4);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+            Label #QueueRowPlayer19 {
+              Style: (FontSize: 11, TextColor: #d4a849, RenderBold: true, VerticalAlignment: Center);
+              Anchor: (Width: 130, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowType19 {
+              Style: (FontSize: 10, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowName19 {
+              Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, Wrap: true);
+              FlexWeight: 1;
+              Text: "";
+            }
+
+            Label #QueueRowPercent19 {
+              Style: (FontSize: 13, TextColor: #4ade80, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 80, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowTime19 {
+              Style: (FontSize: 11, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowSlot19 {
+              Style: (FontSize: 9, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center, HorizontalAlignment: Center);
+              Anchor: (Width: 90, Height: 28);
+              Text: "";
+            }
+          }
+
+          Group #QueueRow20 {
+            Visible: false;
+            Anchor: (Horizontal: 0, Height: 36, Bottom: 4);
+            LayoutMode: Left;
+            Padding: (Left: 12, Right: 12, Top: 4, Bottom: 4);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+            Label #QueueRowPlayer20 {
+              Style: (FontSize: 11, TextColor: #d4a849, RenderBold: true, VerticalAlignment: Center);
+              Anchor: (Width: 130, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowType20 {
+              Style: (FontSize: 10, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowName20 {
+              Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, Wrap: true);
+              FlexWeight: 1;
+              Text: "";
+            }
+
+            Label #QueueRowPercent20 {
+              Style: (FontSize: 13, TextColor: #4ade80, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 80, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowTime20 {
+              Style: (FontSize: 11, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowSlot20 {
+              Style: (FontSize: 9, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center, HorizontalAlignment: Center);
+              Anchor: (Width: 90, Height: 28);
+              Text: "";
+            }
+          }
+
+          Group #QueueRow21 {
+            Visible: false;
+            Anchor: (Horizontal: 0, Height: 36, Bottom: 4);
+            LayoutMode: Left;
+            Padding: (Left: 12, Right: 12, Top: 4, Bottom: 4);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+            Label #QueueRowPlayer21 {
+              Style: (FontSize: 11, TextColor: #d4a849, RenderBold: true, VerticalAlignment: Center);
+              Anchor: (Width: 130, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowType21 {
+              Style: (FontSize: 10, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowName21 {
+              Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, Wrap: true);
+              FlexWeight: 1;
+              Text: "";
+            }
+
+            Label #QueueRowPercent21 {
+              Style: (FontSize: 13, TextColor: #4ade80, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 80, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowTime21 {
+              Style: (FontSize: 11, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowSlot21 {
+              Style: (FontSize: 9, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center, HorizontalAlignment: Center);
+              Anchor: (Width: 90, Height: 28);
+              Text: "";
+            }
+          }
+
+          Group #QueueRow22 {
+            Visible: false;
+            Anchor: (Horizontal: 0, Height: 36, Bottom: 4);
+            LayoutMode: Left;
+            Padding: (Left: 12, Right: 12, Top: 4, Bottom: 4);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+            Label #QueueRowPlayer22 {
+              Style: (FontSize: 11, TextColor: #d4a849, RenderBold: true, VerticalAlignment: Center);
+              Anchor: (Width: 130, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowType22 {
+              Style: (FontSize: 10, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowName22 {
+              Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, Wrap: true);
+              FlexWeight: 1;
+              Text: "";
+            }
+
+            Label #QueueRowPercent22 {
+              Style: (FontSize: 13, TextColor: #4ade80, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 80, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowTime22 {
+              Style: (FontSize: 11, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowSlot22 {
+              Style: (FontSize: 9, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center, HorizontalAlignment: Center);
+              Anchor: (Width: 90, Height: 28);
+              Text: "";
+            }
+          }
+
+          Group #QueueRow23 {
+            Visible: false;
+            Anchor: (Horizontal: 0, Height: 36, Bottom: 4);
+            LayoutMode: Left;
+            Padding: (Left: 12, Right: 12, Top: 4, Bottom: 4);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+            Label #QueueRowPlayer23 {
+              Style: (FontSize: 11, TextColor: #d4a849, RenderBold: true, VerticalAlignment: Center);
+              Anchor: (Width: 130, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowType23 {
+              Style: (FontSize: 10, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowName23 {
+              Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, Wrap: true);
+              FlexWeight: 1;
+              Text: "";
+            }
+
+            Label #QueueRowPercent23 {
+              Style: (FontSize: 13, TextColor: #4ade80, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 80, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowTime23 {
+              Style: (FontSize: 11, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowSlot23 {
+              Style: (FontSize: 9, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center, HorizontalAlignment: Center);
+              Anchor: (Width: 90, Height: 28);
+              Text: "";
+            }
+          }
+
+          Group #QueueRow24 {
+            Visible: false;
+            Anchor: (Horizontal: 0, Height: 36, Bottom: 4);
+            LayoutMode: Left;
+            Padding: (Left: 12, Right: 12, Top: 4, Bottom: 4);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+            Label #QueueRowPlayer24 {
+              Style: (FontSize: 11, TextColor: #d4a849, RenderBold: true, VerticalAlignment: Center);
+              Anchor: (Width: 130, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowType24 {
+              Style: (FontSize: 10, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowName24 {
+              Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, Wrap: true);
+              FlexWeight: 1;
+              Text: "";
+            }
+
+            Label #QueueRowPercent24 {
+              Style: (FontSize: 13, TextColor: #4ade80, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 80, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowTime24 {
+              Style: (FontSize: 11, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowSlot24 {
+              Style: (FontSize: 9, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center, HorizontalAlignment: Center);
+              Anchor: (Width: 90, Height: 28);
+              Text: "";
+            }
+          }
+
+          Group #QueueRow25 {
+            Visible: false;
+            Anchor: (Horizontal: 0, Height: 36, Bottom: 4);
+            LayoutMode: Left;
+            Padding: (Left: 12, Right: 12, Top: 4, Bottom: 4);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+            Label #QueueRowPlayer25 {
+              Style: (FontSize: 11, TextColor: #d4a849, RenderBold: true, VerticalAlignment: Center);
+              Anchor: (Width: 130, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowType25 {
+              Style: (FontSize: 10, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowName25 {
+              Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, Wrap: true);
+              FlexWeight: 1;
+              Text: "";
+            }
+
+            Label #QueueRowPercent25 {
+              Style: (FontSize: 13, TextColor: #4ade80, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 80, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowTime25 {
+              Style: (FontSize: 11, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowSlot25 {
+              Style: (FontSize: 9, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center, HorizontalAlignment: Center);
+              Anchor: (Width: 90, Height: 28);
+              Text: "";
+            }
+          }
+
+          Group #QueueRow26 {
+            Visible: false;
+            Anchor: (Horizontal: 0, Height: 36, Bottom: 4);
+            LayoutMode: Left;
+            Padding: (Left: 12, Right: 12, Top: 4, Bottom: 4);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+            Label #QueueRowPlayer26 {
+              Style: (FontSize: 11, TextColor: #d4a849, RenderBold: true, VerticalAlignment: Center);
+              Anchor: (Width: 130, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowType26 {
+              Style: (FontSize: 10, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowName26 {
+              Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, Wrap: true);
+              FlexWeight: 1;
+              Text: "";
+            }
+
+            Label #QueueRowPercent26 {
+              Style: (FontSize: 13, TextColor: #4ade80, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 80, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowTime26 {
+              Style: (FontSize: 11, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowSlot26 {
+              Style: (FontSize: 9, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center, HorizontalAlignment: Center);
+              Anchor: (Width: 90, Height: 28);
+              Text: "";
+            }
+          }
+
+          Group #QueueRow27 {
+            Visible: false;
+            Anchor: (Horizontal: 0, Height: 36, Bottom: 4);
+            LayoutMode: Left;
+            Padding: (Left: 12, Right: 12, Top: 4, Bottom: 4);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+            Label #QueueRowPlayer27 {
+              Style: (FontSize: 11, TextColor: #d4a849, RenderBold: true, VerticalAlignment: Center);
+              Anchor: (Width: 130, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowType27 {
+              Style: (FontSize: 10, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowName27 {
+              Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, Wrap: true);
+              FlexWeight: 1;
+              Text: "";
+            }
+
+            Label #QueueRowPercent27 {
+              Style: (FontSize: 13, TextColor: #4ade80, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 80, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowTime27 {
+              Style: (FontSize: 11, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowSlot27 {
+              Style: (FontSize: 9, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center, HorizontalAlignment: Center);
+              Anchor: (Width: 90, Height: 28);
+              Text: "";
+            }
+          }
+
+          Group #QueueRow28 {
+            Visible: false;
+            Anchor: (Horizontal: 0, Height: 36, Bottom: 4);
+            LayoutMode: Left;
+            Padding: (Left: 12, Right: 12, Top: 4, Bottom: 4);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+            Label #QueueRowPlayer28 {
+              Style: (FontSize: 11, TextColor: #d4a849, RenderBold: true, VerticalAlignment: Center);
+              Anchor: (Width: 130, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowType28 {
+              Style: (FontSize: 10, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowName28 {
+              Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, Wrap: true);
+              FlexWeight: 1;
+              Text: "";
+            }
+
+            Label #QueueRowPercent28 {
+              Style: (FontSize: 13, TextColor: #4ade80, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 80, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowTime28 {
+              Style: (FontSize: 11, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowSlot28 {
+              Style: (FontSize: 9, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center, HorizontalAlignment: Center);
+              Anchor: (Width: 90, Height: 28);
+              Text: "";
+            }
+          }
+
+          Group #QueueRow29 {
+            Visible: false;
+            Anchor: (Horizontal: 0, Height: 36, Bottom: 4);
+            LayoutMode: Left;
+            Padding: (Left: 12, Right: 12, Top: 4, Bottom: 4);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+            Label #QueueRowPlayer29 {
+              Style: (FontSize: 11, TextColor: #d4a849, RenderBold: true, VerticalAlignment: Center);
+              Anchor: (Width: 130, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowType29 {
+              Style: (FontSize: 10, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowName29 {
+              Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, Wrap: true);
+              FlexWeight: 1;
+              Text: "";
+            }
+
+            Label #QueueRowPercent29 {
+              Style: (FontSize: 13, TextColor: #4ade80, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 80, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowTime29 {
+              Style: (FontSize: 11, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowSlot29 {
+              Style: (FontSize: 9, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center, HorizontalAlignment: Center);
+              Anchor: (Width: 90, Height: 28);
+              Text: "";
+            }
+          }
+
+          Group #QueueRow30 {
+            Visible: false;
+            Anchor: (Horizontal: 0, Height: 36, Bottom: 4);
+            LayoutMode: Left;
+            Padding: (Left: 12, Right: 12, Top: 4, Bottom: 4);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+            Label #QueueRowPlayer30 {
+              Style: (FontSize: 11, TextColor: #d4a849, RenderBold: true, VerticalAlignment: Center);
+              Anchor: (Width: 130, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowType30 {
+              Style: (FontSize: 10, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowName30 {
+              Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, Wrap: true);
+              FlexWeight: 1;
+              Text: "";
+            }
+
+            Label #QueueRowPercent30 {
+              Style: (FontSize: 13, TextColor: #4ade80, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 80, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowTime30 {
+              Style: (FontSize: 11, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowSlot30 {
+              Style: (FontSize: 9, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center, HorizontalAlignment: Center);
+              Anchor: (Width: 90, Height: 28);
+              Text: "";
+            }
+          }
+
+          Group #QueueRow31 {
+            Visible: false;
+            Anchor: (Horizontal: 0, Height: 36, Bottom: 4);
+            LayoutMode: Left;
+            Padding: (Left: 12, Right: 12, Top: 4, Bottom: 4);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+            Label #QueueRowPlayer31 {
+              Style: (FontSize: 11, TextColor: #d4a849, RenderBold: true, VerticalAlignment: Center);
+              Anchor: (Width: 130, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowType31 {
+              Style: (FontSize: 10, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowName31 {
+              Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, Wrap: true);
+              FlexWeight: 1;
+              Text: "";
+            }
+
+            Label #QueueRowPercent31 {
+              Style: (FontSize: 13, TextColor: #4ade80, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 80, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowTime31 {
+              Style: (FontSize: 11, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowSlot31 {
+              Style: (FontSize: 9, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center, HorizontalAlignment: Center);
+              Anchor: (Width: 90, Height: 28);
+              Text: "";
+            }
+          }
+
+          Group #QueueRow32 {
+            Visible: false;
+            Anchor: (Horizontal: 0, Height: 36, Bottom: 4);
+            LayoutMode: Left;
+            Padding: (Left: 12, Right: 12, Top: 4, Bottom: 4);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+            Label #QueueRowPlayer32 {
+              Style: (FontSize: 11, TextColor: #d4a849, RenderBold: true, VerticalAlignment: Center);
+              Anchor: (Width: 130, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowType32 {
+              Style: (FontSize: 10, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowName32 {
+              Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, Wrap: true);
+              FlexWeight: 1;
+              Text: "";
+            }
+
+            Label #QueueRowPercent32 {
+              Style: (FontSize: 13, TextColor: #4ade80, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 80, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowTime32 {
+              Style: (FontSize: 11, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowSlot32 {
+              Style: (FontSize: 9, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center, HorizontalAlignment: Center);
+              Anchor: (Width: 90, Height: 28);
+              Text: "";
+            }
+          }
+
+          Group #QueueRow33 {
+            Visible: false;
+            Anchor: (Horizontal: 0, Height: 36, Bottom: 4);
+            LayoutMode: Left;
+            Padding: (Left: 12, Right: 12, Top: 4, Bottom: 4);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+            Label #QueueRowPlayer33 {
+              Style: (FontSize: 11, TextColor: #d4a849, RenderBold: true, VerticalAlignment: Center);
+              Anchor: (Width: 130, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowType33 {
+              Style: (FontSize: 10, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowName33 {
+              Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, Wrap: true);
+              FlexWeight: 1;
+              Text: "";
+            }
+
+            Label #QueueRowPercent33 {
+              Style: (FontSize: 13, TextColor: #4ade80, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 80, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowTime33 {
+              Style: (FontSize: 11, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowSlot33 {
+              Style: (FontSize: 9, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center, HorizontalAlignment: Center);
+              Anchor: (Width: 90, Height: 28);
+              Text: "";
+            }
+          }
+
+          Group #QueueRow34 {
+            Visible: false;
+            Anchor: (Horizontal: 0, Height: 36, Bottom: 4);
+            LayoutMode: Left;
+            Padding: (Left: 12, Right: 12, Top: 4, Bottom: 4);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+            Label #QueueRowPlayer34 {
+              Style: (FontSize: 11, TextColor: #d4a849, RenderBold: true, VerticalAlignment: Center);
+              Anchor: (Width: 130, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowType34 {
+              Style: (FontSize: 10, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowName34 {
+              Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, Wrap: true);
+              FlexWeight: 1;
+              Text: "";
+            }
+
+            Label #QueueRowPercent34 {
+              Style: (FontSize: 13, TextColor: #4ade80, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 80, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowTime34 {
+              Style: (FontSize: 11, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowSlot34 {
+              Style: (FontSize: 9, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center, HorizontalAlignment: Center);
+              Anchor: (Width: 90, Height: 28);
+              Text: "";
+            }
+          }
+
+          Group #QueueRow35 {
+            Visible: false;
+            Anchor: (Horizontal: 0, Height: 36, Bottom: 4);
+            LayoutMode: Left;
+            Padding: (Left: 12, Right: 12, Top: 4, Bottom: 4);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+            Label #QueueRowPlayer35 {
+              Style: (FontSize: 11, TextColor: #d4a849, RenderBold: true, VerticalAlignment: Center);
+              Anchor: (Width: 130, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowType35 {
+              Style: (FontSize: 10, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowName35 {
+              Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, Wrap: true);
+              FlexWeight: 1;
+              Text: "";
+            }
+
+            Label #QueueRowPercent35 {
+              Style: (FontSize: 13, TextColor: #4ade80, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 80, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowTime35 {
+              Style: (FontSize: 11, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowSlot35 {
+              Style: (FontSize: 9, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center, HorizontalAlignment: Center);
+              Anchor: (Width: 90, Height: 28);
+              Text: "";
+            }
+          }
+
+          Group #QueueRow36 {
+            Visible: false;
+            Anchor: (Horizontal: 0, Height: 36, Bottom: 4);
+            LayoutMode: Left;
+            Padding: (Left: 12, Right: 12, Top: 4, Bottom: 4);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+            Label #QueueRowPlayer36 {
+              Style: (FontSize: 11, TextColor: #d4a849, RenderBold: true, VerticalAlignment: Center);
+              Anchor: (Width: 130, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowType36 {
+              Style: (FontSize: 10, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowName36 {
+              Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, Wrap: true);
+              FlexWeight: 1;
+              Text: "";
+            }
+
+            Label #QueueRowPercent36 {
+              Style: (FontSize: 13, TextColor: #4ade80, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 80, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowTime36 {
+              Style: (FontSize: 11, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowSlot36 {
+              Style: (FontSize: 9, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center, HorizontalAlignment: Center);
+              Anchor: (Width: 90, Height: 28);
+              Text: "";
+            }
+          }
+
+          Group #QueueRow37 {
+            Visible: false;
+            Anchor: (Horizontal: 0, Height: 36, Bottom: 4);
+            LayoutMode: Left;
+            Padding: (Left: 12, Right: 12, Top: 4, Bottom: 4);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+            Label #QueueRowPlayer37 {
+              Style: (FontSize: 11, TextColor: #d4a849, RenderBold: true, VerticalAlignment: Center);
+              Anchor: (Width: 130, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowType37 {
+              Style: (FontSize: 10, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowName37 {
+              Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, Wrap: true);
+              FlexWeight: 1;
+              Text: "";
+            }
+
+            Label #QueueRowPercent37 {
+              Style: (FontSize: 13, TextColor: #4ade80, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 80, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowTime37 {
+              Style: (FontSize: 11, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowSlot37 {
+              Style: (FontSize: 9, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center, HorizontalAlignment: Center);
+              Anchor: (Width: 90, Height: 28);
+              Text: "";
+            }
+          }
+
+          Group #QueueRow38 {
+            Visible: false;
+            Anchor: (Horizontal: 0, Height: 36, Bottom: 4);
+            LayoutMode: Left;
+            Padding: (Left: 12, Right: 12, Top: 4, Bottom: 4);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+            Label #QueueRowPlayer38 {
+              Style: (FontSize: 11, TextColor: #d4a849, RenderBold: true, VerticalAlignment: Center);
+              Anchor: (Width: 130, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowType38 {
+              Style: (FontSize: 10, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowName38 {
+              Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, Wrap: true);
+              FlexWeight: 1;
+              Text: "";
+            }
+
+            Label #QueueRowPercent38 {
+              Style: (FontSize: 13, TextColor: #4ade80, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 80, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowTime38 {
+              Style: (FontSize: 11, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowSlot38 {
+              Style: (FontSize: 9, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center, HorizontalAlignment: Center);
+              Anchor: (Width: 90, Height: 28);
+              Text: "";
+            }
+          }
+
+          Group #QueueRow39 {
+            Visible: false;
+            Anchor: (Horizontal: 0, Height: 36, Bottom: 4);
+            LayoutMode: Left;
+            Padding: (Left: 12, Right: 12, Top: 4, Bottom: 4);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+            Label #QueueRowPlayer39 {
+              Style: (FontSize: 11, TextColor: #d4a849, RenderBold: true, VerticalAlignment: Center);
+              Anchor: (Width: 130, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowType39 {
+              Style: (FontSize: 10, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowName39 {
+              Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, Wrap: true);
+              FlexWeight: 1;
+              Text: "";
+            }
+
+            Label #QueueRowPercent39 {
+              Style: (FontSize: 13, TextColor: #4ade80, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 80, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowTime39 {
+              Style: (FontSize: 11, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowSlot39 {
+              Style: (FontSize: 9, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center, HorizontalAlignment: Center);
+              Anchor: (Width: 90, Height: 28);
+              Text: "";
+            }
+          }
+
+          Group #QueueRow40 {
+            Visible: false;
+            Anchor: (Horizontal: 0, Height: 36, Bottom: 4);
+            LayoutMode: Left;
+            Padding: (Left: 12, Right: 12, Top: 4, Bottom: 4);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+            Label #QueueRowPlayer40 {
+              Style: (FontSize: 11, TextColor: #d4a849, RenderBold: true, VerticalAlignment: Center);
+              Anchor: (Width: 130, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowType40 {
+              Style: (FontSize: 10, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowName40 {
+              Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, Wrap: true);
+              FlexWeight: 1;
+              Text: "";
+            }
+
+            Label #QueueRowPercent40 {
+              Style: (FontSize: 13, TextColor: #4ade80, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 80, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowTime40 {
+              Style: (FontSize: 11, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowSlot40 {
+              Style: (FontSize: 9, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center, HorizontalAlignment: Center);
+              Anchor: (Width: 90, Height: 28);
+              Text: "";
+            }
+          }
+
+          Group #QueueRow41 {
+            Visible: false;
+            Anchor: (Horizontal: 0, Height: 36, Bottom: 4);
+            LayoutMode: Left;
+            Padding: (Left: 12, Right: 12, Top: 4, Bottom: 4);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+            Label #QueueRowPlayer41 {
+              Style: (FontSize: 11, TextColor: #d4a849, RenderBold: true, VerticalAlignment: Center);
+              Anchor: (Width: 130, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowType41 {
+              Style: (FontSize: 10, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowName41 {
+              Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, Wrap: true);
+              FlexWeight: 1;
+              Text: "";
+            }
+
+            Label #QueueRowPercent41 {
+              Style: (FontSize: 13, TextColor: #4ade80, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 80, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowTime41 {
+              Style: (FontSize: 11, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowSlot41 {
+              Style: (FontSize: 9, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center, HorizontalAlignment: Center);
+              Anchor: (Width: 90, Height: 28);
+              Text: "";
+            }
+          }
+
+          Group #QueueRow42 {
+            Visible: false;
+            Anchor: (Horizontal: 0, Height: 36, Bottom: 4);
+            LayoutMode: Left;
+            Padding: (Left: 12, Right: 12, Top: 4, Bottom: 4);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+            Label #QueueRowPlayer42 {
+              Style: (FontSize: 11, TextColor: #d4a849, RenderBold: true, VerticalAlignment: Center);
+              Anchor: (Width: 130, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowType42 {
+              Style: (FontSize: 10, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowName42 {
+              Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, Wrap: true);
+              FlexWeight: 1;
+              Text: "";
+            }
+
+            Label #QueueRowPercent42 {
+              Style: (FontSize: 13, TextColor: #4ade80, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 80, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowTime42 {
+              Style: (FontSize: 11, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowSlot42 {
+              Style: (FontSize: 9, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center, HorizontalAlignment: Center);
+              Anchor: (Width: 90, Height: 28);
+              Text: "";
+            }
+          }
+
+          Group #QueueRow43 {
+            Visible: false;
+            Anchor: (Horizontal: 0, Height: 36, Bottom: 4);
+            LayoutMode: Left;
+            Padding: (Left: 12, Right: 12, Top: 4, Bottom: 4);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+            Label #QueueRowPlayer43 {
+              Style: (FontSize: 11, TextColor: #d4a849, RenderBold: true, VerticalAlignment: Center);
+              Anchor: (Width: 130, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowType43 {
+              Style: (FontSize: 10, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowName43 {
+              Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, Wrap: true);
+              FlexWeight: 1;
+              Text: "";
+            }
+
+            Label #QueueRowPercent43 {
+              Style: (FontSize: 13, TextColor: #4ade80, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 80, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowTime43 {
+              Style: (FontSize: 11, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowSlot43 {
+              Style: (FontSize: 9, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center, HorizontalAlignment: Center);
+              Anchor: (Width: 90, Height: 28);
+              Text: "";
+            }
+          }
+
+          Group #QueueRow44 {
+            Visible: false;
+            Anchor: (Horizontal: 0, Height: 36, Bottom: 4);
+            LayoutMode: Left;
+            Padding: (Left: 12, Right: 12, Top: 4, Bottom: 4);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+            Label #QueueRowPlayer44 {
+              Style: (FontSize: 11, TextColor: #d4a849, RenderBold: true, VerticalAlignment: Center);
+              Anchor: (Width: 130, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowType44 {
+              Style: (FontSize: 10, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowName44 {
+              Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, Wrap: true);
+              FlexWeight: 1;
+              Text: "";
+            }
+
+            Label #QueueRowPercent44 {
+              Style: (FontSize: 13, TextColor: #4ade80, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 80, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowTime44 {
+              Style: (FontSize: 11, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowSlot44 {
+              Style: (FontSize: 9, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center, HorizontalAlignment: Center);
+              Anchor: (Width: 90, Height: 28);
+              Text: "";
+            }
+          }
+
+          Group #QueueRow45 {
+            Visible: false;
+            Anchor: (Horizontal: 0, Height: 36, Bottom: 4);
+            LayoutMode: Left;
+            Padding: (Left: 12, Right: 12, Top: 4, Bottom: 4);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+            Label #QueueRowPlayer45 {
+              Style: (FontSize: 11, TextColor: #d4a849, RenderBold: true, VerticalAlignment: Center);
+              Anchor: (Width: 130, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowType45 {
+              Style: (FontSize: 10, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowName45 {
+              Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, Wrap: true);
+              FlexWeight: 1;
+              Text: "";
+            }
+
+            Label #QueueRowPercent45 {
+              Style: (FontSize: 13, TextColor: #4ade80, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 80, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowTime45 {
+              Style: (FontSize: 11, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowSlot45 {
+              Style: (FontSize: 9, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center, HorizontalAlignment: Center);
+              Anchor: (Width: 90, Height: 28);
+              Text: "";
+            }
+          }
+
+          Group #QueueRow46 {
+            Visible: false;
+            Anchor: (Horizontal: 0, Height: 36, Bottom: 4);
+            LayoutMode: Left;
+            Padding: (Left: 12, Right: 12, Top: 4, Bottom: 4);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+            Label #QueueRowPlayer46 {
+              Style: (FontSize: 11, TextColor: #d4a849, RenderBold: true, VerticalAlignment: Center);
+              Anchor: (Width: 130, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowType46 {
+              Style: (FontSize: 10, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowName46 {
+              Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, Wrap: true);
+              FlexWeight: 1;
+              Text: "";
+            }
+
+            Label #QueueRowPercent46 {
+              Style: (FontSize: 13, TextColor: #4ade80, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 80, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowTime46 {
+              Style: (FontSize: 11, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowSlot46 {
+              Style: (FontSize: 9, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center, HorizontalAlignment: Center);
+              Anchor: (Width: 90, Height: 28);
+              Text: "";
+            }
+          }
+
+          Group #QueueRow47 {
+            Visible: false;
+            Anchor: (Horizontal: 0, Height: 36, Bottom: 4);
+            LayoutMode: Left;
+            Padding: (Left: 12, Right: 12, Top: 4, Bottom: 4);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+            Label #QueueRowPlayer47 {
+              Style: (FontSize: 11, TextColor: #d4a849, RenderBold: true, VerticalAlignment: Center);
+              Anchor: (Width: 130, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowType47 {
+              Style: (FontSize: 10, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowName47 {
+              Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, Wrap: true);
+              FlexWeight: 1;
+              Text: "";
+            }
+
+            Label #QueueRowPercent47 {
+              Style: (FontSize: 13, TextColor: #4ade80, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 80, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowTime47 {
+              Style: (FontSize: 11, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowSlot47 {
+              Style: (FontSize: 9, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center, HorizontalAlignment: Center);
+              Anchor: (Width: 90, Height: 28);
+              Text: "";
+            }
+          }
+
+          Group #QueueRow48 {
+            Visible: false;
+            Anchor: (Horizontal: 0, Height: 36, Bottom: 4);
+            LayoutMode: Left;
+            Padding: (Left: 12, Right: 12, Top: 4, Bottom: 4);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+            Label #QueueRowPlayer48 {
+              Style: (FontSize: 11, TextColor: #d4a849, RenderBold: true, VerticalAlignment: Center);
+              Anchor: (Width: 130, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowType48 {
+              Style: (FontSize: 10, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowName48 {
+              Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, Wrap: true);
+              FlexWeight: 1;
+              Text: "";
+            }
+
+            Label #QueueRowPercent48 {
+              Style: (FontSize: 13, TextColor: #4ade80, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 80, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowTime48 {
+              Style: (FontSize: 11, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowSlot48 {
+              Style: (FontSize: 9, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center, HorizontalAlignment: Center);
+              Anchor: (Width: 90, Height: 28);
+              Text: "";
+            }
+          }
+
+          Group #QueueRow49 {
+            Visible: false;
+            Anchor: (Horizontal: 0, Height: 36, Bottom: 4);
+            LayoutMode: Left;
+            Padding: (Left: 12, Right: 12, Top: 4, Bottom: 4);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+            Label #QueueRowPlayer49 {
+              Style: (FontSize: 11, TextColor: #d4a849, RenderBold: true, VerticalAlignment: Center);
+              Anchor: (Width: 130, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowType49 {
+              Style: (FontSize: 10, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowName49 {
+              Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, Wrap: true);
+              FlexWeight: 1;
+              Text: "";
+            }
+
+            Label #QueueRowPercent49 {
+              Style: (FontSize: 13, TextColor: #4ade80, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 80, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowTime49 {
+              Style: (FontSize: 11, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Anchor: (Width: 110, Height: 28);
+              Text: "";
+            }
+
+            Label #QueueRowSlot49 {
+              Style: (FontSize: 9, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center, HorizontalAlignment: Center);
+              Anchor: (Width: 90, Height: 28);
+              Text: "";
+            }
+          }
+        }
+      }
+
+      Group #FooterRow {
+        Anchor: (Horizontal: 0, Height: 44, Top: 12);
+        LayoutMode: Left;
+
+        Group { FlexWeight: 1; }
+
+        $C.@SmallCancelTextButton #CloseButton {
+          @Anchor = (Width: 160, Height: 36);
+          @Text = "CLOSE";
+        }
+      }
+    }
+  }
+}

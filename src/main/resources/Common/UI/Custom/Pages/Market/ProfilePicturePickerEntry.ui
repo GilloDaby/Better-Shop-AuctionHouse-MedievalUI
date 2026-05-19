@@ -1,0 +1,33 @@
+$C = "../BetterShopCommon.ui";
+
+Group {
+  Anchor: (Width: 110, Height: 132, Right: 6, Bottom: 6);
+  LayoutMode: Top;
+
+  Button #PortraitTile {
+    Anchor: (Full: 0);
+    LayoutMode: Top;
+    Padding: (Left: 6, Right: 6, Top: 6, Bottom: 6);
+    Style: (
+      Default: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8)),
+      Hovered: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 8)),
+      Pressed: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 8))
+    );
+
+    Group #PortraitImageWrap {
+      Anchor: (Width: 96, Height: 96, Bottom: 4);
+      LayoutMode: CenterMiddle;
+      Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 6);
+
+      AssetImage #PortraitImage {
+        Anchor: (Width: 80, Height: 80);
+      }
+    }
+
+    Label #PortraitName {
+      Anchor: (Width: 96, Height: 22);
+      Style: (FontSize: 9, TextColor: #f5e8c8, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, HorizontalAlignment: Center, VerticalAlignment: Center, Wrap: true, ShrinkTextToFit: true, MinShrinkTextToFitFontSize: 7);
+      Text: "Name";
+    }
+  }
+}

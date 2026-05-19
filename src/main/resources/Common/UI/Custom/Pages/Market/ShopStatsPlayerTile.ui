@@ -1,0 +1,39 @@
+$C = "../BetterShopCommon.ui";
+
+Group {
+  Anchor: (Width: 132, Height: 156, Right: 6, Bottom: 6);
+  LayoutMode: Top;
+
+  Button #PlayerTileButton {
+    Anchor: (Full: 0);
+    LayoutMode: Top;
+    Padding: (Left: 8, Right: 8, Top: 8, Bottom: 8);
+    Style: (
+      Default: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8)),
+      Hovered: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 8)),
+      Pressed: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 8))
+    );
+
+    Group #PlayerTileAvatarWrap {
+      Anchor: (Width: 116, Height: 80, Bottom: 6);
+      LayoutMode: CenterMiddle;
+      Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 6);
+
+      AssetImage #PlayerTileAvatar {
+        Anchor: (Width: 64, Height: 64);
+      }
+    }
+
+    Label #PlayerTileName {
+      Anchor: (Horizontal: 0, Height: 22, Bottom: 2);
+      Style: (FontSize: 11, TextColor: #f5e8c8, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center, ShrinkTextToFit: true, MinShrinkTextToFitFontSize: 8);
+      Text: "Player";
+    }
+
+    Label #PlayerTileBalance {
+      Anchor: (Horizontal: 0, Height: 16);
+      Style: (FontSize: 10, TextColor: #e8a93b, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center, ShrinkTextToFit: true, MinShrinkTextToFitFontSize: 8);
+      Text: "$0";
+    }
+  }
+}

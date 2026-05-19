@@ -1,0 +1,108 @@
+$C = "../BetterShopCommon.ui";
+
+$C.@PageOverlay {
+  LayoutMode: Middle;
+
+  $C.@DecoratedContainer #RequestItemPickerRoot {
+    Anchor: (Width: 1280, Height: 900);
+
+    #Title {
+      $C.@Title { @Text = ""; }
+      Label #PickerTitle {
+        Style: (FontSize: 22, TextColor: #f5e8c8, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center);
+        Text: "PICK AN ITEM TO REQUEST";
+        Anchor: (Height: 30);
+      }
+    }
+
+    #Content {
+      LayoutMode: Top;
+      Padding: (Full: 16);
+
+      Label #PickerSubtitle {
+        Style: (FontSize: 11, TextColor: #9c8463, HorizontalAlignment: Center, VerticalAlignment: Center, Wrap: true);
+        Text: "Browse every game item. Click a tile to fill the request form with that id.";
+        Anchor: (Horizontal: 0, Height: 18, Bottom: 12);
+      }
+
+      Group #SearchBar {
+        Anchor: (Horizontal: 0, Height: 44, Bottom: 10);
+        LayoutMode: Left;
+        Padding: (Left: 14, Right: 14, Top: 6, Bottom: 6);
+        Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerFullPatch.png", Border: 14);
+
+        Label #SearchLabel {
+          Style: (FontSize: 11, TextColor: #d4a849, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+          Text: "SEARCH";
+          Anchor: (Width: 80, Height: 32);
+        }
+
+        $C.@TextField #SearchInput {
+          @Anchor = (Height: 32, Right: 12);
+          FlexWeight: 1;
+          PlaceholderText: "Type item id or name (e.g. Soil_Grass, sword, fish...)";
+        }
+
+        Group #StatusPill {
+          Anchor: (Width: 140, Height: 32);
+          LayoutMode: CenterMiddle;
+          Padding: (Left: 10, Right: 10);
+          Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 8);
+
+          Label #StatusText {
+            Style: (FontSize: 11, TextColor: #c9b181, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, HorizontalAlignment: Center, VerticalAlignment: Center);
+            Text: "0 items";
+          }
+        }
+      }
+
+      Group #TileGridScroll {
+        FlexWeight: 1;
+        LayoutMode: TopScrolling;
+        Padding: (Left: 10, Right: 10, Top: 10, Bottom: 10);
+        Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPatch.png", Border: 14);
+        ScrollbarStyle: $C.@DefaultScrollbarStyle;
+
+        Group #ItemList {
+          LayoutMode: LeftCenterWrap;
+        }
+      }
+
+      Group #FooterBar {
+        Anchor: (Horizontal: 0, Height: 52, Top: 12);
+        LayoutMode: Left;
+        Padding: (Left: 14, Right: 14, Top: 6, Bottom: 6);
+        Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerFullPatch.png", Border: 14);
+
+        $C.@SmallSecondaryTextButton #PrevPageButton {
+          @Anchor = (Width: 110, Height: 36, Right: 8);
+          @Text = "PREV";
+        }
+
+        Group #PageTextBox {
+          Anchor: (Width: 130, Height: 36, Right: 8);
+          LayoutMode: CenterMiddle;
+          Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 8);
+
+          Label #PageText {
+            Style: (FontSize: 13, TextColor: #c9b181, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center);
+            Text: "1/1";
+            Anchor: (Width: 130, Height: 30);
+          }
+        }
+
+        $C.@SmallSecondaryTextButton #NextPageButton {
+          @Anchor = (Width: 110, Height: 36, Right: 8);
+          @Text = "NEXT";
+        }
+
+        Group { FlexWeight: 1; }
+
+        $C.@SmallCancelTextButton #BackButton {
+          @Anchor = (Width: 140, Height: 36);
+          @Text = "BACK";
+        }
+      }
+    }
+  }
+}

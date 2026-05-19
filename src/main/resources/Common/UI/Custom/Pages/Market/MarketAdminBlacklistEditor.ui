@@ -1,0 +1,144 @@
+$C = "../BetterShopCommon.ui";
+
+$C.@PageOverlay {
+  LayoutMode: Middle;
+
+  $C.@DecoratedContainer {
+    Anchor: (Width: 820, Height: 620);
+
+    #Title {
+      $C.@Title {
+        @Text = "";
+      }
+      Label #TitleText {
+        Style: (FontSize: 22, TextColor: #f5e8c8, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center);
+        Text: "BLACKLIST EDITOR";
+        Anchor: (Height: 30);
+      }
+    }
+
+    #Content {
+      LayoutMode: Top;
+      Padding: (Full: 18);
+
+      Group #HeroCard {
+        Anchor: (Horizontal: 0, Height: 70, Bottom: 14);
+        LayoutMode: Top;
+        Padding: (Left: 18, Right: 18, Top: 10, Bottom: 10);
+        Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerFullPatch.png", Border: 14);
+
+        Label #HeroTitle {
+          Style: (FontSize: 16, TextColor: #f5e8c8, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center, VerticalAlignment: Center);
+          Text: "BLACKLIST EDITOR";
+          Anchor: (Horizontal: 0, Height: 22, Bottom: 4);
+        }
+
+        Label #HeroSubtitle {
+          Style: (FontSize: 11, TextColor: #9c8463, HorizontalAlignment: Center, VerticalAlignment: Center, Wrap: true);
+          Text: "Block item IDs from listings.";
+          Anchor: (Horizontal: 0, Height: 18);
+        }
+      }
+
+      Group #ListPanel {
+        FlexWeight: 1;
+        LayoutMode: Top;
+        Padding: (Left: 14, Right: 14, Top: 12, Bottom: 12);
+        Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPatch.png", Border: 14);
+
+        Group #ListHeaderRow {
+          Anchor: (Horizontal: 0, Height: 22, Bottom: 6);
+          LayoutMode: Left;
+
+          Label #ListLabel {
+            Style: (FontSize: 12, TextColor: #c9b181, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+            Text: "BLOCKED ITEM IDS";
+            FlexWeight: 1;
+          }
+
+          Label #ListMetaLabel {
+            Style: (FontSize: 11, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+            Text: "Entries: 0";
+            Anchor: (Width: 140);
+          }
+        }
+
+        Group #ListDivider {
+          Anchor: (Horizontal: 0, Height: 4, Bottom: 10);
+          Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerSectionSeparator.png", HorizontalBorder: 4);
+        }
+
+        $C.@MultilineTextField #BlacklistListInput {
+          @Anchor = (Horizontal: 0, Bottom: 14);
+          FlexWeight: 1;
+          PlaceholderText: "No blocked item IDs yet";
+        }
+
+        Group #InputRow {
+          Anchor: (Horizontal: 0, Height: 60, Bottom: 10);
+          LayoutMode: Top;
+
+          Label #ItemIdLabel {
+            Style: (FontSize: 10, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+            Text: "ITEM ID";
+            Anchor: (Height: 14, Bottom: 4);
+          }
+
+          Group #InputControls {
+            Anchor: (Horizontal: 0, Height: 36);
+            LayoutMode: Left;
+
+            $C.@TextField #ItemIdInput {
+              @Anchor = (Height: 36, Right: 6);
+              FlexWeight: 1;
+              PlaceholderText: "Item_Stone or Rock_Stone";
+            }
+
+            $C.@SmallSecondaryTextButton #BrowseButton {
+              @Anchor = (Width: 110, Height: 36);
+              @Text = "BROWSE ID";
+            }
+          }
+        }
+
+        Label #StatusLabel {
+          Style: (FontSize: 10, TextColor: #e8a93b, VerticalAlignment: Center, Wrap: true);
+          Text: "";
+          Anchor: (Horizontal: 0, Height: 16, Bottom: 8);
+        }
+
+        Group #ActionDivider {
+          Anchor: (Horizontal: 0, Height: 4, Bottom: 10);
+          Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerSectionSeparator.png", HorizontalBorder: 4);
+        }
+
+        Group #ActionButtons {
+          Anchor: (Horizontal: 0, Height: 36);
+          LayoutMode: Left;
+
+          $C.@SmallBuyTextButton #AddButton {
+            @Anchor = (Width: 130, Height: 36, Right: 6);
+            @Text = "ADD ID";
+          }
+
+          $C.@SmallCancelTextButton #RemoveButton {
+            @Anchor = (Width: 130, Height: 36, Right: 6);
+            @Text = "REMOVE ID";
+          }
+
+          $C.@SmallSecondaryTextButton #ReloadButton {
+            @Anchor = (Width: 130, Height: 36, Right: 6);
+            @Text = "RELOAD";
+          }
+
+          Group { FlexWeight: 1; }
+
+          $C.@SmallSecondaryTextButton #BackButton {
+            @Anchor = (Width: 130, Height: 36);
+            @Text = "BACK";
+          }
+        }
+      }
+    }
+  }
+}

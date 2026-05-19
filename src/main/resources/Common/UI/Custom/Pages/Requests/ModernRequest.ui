@@ -1,0 +1,1166 @@
+$C = "../BetterShopCommon.ui";
+
+$C.@PageOverlay {
+  LayoutMode: Middle;
+
+  Group #OfferMainPanel {
+    Anchor: (Width: 1240, Height: 960);
+    LayoutMode: Top;
+
+  $C.@DecoratedContainer #ModernOfferRoot {
+    Anchor: (Full: 0);
+
+    #Title {
+      $C.@Title {
+        @Text = "";
+      }
+      Label #ModernOfferPageTitle {
+        Style: (FontSize: 24, TextColor: #f5e8c8, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center);
+        Anchor: (Height: 32);
+      }
+    }
+
+    #Content {
+      LayoutMode: Top;
+      Padding: (Full: 14);
+
+      Group #OfferHeaderBar {
+        Anchor: (Height: 64, Bottom: 10);
+        LayoutMode: Left;
+        Padding: (Left: 16, Right: 16, Top: 8, Bottom: 8);
+        Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerFullPatch.png", Border: 14);
+
+        Group #OfferBalanceCard {
+          Anchor: (Width: 290, Height: 48, Right: 16);
+          LayoutMode: Top;
+          Padding: (Left: 14, Right: 14, Top: 4, Bottom: 4);
+          Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 8);
+
+          Label #OfferBalanceCaption {
+            Style: (FontSize: 10, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+            Text: "WALLET BALANCE";
+            Anchor: (Height: 14);
+          }
+
+          Label #OfferBalanceValue {
+            Style: (FontSize: 19, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center);
+            Text: "$0.00";
+            Anchor: (Height: 24);
+          }
+        }
+
+        Group #OfferSearchGroup {
+          Anchor: (Width: 280, Height: 48);
+          LayoutMode: CenterMiddle;
+
+          $C.@CompactTextField #OfferSearchInput {
+            @Anchor = (Width: 280, Height: 40);
+            @PlaceholderText = "Search requests...";
+            @CollapsedWidth = 280;
+            @ExpandedWidth = 280;
+          }
+        }
+
+        Group { FlexWeight: 1; }
+
+        Group #OfferSortGroup {
+          Anchor: (Width: 200, Height: 48, Right: 16);
+          LayoutMode: Top;
+
+          $C.@DropdownBox #OfferSortDropdown {
+            @Anchor = (Horizontal: 0, Height: 32, Top: 8);
+            DropdownEntry { Value: "recent"; Text: "Recent"; }
+            DropdownEntry { Value: "price_high"; Text: "Price: High"; }
+            DropdownEntry { Value: "price_low"; Text: "Price: Low"; }
+            DropdownEntry { Value: "qty_high"; Text: "Qty: High"; }
+            DropdownEntry { Value: "qty_low"; Text: "Qty: Low"; }
+          }
+        }
+
+        Group #OfferCloseGroup {
+          Anchor: (Width: 48, Height: 48);
+          LayoutMode: CenterMiddle;
+
+          Button #OfferCloseButton {
+            Anchor: (Width: 40, Height: 40);
+            Style: (
+              Default: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerCloseButton.png", Border: 6)),
+              Hovered: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerCloseButtonHovered.png", Border: 6)),
+              Pressed: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerCloseButtonPressed.png", Border: 6))
+            );
+          }
+        }
+      }
+
+      Group #OfferAdminTitleRow {
+        Visible: false;
+        Anchor: (Horizontal: 0, Height: 44, Bottom: 10);
+        LayoutMode: Left;
+        Padding: (Left: 16, Right: 16, Top: 6, Bottom: 6);
+        Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerFullPatch.png", Border: 14);
+
+        Label #OfferAdminTitleLabel {
+          Style: (FontSize: 10, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+          Text: "PAGE TITLE";
+          Anchor: (Width: 100, Height: 32);
+        }
+
+        $C.@TextField #OfferAdminTitleInput {
+          @Anchor = (Height: 32, Right: 8);
+          FlexWeight: 1;
+          PlaceholderText: "Offer House";
+        }
+
+        $C.@SmallSecondaryTextButton #OfferAdminTitleUpdateButton {
+          @Anchor = (Width: 160, Height: 32);
+          @Text = "UPDATE TITLE";
+        }
+      }
+
+      Group #OfferBodyRow {
+        FlexWeight: 1;
+        LayoutMode: Left;
+
+        Group #OfferSidebar {
+          Anchor: (Width: 220);
+          LayoutMode: Top;
+          Padding: (Left: 20, Right: 20, Top: 15, Bottom: 16);
+          Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPatch.png", Border: 14);
+
+          Label #OfferSidebarTitle {
+            Style: (FontSize: 13, TextColor: #c9b181, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+            Text: "RECENT OFFERS POSTED";
+            Anchor: (Height: 22, Top: 5, Bottom: 6);
+          }
+
+          Group #OfferSidebarDivider {
+            Anchor: (Horizontal: 0, Height: 4, Bottom: 8);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerSectionSeparator.png", HorizontalBorder: 4);
+          }
+
+          Group #OfferLatestList {
+            Anchor: (Horizontal: 0, Height: 360, Bottom: 12);
+            LayoutMode: Top;
+          }
+
+          Label #OfferLatestEmpty {
+            Visible: false;
+            Anchor: (Horizontal: 0, Height: 30, Bottom: 12);
+            Style: (FontSize: 11, TextColor: #6e5839, HorizontalAlignment: Center, VerticalAlignment: Center);
+            Text: "No active offers yet";
+          }
+
+          Label #OfferSidebarStatsTitle {
+            Style: (FontSize: 13, TextColor: #c9b181, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+            Text: "MARKET STATS";
+            Anchor: (Height: 22, Bottom: 6);
+          }
+
+          Group #OfferSidebarStatsDivider {
+            Anchor: (Horizontal: 0, Height: 4, Bottom: 8);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerSectionSeparator.png", HorizontalBorder: 4);
+          }
+
+          Group #OfferStatActiveRow {
+            Anchor: (Horizontal: 0, Height: 22, Bottom: 4);
+            LayoutMode: Left;
+
+            Label {
+              Style: (FontSize: 11, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+              Text: "ACTIVE OFFERS:";
+              FlexWeight: 1;
+            }
+
+            Label #OfferStatActiveValue {
+              Style: (FontSize: 12, TextColor: #4ade80, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Text: "0";
+              Anchor: (Width: 80);
+            }
+          }
+
+          Group #OfferStatYoursRow {
+            Anchor: (Horizontal: 0, Height: 22, Bottom: 4);
+            LayoutMode: Left;
+
+            Label {
+              Style: (FontSize: 11, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+              Text: "YOUR OFFERS:";
+              FlexWeight: 1;
+            }
+
+            Label #OfferStatYoursValue {
+              Style: (FontSize: 12, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Text: "0";
+              Anchor: (Width: 80);
+            }
+          }
+
+          Group #OfferStatClaimsRow {
+            Anchor: (Horizontal: 0, Height: 22, Bottom: 4);
+            LayoutMode: Left;
+
+            Label {
+              Style: (FontSize: 11, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+              Text: "PENDING CLAIMS:";
+              FlexWeight: 1;
+            }
+
+            Label #OfferStatClaimsValue {
+              Style: (FontSize: 12, TextColor: #d4a849, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Text: "0";
+              Anchor: (Width: 80);
+            }
+          }
+        }
+
+        Group #OfferGridPanel {
+          FlexWeight: 1;
+          LayoutMode: Top;
+          Padding: (Left: 20, Right: 20, Top: 15, Bottom: 16);
+          Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPatch.png", Border: 14);
+
+          Label #OfferGridTitle {
+            Style: (FontSize: 13, TextColor: #c9b181, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+            Text: "ACTIVE BUY ORDERS";
+            Anchor: (Height: 22, Top: 5, Bottom: 6);
+          }
+
+          Group #OfferGridDivider {
+            Anchor: (Horizontal: 0, Height: 4, Bottom: 8);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerSectionSeparator.png", HorizontalBorder: 4);
+          }
+
+          Group #OfferGridScroll {
+            FlexWeight: 1;
+            LayoutMode: TopScrolling;
+            ScrollbarStyle: $C.@DefaultScrollbarStyle;
+
+            Group #OfferGrid {
+              LayoutMode: LeftCenterWrap;
+            }
+          }
+
+          Label #OfferGridEmpty {
+            Visible: false;
+            Anchor: (Horizontal: 0, Height: 60, Bottom: 8);
+            Style: (FontSize: 13, TextColor: #6e5839, HorizontalAlignment: Center, VerticalAlignment: Center, Wrap: true);
+            Text: "No active buy orders. Be the first to post one!";
+          }
+        }
+
+        Group #OfferDetailsPanel {
+          Anchor: (Width: 290);
+          LayoutMode: Top;
+          Padding: (Left: 20, Right: 20, Top: 15, Bottom: 16);
+          Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPatch.png", Border: 14);
+
+          Label #OfferDetailsTitle {
+            Style: (FontSize: 13, TextColor: #c9b181, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+            Text: "OFFER DETAILS";
+            Anchor: (Height: 22, Top: 5, Bottom: 6);
+          }
+
+          Group #OfferDetailsDivider {
+            Anchor: (Horizontal: 0, Height: 4, Bottom: 10);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerSectionSeparator.png", HorizontalBorder: 4);
+          }
+
+          Group #OfferDetailsHeader {
+            Anchor: (Horizontal: 0, Height: 80, Bottom: 10);
+            LayoutMode: Left;
+            Padding: (Left: 8, Right: 8, Top: 8, Bottom: 8);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+            Group #OfferDetailsIconWrap {
+              Anchor: (Width: 60, Height: 60, Right: 10);
+              Background: (TexturePath: "Textures/MedievalShop/Rarities/SlotCommon.png", Border: 12);
+
+              Group #OfferDetailsIconCenter {
+                Anchor: (Full: 0);
+                LayoutMode: CenterMiddle;
+
+                AssetImage #OfferDetailsIconAsset {
+                  Anchor: (Width: 48, Height: 48);
+                  Visible: false;
+                }
+
+                ItemIcon #OfferDetailsIcon {
+                  Anchor: (Width: 48, Height: 48);
+                }
+              }
+            }
+
+            Group {
+              FlexWeight: 1;
+              LayoutMode: CenterMiddle;
+
+              Group #OfferDetailsStack {
+                Anchor: (Full: 0);
+                LayoutMode: Top;
+
+                Label #OfferDetailsName {
+                  Style: (FontSize: 14, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, Wrap: true);
+                  Text: "Pick an offer";
+                  Anchor: (Height: 24);
+                }
+
+                Label #OfferDetailsBuyer {
+                  Style: (FontSize: 11, TextColor: #9c8463, VerticalAlignment: Center);
+                  Text: "Click a tile to see details";
+                  Anchor: (Height: 18);
+                }
+              }
+            }
+          }
+
+          Group #OfferDetailsAmountRow {
+            Anchor: (Horizontal: 0, Height: 22, Bottom: 4);
+            LayoutMode: Left;
+
+            Label #OfferDetailsAmountCaption {
+              Style: (FontSize: 11, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+              Text: "QUANTITY WANTED:";
+              FlexWeight: 1;
+            }
+
+            Label #OfferDetailsAmount {
+              Style: (FontSize: 13, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Text: "—";
+              Anchor: (Width: 100);
+            }
+          }
+
+          Group #OfferDetailsPriceRow {
+            Anchor: (Horizontal: 0, Height: 22, Bottom: 4);
+            LayoutMode: Left;
+
+            Label #OfferDetailsPriceCaption {
+              Style: (FontSize: 11, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+              Text: "PRICE PER UNIT:";
+              FlexWeight: 1;
+            }
+
+            Label #OfferDetailsPrice {
+              Style: (FontSize: 13, TextColor: #4ade80, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Text: "—";
+              Anchor: (Width: 120);
+            }
+          }
+
+          Group #OfferDetailsTotalRow {
+            Anchor: (Horizontal: 0, Height: 22, Bottom: 10);
+            LayoutMode: Left;
+
+            Label #OfferDetailsTotalCaption {
+              Style: (FontSize: 11, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+              Text: "TOTAL VALUE:";
+              FlexWeight: 1;
+            }
+
+            Label #OfferDetailsTotal {
+              Style: (FontSize: 13, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Text: "—";
+              Anchor: (Width: 120);
+            }
+          }
+
+          Group #OfferDetailsAgeRow {
+            Anchor: (Horizontal: 0, Height: 22, Bottom: 12);
+            LayoutMode: Left;
+
+            Label #OfferDetailsAgeCaption {
+              Style: (FontSize: 11, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+              Text: "POSTED:";
+              FlexWeight: 1;
+            }
+
+            Label #OfferDetailsAge {
+              Style: (FontSize: 12, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+              Text: "—";
+              Anchor: (Width: 120);
+            }
+          }
+
+          Group #OfferDetailsActions {
+            Anchor: (Horizontal: 0, Height: 36, Bottom: 8);
+            LayoutMode: Left;
+
+            $C.@SmallBuyTextButton #OfferDetailsFulfillButton {
+              @Anchor = (Horizontal: 0, Height: 36);
+              @Text = "SELL TO BUYER";
+            }
+          }
+
+          Group #OfferDetailsOwnActions {
+            Visible: false;
+            Anchor: (Horizontal: 0, Height: 36);
+            LayoutMode: Left;
+
+            $C.@SmallSecondaryTextButton #OfferDetailsEditButton {
+              @Anchor = (Horizontal: 0, Height: 36);
+              @Text = "EDIT MY OFFER";
+            }
+          }
+        }
+      }
+
+      Group #OfferBottomBar {
+        Anchor: (Height: 64, Top: 12);
+        LayoutMode: Left;
+        Padding: (Left: 14, Right: 14, Top: 10, Bottom: 10);
+        Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerFullPatch.png", Border: 14);
+
+        $C.@SmallBuyTextButton #OfferNewListingButton {
+          @Anchor = (Width: 220, Right: 8);
+          @Text = "+ NEW OFFER";
+        }
+
+        $C.@SmallSecondaryTextButton #OfferMyOffersButton {
+          @Anchor = (Width: 200, Right: 8);
+          @Text = "MY OFFERS";
+        }
+
+        $C.@SmallSecondaryTextButton #OfferMyClaimsButton {
+          @Anchor = (Width: 200);
+          @Text = "MY CLAIMS";
+        }
+
+        Group { FlexWeight: 1; }
+
+        Label #OfferBottomHelp {
+          Style: (FontSize: 11, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center, HorizontalAlignment: End);
+          Text: "Sell items players want to buy";
+          Anchor: (Width: 320);
+        }
+      }
+    }
+  }
+  }
+
+  Group #OfferCreateOverlay {
+    Visible: false;
+    Anchor: (Width: 1240, Height: 960);
+    LayoutMode: Top;
+    Padding: (Full: 0);
+    Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerFullPatch.png", Border: 14);
+
+    Group #OfferCreateHeader {
+      Anchor: (Height: 72, Bottom: 10);
+      LayoutMode: Left;
+      Padding: (Left: 20, Right: 14);
+      Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerHeader.png", Border: 14);
+
+      Group {
+        FlexWeight: 1;
+        LayoutMode: CenterMiddle;
+
+        Group #OfferCreateTitleStack {
+          Anchor: (Width: 600, Height: 46);
+          LayoutMode: Top;
+
+          Label #OfferCreateTitle {
+            Style: (FontSize: 18, TextColor: #f5e8c8, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center, VerticalAlignment: Center);
+            Text: "POST BUY ORDER";
+            Anchor: (Height: 24, Bottom: 2);
+          }
+
+          Label #OfferCreateSubtitle {
+            Style: (FontSize: 12, TextColor: #9c8463, HorizontalAlignment: Center, VerticalAlignment: Center);
+            Text: "Pick an item and set the price you'll pay";
+            Anchor: (Height: 18);
+          }
+        }
+      }
+
+      Group #OfferCreateCloseGroup {
+        Anchor: (Width: 48);
+        LayoutMode: CenterMiddle;
+
+        Button #OfferCreateCloseButton {
+          Anchor: (Width: 40, Height: 40);
+          Style: (
+            Default: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerCloseButton.png", Border: 6)),
+            Hovered: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerCloseButtonHovered.png", Border: 6)),
+            Pressed: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerCloseButtonPressed.png", Border: 6))
+          );
+        }
+      }
+    }
+
+    Group #OfferCreateBody {
+      FlexWeight: 1;
+      LayoutMode: Left;
+
+      Group #OfferCreateInventoryPanel {
+        FlexWeight: 1;
+        LayoutMode: Top;
+        Padding: (Left: 14, Right: 14, Top: 10, Bottom: 10);
+
+        Label #OfferCreateInventoryTitle {
+          Style: (FontSize: 13, TextColor: #c9b181, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+          Text: "PICK ITEM FROM INVENTORY";
+          Anchor: (Height: 22, Bottom: 6);
+        }
+
+        Group #OfferCreateInventoryDivider {
+          Anchor: (Horizontal: 0, Height: 4, Bottom: 8);
+          Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerSectionSeparator.png", HorizontalBorder: 4);
+        }
+
+        Group #OfferCreateInventoryScroll {
+          FlexWeight: 1;
+          LayoutMode: TopScrolling;
+          ScrollbarStyle: $C.@DefaultScrollbarStyle;
+
+          Group #OfferCreateInventoryGrid {
+            LayoutMode: LeftCenterWrap;
+          }
+        }
+      }
+
+      Group #OfferCreateFormPanel {
+        Anchor: (Width: 360);
+        LayoutMode: Top;
+        Padding: (Left: 14, Right: 14, Top: 10, Bottom: 10);
+        Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPatch.png", Border: 14);
+
+        Label #OfferCreateFormTitle {
+          Style: (FontSize: 13, TextColor: #c9b181, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+          Text: "ORDER DETAILS";
+          Anchor: (Height: 22, Bottom: 6);
+        }
+
+        Group #OfferCreateFormDivider {
+          Anchor: (Horizontal: 0, Height: 4, Bottom: 10);
+          Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerSectionSeparator.png", HorizontalBorder: 4);
+        }
+
+        Label #OfferCreateManualCaption {
+          Style: (FontSize: 10, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+          Text: "REQUESTED ITEM ID";
+          Anchor: (Height: 14, Bottom: 4);
+        }
+
+        Group #OfferCreateManualItemRow {
+          Anchor: (Horizontal: 0, Height: 32, Bottom: 6);
+          LayoutMode: Left;
+
+          $C.@TextField #OfferCreateManualItemInput {
+            @Anchor = (Height: 32, Right: 6);
+            FlexWeight: 1;
+          }
+
+          $C.@SmallSecondaryTextButton #OfferCreateBrowseButton {
+            @Anchor = (Width: 110, Height: 32);
+            @Text = "BROWSE";
+          }
+        }
+
+        Label #OfferCreateManualHelp {
+          Style: (FontSize: 9, TextColor: #6e5839, RenderBold: false, VerticalAlignment: Center);
+          Text: "Type item id, click BROWSE for the full list, OR pick from inventory below.";
+          Anchor: (Height: 12, Bottom: 8);
+        }
+
+        Group #OfferCreateSelectedHeader {
+          Anchor: (Horizontal: 0, Height: 80, Bottom: 10);
+          LayoutMode: Left;
+          Padding: (Left: 8, Right: 8, Top: 8, Bottom: 8);
+          Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+          Group #OfferCreateSelectedIconWrap {
+            Anchor: (Width: 60, Height: 60, Right: 8);
+            Background: (TexturePath: "Textures/MedievalShop/Rarities/SlotCommon.png", Border: 12);
+
+            Group #OfferCreateSelectedIconCenter {
+              Anchor: (Full: 0);
+              LayoutMode: CenterMiddle;
+
+              AssetImage #OfferCreateSelectedIconAsset {
+                Anchor: (Width: 48, Height: 48);
+                Visible: false;
+              }
+
+              ItemIcon #OfferCreateSelectedIcon {
+                Anchor: (Width: 48, Height: 48);
+                Visible: false;
+              }
+            }
+          }
+
+          Group {
+            FlexWeight: 1;
+            LayoutMode: CenterMiddle;
+
+            Group #OfferCreateSelectedStack {
+              Anchor: (Full: 0);
+              LayoutMode: Top;
+
+              Label #OfferCreateSelectedName {
+                Style: (FontSize: 14, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, Wrap: true);
+                Text: "Pick an item";
+                Anchor: (Height: 30);
+              }
+
+              Label #OfferCreateSelectedHint {
+                Style: (FontSize: 11, TextColor: #9c8463, VerticalAlignment: Center);
+                Text: "Click a slot on the left";
+                Anchor: (Height: 18);
+              }
+            }
+          }
+        }
+
+        Label #OfferCreateQtyCaption {
+          Style: (FontSize: 10, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+          Text: "QUANTITY WANTED";
+          Anchor: (Height: 14, Bottom: 4);
+        }
+
+        $C.@NumberField #OfferCreateQtyInput {
+          @Anchor = (Horizontal: 0, Bottom: 10);
+        }
+
+        Group #OfferCreatePaymentModeRow {
+          Anchor: (Horizontal: 0, Height: 30, Bottom: 10);
+          LayoutMode: Left;
+
+          $C.@SmallTextButton #OfferCreateModeDigital {
+            @Anchor = (Width: 156, Right: 6);
+            @Text = "DIGITAL";
+          }
+
+          $C.@SmallSecondaryTextButton #OfferCreateModeBarter {
+            @Anchor = (Width: 156);
+            @Text = "BARTER";
+          }
+        }
+
+        Label #OfferCreatePriceCaption {
+          Style: (FontSize: 10, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+          Text: "PRICE PER UNIT";
+          Anchor: (Height: 14, Bottom: 4);
+        }
+
+        $C.@NumberField #OfferCreatePriceInput {
+          @Anchor = (Horizontal: 0, Bottom: 10);
+        }
+
+        Group #OfferCreateBarterSection {
+          Visible: false;
+          Anchor: (Horizontal: 0);
+          LayoutMode: Top;
+
+          Label #OfferCreateBarterCaption {
+            Style: (FontSize: 10, TextColor: #9d7e2c, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+            Text: "PAYMENT ITEM (ID)";
+            Anchor: (Height: 14, Bottom: 4);
+          }
+
+          Group #OfferCreateBarterItemRow {
+            Anchor: (Horizontal: 0, Height: 32, Bottom: 8);
+            LayoutMode: Left;
+
+            $C.@TextField #OfferCreateBarterItemInput {
+              @Anchor = (Height: 32, Right: 6);
+              FlexWeight: 1;
+            }
+
+            $C.@SmallSecondaryTextButton #OfferCreateBarterBrowseButton {
+              @Anchor = (Width: 110, Height: 32);
+              @Text = "BROWSE";
+            }
+          }
+
+          Label #OfferCreateBarterQtyCaption {
+            Style: (FontSize: 10, TextColor: #9d7e2c, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+            Text: "PAYMENT QTY (PER UNIT)";
+            Anchor: (Height: 14, Bottom: 4);
+          }
+
+          $C.@NumberField #OfferCreateBarterQtyInput {
+            @Anchor = (Horizontal: 0, Bottom: 10);
+          }
+        }
+
+        Group #OfferCreateTotalRow {
+          Anchor: (Horizontal: 0, Height: 18, Bottom: 12);
+          LayoutMode: Left;
+
+          Label #OfferCreateTotalLabel {
+            Style: (FontSize: 10, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+            Text: "TOTAL ESCROW:";
+            FlexWeight: 1;
+          }
+
+          Label #OfferCreateTotalValue {
+            Style: (FontSize: 12, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+            Text: "$0";
+            Anchor: (Width: 140);
+          }
+        }
+
+        $C.@SmallBuyTextButton #OfferCreateConfirmButton {
+          @Anchor = (Horizontal: 0);
+          @Text = "POST OFFER";
+        }
+      }
+    }
+  }
+
+  Group #OfferFulfillOverlay {
+    Visible: false;
+    Anchor: (Width: 520, Height: 460);
+    LayoutMode: CenterMiddle;
+
+    Group #OfferFulfillDialog {
+      Anchor: (Width: 520, Height: 460);
+      LayoutMode: Top;
+      Padding: (Full: 16);
+      Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerFullPatch.png", Border: 14);
+
+      Label #OfferFulfillTitle {
+        Style: (FontSize: 18, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center, VerticalAlignment: Center);
+        Text: "SELL TO BUYER";
+        Anchor: (Height: 28, Bottom: 6);
+      }
+
+      Group #OfferFulfillDivider {
+        Anchor: (Horizontal: 0, Height: 4, Bottom: 12);
+        Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerSectionSeparator.png", HorizontalBorder: 4);
+      }
+
+      Group #OfferFulfillHeader {
+        Anchor: (Horizontal: 0, Height: 80, Bottom: 12);
+        LayoutMode: Left;
+        Padding: (Left: 8, Right: 8, Top: 8, Bottom: 8);
+        Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+        Group #OfferFulfillIconWrap {
+          Anchor: (Width: 60, Height: 60, Right: 12);
+          Background: (TexturePath: "Textures/MedievalShop/Rarities/SlotCommon.png", Border: 12);
+
+          Group #OfferFulfillIconCenter {
+            Anchor: (Full: 0);
+            LayoutMode: CenterMiddle;
+
+            AssetImage #OfferFulfillIconAsset {
+              Anchor: (Width: 48, Height: 48);
+              Visible: false;
+            }
+
+            ItemIcon #OfferFulfillIcon {
+              Anchor: (Width: 48, Height: 48);
+            }
+          }
+        }
+
+        Group {
+          FlexWeight: 1;
+          LayoutMode: CenterMiddle;
+
+          Group #OfferFulfillStack {
+            Anchor: (Full: 0);
+            LayoutMode: Top;
+
+            Label #OfferFulfillName {
+              Style: (FontSize: 16, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, Wrap: true);
+              Text: "Item";
+              Anchor: (Height: 26);
+            }
+
+            Label #OfferFulfillBuyer {
+              Style: (FontSize: 11, TextColor: #9c8463, VerticalAlignment: Center);
+              Text: "from Buyer";
+              Anchor: (Height: 18);
+            }
+          }
+        }
+      }
+
+      Label #OfferFulfillAvailableCaption {
+        Style: (FontSize: 10, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+        Text: "YOU HAVE";
+        Anchor: (Height: 14, Bottom: 2);
+      }
+
+      Label #OfferFulfillAvailableValue {
+        Style: (FontSize: 13, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center);
+        Text: "0";
+        Anchor: (Height: 18, Bottom: 8);
+      }
+
+      Label #OfferFulfillQtyCaption {
+        Style: (FontSize: 10, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+        Text: "QUANTITY TO SELL";
+        Anchor: (Height: 14, Bottom: 4);
+      }
+
+      $C.@NumberField #OfferFulfillQtyInput {
+        @Anchor = (Horizontal: 0, Bottom: 10);
+      }
+
+      Group #OfferFulfillPayoutCard {
+        Anchor: (Horizontal: 0, Height: 56, Bottom: 14);
+        LayoutMode: Top;
+        Padding: (Left: 12, Right: 12, Top: 6, Bottom: 6);
+        Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 8);
+
+        Label #OfferFulfillPayoutCaption {
+          Style: (FontSize: 9, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center, VerticalAlignment: Center);
+          Text: "YOU RECEIVE";
+          Anchor: (Height: 14, Bottom: 2);
+        }
+
+        Label #OfferFulfillPayout {
+          Style: (FontSize: 19, TextColor: #4ade80, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center, ShrinkTextToFit: true, MinShrinkTextToFitFontSize: 10);
+          Text: "$0";
+          Anchor: (Height: 26);
+        }
+      }
+
+      Group #OfferFulfillActions {
+        Anchor: (Horizontal: 0, Height: 32);
+        LayoutMode: Left;
+
+        $C.@SmallBuyTextButton #OfferFulfillYes {
+          @Anchor = (Width: 240, Right: 8);
+          @Text = "CONFIRM SALE";
+        }
+
+        $C.@SmallCancelTextButton #OfferFulfillNo {
+          @Anchor = (Width: 220);
+          @Text = "CANCEL";
+        }
+      }
+    }
+  }
+
+  Group #OfferEditOverlay {
+    Visible: false;
+    Anchor: (Width: 720, Height: 620);
+    LayoutMode: CenterMiddle;
+
+    Group #OfferEditDialog {
+      Anchor: (Width: 720, Height: 620);
+      LayoutMode: Top;
+      Padding: (Full: 18);
+      Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerFullPatch.png", Border: 14);
+
+      Label #OfferEditTitle {
+        Style: (FontSize: 20, TextColor: #f5e8c8, RenderBold: true, RenderUppercase: true, LetterSpacing: 3, HorizontalAlignment: Center, VerticalAlignment: Center);
+        Text: "EDIT YOUR OFFER";
+        Anchor: (Horizontal: 0, Height: 28, Bottom: 4);
+      }
+
+      Label #OfferEditSubtitle {
+        Style: (FontSize: 10, TextColor: #9c8463, HorizontalAlignment: Center, VerticalAlignment: Center, RenderUppercase: true, LetterSpacing: 2);
+        Text: "Manage stock, pricing, and lifecycle of this request offer.";
+        Anchor: (Horizontal: 0, Height: 14, Bottom: 12);
+      }
+
+      Group #OfferEditDivider {
+        Anchor: (Horizontal: 0, Height: 4, Bottom: 14);
+        Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerSectionSeparator.png", HorizontalBorder: 4);
+      }
+
+      Group #OfferEditHeader {
+        Anchor: (Horizontal: 0, Height: 96, Bottom: 14);
+        LayoutMode: Left;
+        Padding: (Left: 12, Right: 12, Top: 10, Bottom: 10);
+        Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+        Group #OfferEditIconWrap {
+          Anchor: (Width: 76, Height: 76, Right: 14);
+          Background: (TexturePath: "Textures/MedievalShop/Rarities/SlotCommon.png", Border: 12);
+
+          Group #OfferEditIconCenter {
+            Anchor: (Full: 0);
+            LayoutMode: CenterMiddle;
+
+            AssetImage #OfferEditIconAsset {
+              Anchor: (Width: 56, Height: 56);
+              Visible: false;
+            }
+
+            ItemIcon #OfferEditIcon {
+              Anchor: (Width: 56, Height: 56);
+            }
+          }
+        }
+
+        Group #OfferEditStack {
+          FlexWeight: 1;
+          LayoutMode: Top;
+          Padding: (Top: 4);
+
+          Label #OfferEditName {
+            Style: (FontSize: 18, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, ShrinkTextToFit: true, MinShrinkTextToFitFontSize: 12);
+            Text: "Item";
+            Anchor: (Horizontal: 0, Height: 24, Bottom: 2);
+          }
+
+          Label #OfferEditMeta {
+            Style: (FontSize: 10, TextColor: #6e5839, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+            Text: "OFFER #—";
+            Anchor: (Horizontal: 0, Height: 12, Bottom: 6);
+          }
+
+          Group #OfferEditStatsRow {
+            Anchor: (Horizontal: 0, Height: 30);
+            LayoutMode: Left;
+
+            Group #OfferEditStatRemaining {
+              Anchor: (Width: 110, Height: 30, Right: 6);
+              LayoutMode: CenterMiddle;
+              Padding: (Left: 8, Right: 8);
+              Background: (Color: #16a34a);
+
+              Label #OfferEditRemainingValue {
+                Style: (FontSize: 11, TextColor: #ffffff, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, HorizontalAlignment: Center, VerticalAlignment: Center, ShrinkTextToFit: true, MinShrinkTextToFitFontSize: 9);
+                Text: "x0 LEFT";
+              }
+            }
+
+            Group #OfferEditStatPrice {
+              Anchor: (Width: 110, Height: 30, Right: 6);
+              LayoutMode: CenterMiddle;
+              Padding: (Left: 8, Right: 8);
+              Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 8);
+
+              Label #OfferEditPriceValue {
+                Style: (FontSize: 11, TextColor: #e8a93b, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center, ShrinkTextToFit: true, MinShrinkTextToFitFontSize: 9);
+                Text: "$0/u";
+              }
+            }
+
+            Group #OfferEditStatFilled {
+              Anchor: (Width: 110, Height: 30);
+              LayoutMode: CenterMiddle;
+              Padding: (Left: 8, Right: 8);
+              Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 8);
+
+              Label #OfferEditFilledValue {
+                Style: (FontSize: 11, TextColor: #d4a849, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, HorizontalAlignment: Center, VerticalAlignment: Center, ShrinkTextToFit: true, MinShrinkTextToFitFontSize: 9);
+                Text: "0% FILLED";
+              }
+            }
+          }
+        }
+      }
+
+      Group #OfferEditRestockSection {
+        Anchor: (Horizontal: 0, Height: 134, Bottom: 12);
+        LayoutMode: Top;
+        Padding: (Left: 14, Right: 14, Top: 12, Bottom: 12);
+        Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+        Label #OfferEditRestockHeader {
+          Style: (FontSize: 12, TextColor: #c9b181, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+          Text: "RESTOCK";
+          Anchor: (Horizontal: 0, Height: 16, Bottom: 4);
+        }
+
+        Label #OfferEditRestockHint {
+          Style: (FontSize: 9, TextColor: #6e5839, VerticalAlignment: Center);
+          Text: "Add more units to this offer. You'll be charged the unit price × quantity.";
+          Anchor: (Horizontal: 0, Height: 12, Bottom: 8);
+        }
+
+        Group #OfferEditRestockRow {
+          Anchor: (Horizontal: 0, Height: 36);
+          LayoutMode: Left;
+
+          Group #OfferEditRestockInputWrap {
+            Anchor: (Width: 140, Height: 36, Right: 8);
+            LayoutMode: Top;
+
+            $C.@NumberField #OfferEditRestockInput {
+              @Anchor = (Horizontal: 0, Height: 36);
+            }
+          }
+
+          $C.@SmallBuyTextButton #OfferEditRestockButton {
+            @Anchor = (Height: 36);
+            @Text = "+ ADD UNITS";
+            FlexWeight: 1;
+          }
+        }
+      }
+
+      Group #OfferEditDangerSection {
+        Anchor: (Horizontal: 0, Height: 96, Bottom: 12);
+        LayoutMode: Top;
+        Padding: (Left: 14, Right: 14, Top: 12, Bottom: 12);
+        Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+        Label #OfferEditDangerHeader {
+          Style: (FontSize: 12, TextColor: #c44a3a, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+          Text: "DANGER ZONE";
+          Anchor: (Horizontal: 0, Height: 16, Bottom: 4);
+        }
+
+        Label #OfferEditDangerHint {
+          Style: (FontSize: 9, TextColor: #6e5839, VerticalAlignment: Center);
+          Text: "Cancel this offer and get all unspent units refunded to you.";
+          Anchor: (Horizontal: 0, Height: 12, Bottom: 8);
+        }
+
+        $C.@SmallCancelTextButton #OfferEditCancelButton {
+          @Anchor = (Horizontal: 0, Height: 36);
+          @Text = "CANCEL & REFUND OFFER";
+        }
+      }
+
+      Group #OfferEditFooter {
+        Anchor: (Horizontal: 0, Height: 36);
+        LayoutMode: Left;
+
+        Group { FlexWeight: 1; }
+
+        $C.@SmallSecondaryTextButton #OfferEditCloseButton {
+          @Anchor = (Width: 160, Height: 36);
+          @Text = "CLOSE";
+        }
+      }
+    }
+  }
+
+  Group #OfferMyOffersOverlay {
+    Visible: false;
+    Anchor: (Width: 1240, Height: 960);
+    LayoutMode: Top;
+    Padding: (Full: 0);
+    Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerFullPatch.png", Border: 14);
+
+    Group #OfferMyOffersHeader {
+      Anchor: (Height: 72, Bottom: 10);
+      LayoutMode: Left;
+      Padding: (Left: 20, Right: 14);
+      Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerHeader.png", Border: 14);
+
+      Group {
+        FlexWeight: 1;
+        LayoutMode: CenterMiddle;
+
+        Group #OfferMyOffersTitleStack {
+          Anchor: (Width: 600, Height: 46);
+          LayoutMode: Top;
+
+          Label #OfferMyOffersTitle {
+            Style: (FontSize: 18, TextColor: #f5e8c8, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center, VerticalAlignment: Center);
+            Text: "YOUR OFFERS";
+            Anchor: (Height: 24, Bottom: 2);
+          }
+
+          Label #OfferMyOffersSubtitle {
+            Style: (FontSize: 12, TextColor: #9c8463, HorizontalAlignment: Center, VerticalAlignment: Center);
+            Text: "Manage your active buy orders";
+            Anchor: (Height: 18);
+          }
+        }
+      }
+
+      Group #OfferMyOffersCloseGroup {
+        Anchor: (Width: 48);
+        LayoutMode: CenterMiddle;
+
+        Button #OfferMyOffersCloseButton {
+          Anchor: (Width: 40, Height: 40);
+          Style: (
+            Default: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerCloseButton.png", Border: 6)),
+            Hovered: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerCloseButtonHovered.png", Border: 6)),
+            Pressed: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerCloseButtonPressed.png", Border: 6))
+          );
+        }
+      }
+    }
+
+    Group #OfferMyOffersBody {
+      FlexWeight: 1;
+      LayoutMode: TopScrolling;
+      ScrollbarStyle: $C.@DefaultScrollbarStyle;
+      Padding: (Left: 14, Right: 14, Top: 8, Bottom: 14);
+
+      Group #OfferMyOffersGrid {
+        LayoutMode: LeftCenterWrap;
+      }
+
+      Label #OfferMyOffersEmpty {
+        Visible: false;
+        Style: (FontSize: 13, TextColor: #6e5839, HorizontalAlignment: Center, VerticalAlignment: Center, Wrap: true);
+        Text: "You haven't posted any offers yet.";
+        Anchor: (Height: 60);
+      }
+    }
+  }
+
+  Group #OfferClaimsOverlay {
+    Visible: false;
+    Anchor: (Width: 1240, Height: 960);
+    LayoutMode: Top;
+    Padding: (Full: 0);
+    Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerFullPatch.png", Border: 14);
+
+    Group #OfferClaimsHeader {
+      Anchor: (Height: 72, Bottom: 10);
+      LayoutMode: Left;
+      Padding: (Left: 20, Right: 14);
+      Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerHeader.png", Border: 14);
+
+      Group {
+        FlexWeight: 1;
+        LayoutMode: CenterMiddle;
+
+        Group #OfferClaimsTitleStack {
+          Anchor: (Width: 600, Height: 46);
+          LayoutMode: Top;
+
+          Label #OfferClaimsTitle {
+            Style: (FontSize: 18, TextColor: #d4a849, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center, VerticalAlignment: Center);
+            Text: "PENDING CLAIMS";
+            Anchor: (Height: 24, Bottom: 2);
+          }
+
+          Label #OfferClaimsSubtitle {
+            Style: (FontSize: 12, TextColor: #9c8463, HorizontalAlignment: Center, VerticalAlignment: Center);
+            Text: "Items waiting for you from fulfilled offers";
+            Anchor: (Height: 18);
+          }
+        }
+      }
+
+      Group #OfferClaimsCloseGroup {
+        Anchor: (Width: 48);
+        LayoutMode: CenterMiddle;
+
+        Button #OfferClaimsCloseButton {
+          Anchor: (Width: 40, Height: 40);
+          Style: (
+            Default: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerCloseButton.png", Border: 6)),
+            Hovered: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerCloseButtonHovered.png", Border: 6)),
+            Pressed: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerCloseButtonPressed.png", Border: 6))
+          );
+        }
+      }
+    }
+
+    Group #OfferClaimsBody {
+      FlexWeight: 1;
+      LayoutMode: TopScrolling;
+      ScrollbarStyle: $C.@DefaultScrollbarStyle;
+      Padding: (Left: 14, Right: 14, Top: 8, Bottom: 14);
+
+      Group #OfferClaimsList {
+        LayoutMode: Top;
+      }
+
+      Label #OfferClaimsEmpty {
+        Visible: false;
+        Style: (FontSize: 13, TextColor: #6e5839, HorizontalAlignment: Center, VerticalAlignment: Center, Wrap: true);
+        Text: "No pending claims. Fulfill someone's offer to receive items here.";
+        Anchor: (Height: 60);
+      }
+    }
+  }
+}

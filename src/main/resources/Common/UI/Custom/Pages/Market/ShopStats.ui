@@ -1,0 +1,976 @@
+$C = "../BetterShopCommon.ui";
+
+$C.@PageOverlay {
+  LayoutMode: Middle;
+
+  $C.@DecoratedContainer #ShopStatsRoot {
+    Anchor: (Width: 1280, Height: 900);
+
+    #Title {
+      $C.@Title { @Text = ""; }
+      Label #StatsPageTitle {
+        Style: (FontSize: 22, TextColor: #f5e8c8, RenderBold: true, RenderUppercase: true, LetterSpacing: 3, HorizontalAlignment: Center);
+        Text: "TRADER PROFILE";
+        Anchor: (Height: 30);
+      }
+    }
+
+    #Content {
+      LayoutMode: Top;
+      Padding: (Full: 16);
+
+      Label #StatsSubtitle {
+        Style: (FontSize: 11, TextColor: #9c8463, HorizontalAlignment: Center, VerticalAlignment: Center, Wrap: true);
+        Text: "Your profile, server-wide leaderboards, and a directory of all known traders.";
+        Anchor: (Horizontal: 0, Height: 18, Bottom: 12);
+      }
+
+      Group #StatsTabBar {
+        Anchor: (Horizontal: 0, Height: 40, Bottom: 14);
+        LayoutMode: Left;
+
+        Button #StatsTabProfile {
+          FlexWeight: 1;
+          Anchor: (Height: 40, Right: 6);
+          LayoutMode: CenterMiddle;
+          Background: (Color: #2563eb);
+          Label #StatsTabProfileText {
+            Style: (FontSize: 12, TextColor: #ffffff, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center, VerticalAlignment: Center);
+            Text: "MY PROFILE";
+          }
+        }
+
+        Button #StatsTabLeaderboards {
+          FlexWeight: 1;
+          Anchor: (Height: 40, Right: 6);
+          LayoutMode: CenterMiddle;
+          Background: (Color: #0b1735);
+          Label #StatsTabLeaderboardsText {
+            Style: (FontSize: 12, TextColor: #ffffff, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center, VerticalAlignment: Center);
+            Text: "LEADERBOARDS";
+          }
+        }
+
+        Button #StatsTabPlayers {
+          FlexWeight: 1;
+          Anchor: (Height: 40);
+          LayoutMode: CenterMiddle;
+          Background: (Color: #0b1735);
+          Label #StatsTabPlayersText {
+            Style: (FontSize: 12, TextColor: #ffffff, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center, VerticalAlignment: Center);
+            Text: "PLAYERS";
+          }
+        }
+      }
+
+      Group #StatsProfileOverlay {
+        FlexWeight: 1;
+        LayoutMode: Top;
+
+        Group #StatsProfileViewingBanner {
+          Visible: false;
+          Anchor: (Horizontal: 0, Height: 36, Bottom: 10);
+          LayoutMode: Left;
+          Padding: (Left: 14, Right: 14, Top: 4, Bottom: 4);
+          Background: (Color: #7c3aed);
+
+          Label #StatsProfileViewingText {
+            Style: (FontSize: 12, TextColor: #ffffff, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+            Text: "VIEWING SOMEONE ELSE";
+            FlexWeight: 1;
+            Anchor: (Height: 28);
+          }
+
+          $C.@SmallSecondaryTextButton #StatsProfileBackToMineButton {
+            @Anchor = (Width: 200, Height: 28);
+            @Text = "BACK TO MY STATS";
+          }
+        }
+
+        Group #StatsHeroRow {
+        Anchor: (Horizontal: 0, Height: 156, Bottom: 14);
+        LayoutMode: Left;
+
+        Group #StatsProfileCard {
+          Anchor: (Width: 420, Height: 156, Right: 14);
+          LayoutMode: Left;
+          Padding: (Left: 14, Right: 14, Top: 14, Bottom: 14);
+          Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPatch.png", Border: 14);
+
+          Group #StatsProfileAvatarColumn {
+            Anchor: (Width: 96, Height: 128, Right: 14);
+            LayoutMode: Top;
+
+            Group #StatsProfileAvatarWrap {
+              Anchor: (Width: 96, Height: 96, Bottom: 4);
+              LayoutMode: CenterMiddle;
+              Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 8);
+
+              AssetImage #StatsProfileAvatar {
+                Anchor: (Width: 80, Height: 80);
+              }
+            }
+
+            $C.@SmallSecondaryTextButton #StatsChangePictureButton {
+              @Anchor = (Width: 96, Height: 24);
+              @Text = "CHANGE";
+            }
+          }
+
+          Group #StatsProfileBody {
+            FlexWeight: 1;
+            LayoutMode: Top;
+
+            Label #StatsProfileLabel {
+              Style: (FontSize: 9, TextColor: #d4a849, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+              Text: "PROFILE";
+              Anchor: (Horizontal: 0, Height: 12, Bottom: 4);
+            }
+
+            Group #StatsProfileNameRow {
+              Anchor: (Horizontal: 0, Height: 28, Bottom: 8);
+              LayoutMode: Left;
+
+              Label #StatsProfileName {
+                Style: (FontSize: 20, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, ShrinkTextToFit: true, MinShrinkTextToFitFontSize: 12);
+                Text: "Player";
+                FlexWeight: 1;
+                Anchor: (Right: 8);
+              }
+
+              Group #StatsProfileRankPill {
+                Anchor: (Width: 110, Height: 22);
+                LayoutMode: CenterMiddle;
+                Padding: (Left: 8, Right: 8);
+                Background: (Color: #e8a93b);
+
+                Label #StatsProfileRank {
+                  Style: (FontSize: 10, TextColor: #1a1a00, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center, VerticalAlignment: Center, ShrinkTextToFit: true, MinShrinkTextToFitFontSize: 8);
+                  Text: "MERCHANT";
+                }
+              }
+              Group #StatsProfileRatingPill {
+                Visible: false;
+                Anchor: (Width: 110, Height: 22);
+                LayoutMode: CenterMiddle;
+                Padding: (Left: 8, Right: 8);
+                Background: (Color: #0b1424);
+                OutlineColor: #facc15;
+                OutlineSize: 1;
+
+                Label #StatsProfileRating {
+                  Style: (FontSize: 10, TextColor: #facc15, RenderBold: true, LetterSpacing: 1, HorizontalAlignment: Center, VerticalAlignment: Center, ShrinkTextToFit: true, MinShrinkTextToFitFontSize: 8);
+                  Text: "* 0.0 (0)";
+                }
+              }
+
+            }
+
+            Group #StatsProfileBalanceRow {
+              Anchor: (Horizontal: 0, Height: 24, Bottom: 6);
+              LayoutMode: Left;
+
+              Label #StatsWalletLabel {
+                Style: (FontSize: 10, TextColor: #9c8463, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+                Text: "WALLET";
+                Anchor: (Width: 70, Height: 18);
+              }
+
+              Label #StatsProfileBalance {
+                Style: (FontSize: 16, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center, ShrinkTextToFit: true, MinShrinkTextToFitFontSize: 11);
+                Text: "$0";
+                FlexWeight: 1;
+              }
+            }
+
+            Label #StatsProfileSince {
+              Style: (FontSize: 9, TextColor: #6e5839, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+              Text: "TRADER SINCE —";
+              Anchor: (Horizontal: 0, Height: 14);
+            }
+          }
+        }
+
+        Group #StatsHeroPills {
+          FlexWeight: 1;
+          Anchor: (Height: 156);
+          LayoutMode: Top;
+
+          Label #StatsHeroLabel {
+            Style: (FontSize: 9, TextColor: #d4a849, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+            Text: "LIFETIME STATS";
+            Anchor: (Horizontal: 0, Height: 14, Bottom: 8);
+          }
+
+          Group #StatsHeroPillsRow {
+            FlexWeight: 1;
+            Anchor: (Horizontal: 0);
+            LayoutMode: Left;
+
+            Group #StatsHeroSpentTile {
+              FlexWeight: 1;
+              Anchor: (Height: 130, Right: 10);
+              LayoutMode: Top;
+              Padding: (Left: 14, Right: 14, Top: 14, Bottom: 14);
+              Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+              Label #StatsHeroSpentLabel {
+                Style: (FontSize: 10, TextColor: #c44a3a, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+                Text: "SPENT";
+                Anchor: (Horizontal: 0, Height: 14, Bottom: 8);
+              }
+
+              Label #StatsHeroSpent {
+                Style: (FontSize: 24, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, ShrinkTextToFit: true, MinShrinkTextToFitFontSize: 14);
+                Text: "$0";
+                Anchor: (Horizontal: 0);
+                FlexWeight: 1;
+              }
+            }
+
+            Group #StatsHeroEarnedTile {
+              FlexWeight: 1;
+              Anchor: (Height: 130, Right: 10);
+              LayoutMode: Top;
+              Padding: (Left: 14, Right: 14, Top: 14, Bottom: 14);
+              Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+              Label #StatsHeroEarnedLabel {
+                Style: (FontSize: 10, TextColor: #4ade80, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+                Text: "EARNED";
+                Anchor: (Horizontal: 0, Height: 14, Bottom: 8);
+              }
+
+              Label #StatsHeroEarned {
+                Style: (FontSize: 24, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, ShrinkTextToFit: true, MinShrinkTextToFitFontSize: 14);
+                Text: "$0";
+                Anchor: (Horizontal: 0);
+                FlexWeight: 1;
+              }
+            }
+
+            Group #StatsHeroNetTile {
+              FlexWeight: 1;
+              Anchor: (Height: 130, Right: 10);
+              LayoutMode: Top;
+              Padding: (Left: 14, Right: 14, Top: 14, Bottom: 14);
+              Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+              Label #StatsHeroNetLabel {
+                Style: (FontSize: 10, TextColor: #d4a849, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+                Text: "NET PROFIT";
+                Anchor: (Horizontal: 0, Height: 14, Bottom: 8);
+              }
+
+              Label #StatsHeroNet {
+                Style: (FontSize: 24, TextColor: #4ade80, RenderBold: true, VerticalAlignment: Center, ShrinkTextToFit: true, MinShrinkTextToFitFontSize: 14);
+                Text: "$0";
+                Anchor: (Horizontal: 0);
+                FlexWeight: 1;
+              }
+            }
+
+            Group #StatsHeroTransactionsTile {
+              FlexWeight: 1;
+              Anchor: (Height: 130);
+              LayoutMode: Top;
+              Padding: (Left: 14, Right: 14, Top: 14, Bottom: 14);
+              Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+              Label #StatsHeroTransactionsLabel {
+                Style: (FontSize: 10, TextColor: #9d7e2c, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+                Text: "TRANSACTIONS";
+                Anchor: (Horizontal: 0, Height: 14, Bottom: 8);
+              }
+
+              Label #StatsHeroTransactions {
+                Style: (FontSize: 24, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, ShrinkTextToFit: true, MinShrinkTextToFitFontSize: 14);
+                Text: "0";
+                Anchor: (Horizontal: 0);
+                FlexWeight: 1;
+              }
+            }
+          }
+        }
+      }
+
+      Group #StatsMarketsRow {
+        Anchor: (Horizontal: 0, Height: 220, Bottom: 14);
+        LayoutMode: Left;
+
+        Group #StatsShopCard {
+          FlexWeight: 1;
+          Anchor: (Height: 220, Right: 12);
+          LayoutMode: Top;
+          Padding: (Left: 16, Right: 16, Top: 14, Bottom: 14);
+          Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPatch.png", Border: 14);
+
+          Label #StatsShopHeader {
+            Style: (FontSize: 14, TextColor: #d4a849, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+            Text: "SHOP";
+            Anchor: (Horizontal: 0, Height: 18, Bottom: 6);
+          }
+
+          Group #StatsShopDivider {
+            Anchor: (Horizontal: 0, Height: 4, Bottom: 10);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerSectionSeparator.png", HorizontalBorder: 4);
+          }
+
+          Group #StatsShopChips {
+            Anchor: (Horizontal: 0, Height: 22, Bottom: 8);
+            LayoutMode: Left;
+
+            Group {
+              Anchor: (Width: 88, Height: 22, Right: 6);
+              LayoutMode: CenterMiddle;
+              Padding: (Left: 6, Right: 6);
+              Background: (Color: #c44a3a);
+              Label #StatsShopBuys {
+                Style: (FontSize: 10, TextColor: #ffffff, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center, ShrinkTextToFit: true, MinShrinkTextToFitFontSize: 8);
+                Text: "0 BUYS";
+              }
+            }
+
+            Group {
+              Anchor: (Width: 88, Height: 22, Right: 6);
+              LayoutMode: CenterMiddle;
+              Padding: (Left: 6, Right: 6);
+              Background: (Color: #4ade80);
+              Label #StatsShopSells {
+                Style: (FontSize: 10, TextColor: #ffffff, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center, ShrinkTextToFit: true, MinShrinkTextToFitFontSize: 8);
+                Text: "0 SELLS";
+              }
+            }
+
+            Group {
+              FlexWeight: 1;
+              Anchor: (Height: 22);
+              LayoutMode: CenterMiddle;
+              Padding: (Left: 6, Right: 6);
+              Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 6);
+              Label #StatsShopTrackedCount {
+                Style: (FontSize: 10, TextColor: #d4a849, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center, ShrinkTextToFit: true, MinShrinkTextToFitFontSize: 8);
+                Text: "0 TRACKED";
+              }
+            }
+          }
+
+          Label #StatsShopSpent {
+            Style: (FontSize: 11, TextColor: #c44a3a, VerticalAlignment: Center);
+            Text: "SPENT $0";
+            Anchor: (Horizontal: 0, Height: 14, Bottom: 4);
+          }
+
+          Label #StatsShopEarned {
+            Style: (FontSize: 11, TextColor: #4ade80, VerticalAlignment: Center);
+            Text: "EARNED $0";
+            Anchor: (Horizontal: 0, Height: 14, Bottom: 10);
+          }
+
+          Label #StatsShopTopItemLabel {
+            Style: (FontSize: 9, TextColor: #6e5839, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+            Text: "TOP ITEM";
+            Anchor: (Horizontal: 0, Height: 12, Bottom: 4);
+          }
+
+          Group #StatsShopTopRow {
+            Anchor: (Horizontal: 0, Height: 38);
+            LayoutMode: Left;
+
+            Group #StatsShopTopIconWrap {
+              Anchor: (Width: 38, Height: 38, Right: 8);
+              LayoutMode: CenterMiddle;
+              Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 6);
+
+              ItemIcon #StatsShopTopIcon {
+                Anchor: (Width: 28, Height: 28);
+              }
+            }
+
+            Group {
+              FlexWeight: 1;
+              LayoutMode: Top;
+              Padding: (Top: 4);
+
+              Label #StatsShopTopItem {
+                Style: (FontSize: 11, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, ShrinkTextToFit: true, MinShrinkTextToFitFontSize: 9);
+                Text: "—";
+                Anchor: (Horizontal: 0, Height: 16);
+              }
+
+              Label #StatsShopTopQty {
+                Style: (FontSize: 9, TextColor: #9c8463, VerticalAlignment: Center);
+                Text: "";
+                Anchor: (Horizontal: 0, Height: 12);
+              }
+            }
+          }
+        }
+
+        Group #StatsAuctionCard {
+          FlexWeight: 1;
+          Anchor: (Height: 220, Right: 12);
+          LayoutMode: Top;
+          Padding: (Left: 16, Right: 16, Top: 14, Bottom: 14);
+          Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPatch.png", Border: 14);
+
+          Label #StatsAuctionHeader {
+            Style: (FontSize: 14, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+            Text: "AUCTION HOUSE";
+            Anchor: (Horizontal: 0, Height: 18, Bottom: 6);
+          }
+
+          Group #StatsAuctionDivider {
+            Anchor: (Horizontal: 0, Height: 4, Bottom: 10);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerSectionSeparator.png", HorizontalBorder: 4);
+          }
+
+          Group #StatsAuctionChips {
+            Anchor: (Horizontal: 0, Height: 22, Bottom: 8);
+            LayoutMode: Left;
+
+            Group {
+              Anchor: (Width: 100, Height: 22, Right: 6);
+              LayoutMode: CenterMiddle;
+              Padding: (Left: 6, Right: 6);
+              Background: (Color: #e8a93b);
+              Label #StatsAuctionActive {
+                Style: (FontSize: 10, TextColor: #1a1a00, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center, ShrinkTextToFit: true, MinShrinkTextToFitFontSize: 8);
+                Text: "0 ACTIVE";
+              }
+            }
+
+            Group {
+              FlexWeight: 1;
+              Anchor: (Height: 22);
+              LayoutMode: CenterMiddle;
+              Padding: (Left: 6, Right: 6);
+              Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 6);
+              Label #StatsAuctionSold {
+                Style: (FontSize: 10, TextColor: #c9b181, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center, ShrinkTextToFit: true, MinShrinkTextToFitFontSize: 8);
+                Text: "0 SOLD";
+              }
+            }
+          }
+
+          Label #StatsAuctionEarned {
+            Style: (FontSize: 11, TextColor: #4ade80, VerticalAlignment: Center);
+            Text: "EARNED $0";
+            Anchor: (Horizontal: 0, Height: 14, Bottom: 4);
+          }
+
+          Label #StatsAuctionBought {
+            Style: (FontSize: 11, TextColor: #c44a3a, VerticalAlignment: Center);
+            Text: "BOUGHT $0";
+            Anchor: (Horizontal: 0, Height: 14, Bottom: 10);
+          }
+
+          Label #StatsAuctionTopItemLabel {
+            Style: (FontSize: 9, TextColor: #6e5839, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+            Text: "TOP ITEM";
+            Anchor: (Horizontal: 0, Height: 12, Bottom: 4);
+          }
+
+          Group #StatsAuctionTopRow {
+            Anchor: (Horizontal: 0, Height: 38);
+            LayoutMode: Left;
+
+            Group #StatsAuctionTopIconWrap {
+              Anchor: (Width: 38, Height: 38, Right: 8);
+              LayoutMode: CenterMiddle;
+              Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 6);
+
+              ItemIcon #StatsAuctionTopIcon {
+                Anchor: (Width: 28, Height: 28);
+              }
+            }
+
+            Group {
+              FlexWeight: 1;
+              LayoutMode: Top;
+              Padding: (Top: 4);
+
+              Label #StatsAuctionTopItem {
+                Style: (FontSize: 11, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, ShrinkTextToFit: true, MinShrinkTextToFitFontSize: 9);
+                Text: "—";
+                Anchor: (Horizontal: 0, Height: 16);
+              }
+
+              Label #StatsAuctionTopQty {
+                Style: (FontSize: 9, TextColor: #9c8463, VerticalAlignment: Center);
+                Text: "";
+                Anchor: (Horizontal: 0, Height: 12);
+              }
+            }
+          }
+        }
+
+        Group #StatsOfferCard {
+          FlexWeight: 1;
+          Anchor: (Height: 220);
+          LayoutMode: Top;
+          Padding: (Left: 16, Right: 16, Top: 14, Bottom: 14);
+          Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPatch.png", Border: 14);
+
+          Label #StatsOfferHeader {
+            Style: (FontSize: 14, TextColor: #9d7e2c, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+            Text: "OFFER HOUSE";
+            Anchor: (Horizontal: 0, Height: 18, Bottom: 6);
+          }
+
+          Group #StatsOfferDivider {
+            Anchor: (Horizontal: 0, Height: 4, Bottom: 10);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerSectionSeparator.png", HorizontalBorder: 4);
+          }
+
+          Group #StatsOfferChips {
+            Anchor: (Horizontal: 0, Height: 22, Bottom: 8);
+            LayoutMode: Left;
+
+            Group {
+              Anchor: (Width: 100, Height: 22, Right: 6);
+              LayoutMode: CenterMiddle;
+              Padding: (Left: 6, Right: 6);
+              Background: (Color: #9d7e2c);
+              Label #StatsOfferActive {
+                Style: (FontSize: 10, TextColor: #ffffff, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center, ShrinkTextToFit: true, MinShrinkTextToFitFontSize: 8);
+                Text: "0 ACTIVE";
+              }
+            }
+
+            Group {
+              FlexWeight: 1;
+              Anchor: (Height: 22);
+              LayoutMode: CenterMiddle;
+              Padding: (Left: 6, Right: 6);
+              Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 6);
+              Label #StatsOfferFulfilled {
+                Style: (FontSize: 10, TextColor: #c9b181, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center, ShrinkTextToFit: true, MinShrinkTextToFitFontSize: 8);
+                Text: "0 FULFILLED";
+              }
+            }
+          }
+
+          Label #StatsOfferSpent {
+            Style: (FontSize: 11, TextColor: #c44a3a, VerticalAlignment: Center);
+            Text: "SPENT $0";
+            Anchor: (Horizontal: 0, Height: 14, Bottom: 4);
+          }
+
+          Label #StatsOfferEarned {
+            Style: (FontSize: 11, TextColor: #4ade80, VerticalAlignment: Center);
+            Text: "EARNED $0";
+            Anchor: (Horizontal: 0, Height: 14, Bottom: 10);
+          }
+
+          Label #StatsOfferTopItemLabel {
+            Style: (FontSize: 9, TextColor: #6e5839, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+            Text: "TOP ITEM";
+            Anchor: (Horizontal: 0, Height: 12, Bottom: 4);
+          }
+
+          Group #StatsOfferTopRow {
+            Anchor: (Horizontal: 0, Height: 38);
+            LayoutMode: Left;
+
+            Group #StatsOfferTopIconWrap {
+              Anchor: (Width: 38, Height: 38, Right: 8);
+              LayoutMode: CenterMiddle;
+              Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 6);
+
+              ItemIcon #StatsOfferTopIcon {
+                Anchor: (Width: 28, Height: 28);
+              }
+            }
+
+            Group {
+              FlexWeight: 1;
+              LayoutMode: Top;
+              Padding: (Top: 4);
+
+              Label #StatsOfferTopItem {
+                Style: (FontSize: 11, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, ShrinkTextToFit: true, MinShrinkTextToFitFontSize: 9);
+                Text: "—";
+                Anchor: (Horizontal: 0, Height: 16);
+              }
+
+              Label #StatsOfferTopQty {
+                Style: (FontSize: 9, TextColor: #9c8463, VerticalAlignment: Center);
+                Text: "";
+                Anchor: (Horizontal: 0, Height: 12);
+              }
+            }
+          }
+        }
+      }
+
+      Group #StatsBottomRow {
+        FlexWeight: 1;
+        LayoutMode: Left;
+
+        Group #StatsTopItemsCard {
+          FlexWeight: 1;
+          Anchor: (Right: 12);
+          LayoutMode: Top;
+          Padding: (Left: 16, Right: 16, Top: 14, Bottom: 14);
+          Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPatch.png", Border: 14);
+
+          Label #StatsTopItemsHeader {
+            Style: (FontSize: 14, TextColor: #d4a849, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+            Text: "TOP TRADED ITEMS";
+            Anchor: (Horizontal: 0, Height: 18, Bottom: 6);
+          }
+
+          Group #StatsTopItemsDivider {
+            Anchor: (Horizontal: 0, Height: 4, Bottom: 10);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerSectionSeparator.png", HorizontalBorder: 4);
+          }
+
+          Group #StatsTopItemsScroll {
+            FlexWeight: 1;
+            LayoutMode: TopScrolling;
+            Padding: (Left: 4, Right: 4, Top: 4, Bottom: 4);
+            ScrollbarStyle: $C.@DefaultScrollbarStyle;
+
+            Group #StatsTopItemsGrid {
+              LayoutMode: LeftCenterWrap;
+            }
+          }
+
+          Label #StatsTopItemsEmpty {
+            Visible: false;
+            Style: (FontSize: 11, TextColor: #6e5839, HorizontalAlignment: Center, VerticalAlignment: Center, Wrap: true);
+            Text: "No items traded yet.";
+            Anchor: (Horizontal: 0, Height: 24);
+          }
+        }
+
+        Group #StatsTimelineCard {
+          Anchor: (Width: 460);
+          FlexWeight: 0;
+          LayoutMode: Top;
+          Padding: (Left: 16, Right: 16, Top: 14, Bottom: 14);
+          Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPatch.png", Border: 14);
+
+          Label #StatsTimelineHeader {
+            Style: (FontSize: 14, TextColor: #4ade80, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+            Text: "RECENT ACTIVITY";
+            Anchor: (Horizontal: 0, Height: 18, Bottom: 6);
+          }
+
+          Group #StatsTimelineDivider {
+            Anchor: (Horizontal: 0, Height: 4, Bottom: 10);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerSectionSeparator.png", HorizontalBorder: 4);
+          }
+
+          Group #StatsTimelineScroll {
+            FlexWeight: 1;
+            LayoutMode: TopScrolling;
+            Padding: (Right: 4);
+            ScrollbarStyle: $C.@DefaultScrollbarStyle;
+
+            Group #StatsTimelineList {
+              LayoutMode: Top;
+            }
+          }
+
+          Label #StatsTimelineEmpty {
+            Visible: false;
+            Style: (FontSize: 11, TextColor: #6e5839, HorizontalAlignment: Center, VerticalAlignment: Center, Wrap: true);
+            Text: "No activity yet.";
+            Anchor: (Horizontal: 0, Height: 24);
+          }
+        }
+      }
+      }
+
+      Group #StatsLeaderboardsOverlay {
+        Visible: false;
+        FlexWeight: 1;
+        LayoutMode: Top;
+
+        Group #StatsLeaderboardsRow1 {
+          Anchor: (Horizontal: 0, Bottom: 10);
+          FlexWeight: 1;
+          LayoutMode: Left;
+
+          Group #StatsLeaderboardRichest {
+            FlexWeight: 1;
+            Anchor: (Right: 6);
+            LayoutMode: Top;
+            Padding: (Left: 12, Right: 12, Top: 10, Bottom: 10);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPatch.png", Border: 14);
+
+            Label #LeaderboardTitle {
+              Style: (FontSize: 12, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+              Text: "RICHEST";
+              Anchor: (Horizontal: 0, Height: 16, Bottom: 2);
+            }
+            Label #LeaderboardSubtitle {
+              Style: (FontSize: 9, TextColor: #6e5839, VerticalAlignment: Center);
+              Text: "—";
+              Anchor: (Horizontal: 0, Height: 12, Bottom: 6);
+            }
+            Group { Anchor: (Horizontal: 0, Height: 4, Bottom: 6); Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerSectionSeparator.png", HorizontalBorder: 4); }
+            Group #LeaderboardList {
+              FlexWeight: 1;
+              LayoutMode: Top;
+            }
+            Label #LeaderboardEmpty {
+              Visible: false;
+              Style: (FontSize: 10, TextColor: #6e5839, HorizontalAlignment: Center, VerticalAlignment: Center);
+              Text: "No data yet.";
+              Anchor: (Horizontal: 0, Height: 16);
+            }
+          }
+
+          Group #StatsLeaderboardShopSpenders {
+            FlexWeight: 1;
+            Anchor: (Right: 6);
+            LayoutMode: Top;
+            Padding: (Left: 12, Right: 12, Top: 10, Bottom: 10);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPatch.png", Border: 14);
+
+            Label #LeaderboardTitle {
+              Style: (FontSize: 12, TextColor: #c44a3a, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+              Text: "BIGGEST SHOP SPENDERS";
+              Anchor: (Horizontal: 0, Height: 16, Bottom: 2);
+            }
+            Label #LeaderboardSubtitle {
+              Style: (FontSize: 9, TextColor: #6e5839, VerticalAlignment: Center);
+              Text: "—";
+              Anchor: (Horizontal: 0, Height: 12, Bottom: 6);
+            }
+            Group { Anchor: (Horizontal: 0, Height: 4, Bottom: 6); Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerSectionSeparator.png", HorizontalBorder: 4); }
+            Group #LeaderboardList {
+              FlexWeight: 1;
+              LayoutMode: Top;
+            }
+            Label #LeaderboardEmpty {
+              Visible: false;
+              Style: (FontSize: 10, TextColor: #6e5839, HorizontalAlignment: Center, VerticalAlignment: Center);
+              Text: "No data yet.";
+              Anchor: (Horizontal: 0, Height: 16);
+            }
+          }
+
+          Group #StatsLeaderboardShopEarners {
+            FlexWeight: 1;
+            LayoutMode: Top;
+            Padding: (Left: 12, Right: 12, Top: 10, Bottom: 10);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPatch.png", Border: 14);
+
+            Label #LeaderboardTitle {
+              Style: (FontSize: 12, TextColor: #4ade80, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+              Text: "BIGGEST SHOP EARNERS";
+              Anchor: (Horizontal: 0, Height: 16, Bottom: 2);
+            }
+            Label #LeaderboardSubtitle {
+              Style: (FontSize: 9, TextColor: #6e5839, VerticalAlignment: Center);
+              Text: "—";
+              Anchor: (Horizontal: 0, Height: 12, Bottom: 6);
+            }
+            Group { Anchor: (Horizontal: 0, Height: 4, Bottom: 6); Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerSectionSeparator.png", HorizontalBorder: 4); }
+            Group #LeaderboardList {
+              FlexWeight: 1;
+              LayoutMode: Top;
+            }
+            Label #LeaderboardEmpty {
+              Visible: false;
+              Style: (FontSize: 10, TextColor: #6e5839, HorizontalAlignment: Center, VerticalAlignment: Center);
+              Text: "No data yet.";
+              Anchor: (Horizontal: 0, Height: 16);
+            }
+          }
+        }
+
+        Group #StatsLeaderboardsRow2 {
+          Anchor: (Horizontal: 0);
+          FlexWeight: 1;
+          LayoutMode: Left;
+
+          Group #StatsLeaderboardAuctionKings {
+            FlexWeight: 1;
+            Anchor: (Right: 6);
+            LayoutMode: Top;
+            Padding: (Left: 12, Right: 12, Top: 10, Bottom: 10);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPatch.png", Border: 14);
+
+            Label #LeaderboardTitle {
+              Style: (FontSize: 12, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+              Text: "AUCTION KINGS";
+              Anchor: (Horizontal: 0, Height: 16, Bottom: 2);
+            }
+            Label #LeaderboardSubtitle {
+              Style: (FontSize: 9, TextColor: #6e5839, VerticalAlignment: Center);
+              Text: "—";
+              Anchor: (Horizontal: 0, Height: 12, Bottom: 6);
+            }
+            Group { Anchor: (Horizontal: 0, Height: 4, Bottom: 6); Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerSectionSeparator.png", HorizontalBorder: 4); }
+            Group #LeaderboardList {
+              FlexWeight: 1;
+              LayoutMode: Top;
+            }
+            Label #LeaderboardEmpty {
+              Visible: false;
+              Style: (FontSize: 10, TextColor: #6e5839, HorizontalAlignment: Center, VerticalAlignment: Center);
+              Text: "No data yet.";
+              Anchor: (Horizontal: 0, Height: 16);
+            }
+          }
+
+          Group #StatsLeaderboardBiggestSale {
+            FlexWeight: 1;
+            Anchor: (Right: 6);
+            LayoutMode: Top;
+            Padding: (Left: 12, Right: 12, Top: 10, Bottom: 10);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPatch.png", Border: 14);
+
+            Label #LeaderboardTitle {
+              Style: (FontSize: 12, TextColor: #fb923c, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+              Text: "BIGGEST SINGLE SALE";
+              Anchor: (Horizontal: 0, Height: 16, Bottom: 2);
+            }
+            Label #LeaderboardSubtitle {
+              Style: (FontSize: 9, TextColor: #6e5839, VerticalAlignment: Center);
+              Text: "—";
+              Anchor: (Horizontal: 0, Height: 12, Bottom: 6);
+            }
+            Group { Anchor: (Horizontal: 0, Height: 4, Bottom: 6); Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerSectionSeparator.png", HorizontalBorder: 4); }
+            Group #LeaderboardList {
+              FlexWeight: 1;
+              LayoutMode: Top;
+            }
+            Label #LeaderboardEmpty {
+              Visible: false;
+              Style: (FontSize: 10, TextColor: #6e5839, HorizontalAlignment: Center, VerticalAlignment: Center);
+              Text: "No data yet.";
+              Anchor: (Horizontal: 0, Height: 16);
+            }
+          }
+
+          Group #StatsLeaderboardOfferHustlers {
+            FlexWeight: 1;
+            LayoutMode: Top;
+            Padding: (Left: 12, Right: 12, Top: 10, Bottom: 10);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPatch.png", Border: 14);
+
+            Label #LeaderboardTitle {
+              Style: (FontSize: 12, TextColor: #9d7e2c, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+              Text: "OFFER HUSTLERS";
+              Anchor: (Horizontal: 0, Height: 16, Bottom: 2);
+            }
+            Label #LeaderboardSubtitle {
+              Style: (FontSize: 9, TextColor: #6e5839, VerticalAlignment: Center);
+              Text: "—";
+              Anchor: (Horizontal: 0, Height: 12, Bottom: 6);
+            }
+            Group { Anchor: (Horizontal: 0, Height: 4, Bottom: 6); Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerSectionSeparator.png", HorizontalBorder: 4); }
+            Group #LeaderboardList {
+              FlexWeight: 1;
+              LayoutMode: Top;
+            }
+            Label #LeaderboardEmpty {
+              Visible: false;
+              Style: (FontSize: 10, TextColor: #6e5839, HorizontalAlignment: Center, VerticalAlignment: Center);
+              Text: "No data yet.";
+              Anchor: (Horizontal: 0, Height: 16);
+            }
+          }
+        }
+      }
+
+      Group #StatsPlayersOverlay {
+        Visible: false;
+        FlexWeight: 1;
+        LayoutMode: Top;
+
+        Group #StatsPlayersHeaderRow {
+          Anchor: (Horizontal: 0, Height: 28, Bottom: 6);
+          LayoutMode: Left;
+
+          Label #StatsPlayersHeader {
+            Style: (FontSize: 14, TextColor: #d4a849, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+            Text: "PLAYER DIRECTORY";
+            Anchor: (Width: 240, Height: 22);
+          }
+
+          Group { FlexWeight: 1; }
+
+          Group #StatsPlayersStatusPill {
+            Anchor: (Width: 140, Height: 24);
+            LayoutMode: CenterMiddle;
+            Padding: (Left: 8, Right: 8);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 8);
+
+            Label #StatsPlayersStatus {
+              Style: (FontSize: 10, TextColor: #c9b181, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, HorizontalAlignment: Center, VerticalAlignment: Center);
+              Text: "0 PLAYERS";
+            }
+          }
+        }
+
+        Label #StatsPlayersSubtitle {
+          Style: (FontSize: 10, TextColor: #9c8463, VerticalAlignment: Center);
+          Text: "Click anyone to open their trader profile.";
+          Anchor: (Horizontal: 0, Height: 14, Bottom: 8);
+        }
+
+        Group #StatsPlayersSearchBar {
+          Anchor: (Horizontal: 0, Height: 38, Bottom: 10);
+          LayoutMode: Left;
+          Padding: (Left: 12, Right: 12, Top: 4, Bottom: 4);
+          Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerFullPatch.png", Border: 14);
+
+          Label {
+            Style: (FontSize: 11, TextColor: #d4a849, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+            Text: "SEARCH";
+            Anchor: (Width: 80, Height: 28);
+          }
+
+          $C.@TextField #StatsPlayersSearchInput {
+            @Anchor = (Height: 28);
+            FlexWeight: 1;
+            PlaceholderText: "Filter by name";
+          }
+        }
+
+        Group #StatsPlayersScroll {
+          FlexWeight: 1;
+          LayoutMode: TopScrolling;
+          Padding: (Left: 8, Right: 8, Top: 8, Bottom: 8);
+          Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPatch.png", Border: 14);
+          ScrollbarStyle: $C.@DefaultScrollbarStyle;
+
+          Group #StatsPlayersGrid {
+            LayoutMode: LeftCenterWrap;
+          }
+        }
+
+        Label #StatsPlayersEmpty {
+          Visible: false;
+          Style: (FontSize: 11, TextColor: #6e5839, HorizontalAlignment: Center, VerticalAlignment: Center, Wrap: true);
+          Text: "No players known yet.";
+          Anchor: (Horizontal: 0, Height: 24, Top: 8);
+        }
+      }
+
+      Group #StatsFooter {
+        Anchor: (Horizontal: 0, Height: 44, Top: 12);
+        LayoutMode: Left;
+
+        $C.@SmallSecondaryTextButton #StatsRefreshButton {
+          @Anchor = (Width: 160, Height: 36);
+          @Text = "REFRESH";
+        }
+
+        Group { FlexWeight: 1; }
+
+        $C.@SmallCancelTextButton #StatsBackButton {
+          @Anchor = (Width: 160, Height: 36);
+          @Text = "BACK TO SHOP";
+        }
+      }
+    }
+  }
+}

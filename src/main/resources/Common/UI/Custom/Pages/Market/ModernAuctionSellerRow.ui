@@ -1,0 +1,39 @@
+$C = "../BetterShopCommon.ui";
+
+Group {
+  Anchor: (Horizontal: 0, Height: 28, Bottom: 4);
+  LayoutMode: Left;
+
+  Group #SellerNameWrap {
+    FlexWeight: 1;
+    LayoutMode: Top;
+    Padding: (Right: 4);
+
+    Label #SellerName {
+      Style: (FontSize: 11, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, ShrinkTextToFit: true, MinShrinkTextToFitFontSize: 8);
+      Text: "Player";
+      Anchor: (Height: 14);
+    }
+
+    Label #SellerCount {
+      Style: (FontSize: 9, TextColor: #9c8463, VerticalAlignment: Center);
+      Text: "0 listings";
+      Anchor: (Height: 12);
+    }
+  }
+
+  Button #SellerViewButton {
+    Anchor: (Width: 50, Height: 24);
+    LayoutMode: CenterMiddle;
+    Style: (
+      Default: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/Buttons/Tertiary.png", Border: 8)),
+      Hovered: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/Buttons/Tertiary_Hovered.png", Border: 8)),
+      Pressed: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/Buttons/Tertiary_Pressed.png", Border: 8))
+    );
+
+    Label {
+      Style: (FontSize: 9, TextColor: #c9b181, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, HorizontalAlignment: Center, VerticalAlignment: Center);
+      Text: "VIEW";
+    }
+  }
+}

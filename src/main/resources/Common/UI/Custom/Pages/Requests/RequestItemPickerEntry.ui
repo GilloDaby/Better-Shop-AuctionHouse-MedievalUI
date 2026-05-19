@@ -1,0 +1,43 @@
+$C = "../BetterShopCommon.ui";
+
+Group {
+  Anchor: (Width: 132, Height: 144, Right: 6, Bottom: 6);
+  LayoutMode: Top;
+
+  Button #PickerTile {
+    Anchor: (Full: 0);
+    LayoutMode: Top;
+    Padding: (Left: 6, Right: 6, Top: 6, Bottom: 6);
+    Style: (
+      Default: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8)),
+      Hovered: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 8)),
+      Pressed: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 8))
+    );
+
+    Group #PickerIconWrap {
+      Anchor: (Width: 116, Height: 72, Bottom: 6);
+      Background: (TexturePath: "Textures/MedievalShop/Rarities/SlotCommon.png", Border: 12);
+
+      Group #PickerIconCenter {
+        Anchor: (Full: 0);
+        LayoutMode: CenterMiddle;
+
+        ItemIcon #ItemIcon {
+          Anchor: (Width: 56, Height: 56);
+        }
+      }
+    }
+
+    Label #ItemName {
+      Anchor: (Width: 116, Height: 24, Bottom: 2);
+      Style: (FontSize: 11, TextColor: #f5e8c8, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center, Wrap: true, ShrinkTextToFit: true, MinShrinkTextToFitFontSize: 8);
+      Text: "Item";
+    }
+
+    Label #ItemId {
+      Anchor: (Width: 116, Height: 14);
+      Style: (FontSize: 8, TextColor: #9c8463, HorizontalAlignment: Center, VerticalAlignment: Center, ShrinkTextToFit: true, MinShrinkTextToFitFontSize: 7);
+      Text: "item_id";
+    }
+  }
+}

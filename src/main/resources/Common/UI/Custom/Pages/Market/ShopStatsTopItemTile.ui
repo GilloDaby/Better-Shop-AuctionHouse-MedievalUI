@@ -1,0 +1,41 @@
+$C = "../BetterShopCommon.ui";
+
+Group {
+  Anchor: (Width: 116, Height: 124, Right: 6, Bottom: 6);
+  LayoutMode: Top;
+  Padding: (Left: 6, Right: 6, Top: 6, Bottom: 6);
+  Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+  Group #TopItemHeader {
+    Anchor: (Horizontal: 0, Height: 14, Bottom: 4);
+    LayoutMode: Left;
+
+    Label #TopItemRank {
+      Style: (FontSize: 10, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center);
+      Text: "#1";
+      FlexWeight: 1;
+    }
+
+    Label #TopItemQty {
+      Style: (FontSize: 10, TextColor: #4ade80, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+      Text: "x0";
+      Anchor: (Width: 60, Height: 14);
+    }
+  }
+
+  Group #TopItemIconWrap {
+    Anchor: (Width: 104, Height: 60, Bottom: 4);
+    LayoutMode: CenterMiddle;
+    Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 6);
+
+    ItemIcon #TopItemIcon {
+      Anchor: (Width: 44, Height: 44);
+    }
+  }
+
+  Label #TopItemName {
+    Style: (FontSize: 10, TextColor: #f5e8c8, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center, Wrap: true, ShrinkTextToFit: true, MinShrinkTextToFitFontSize: 8);
+    Text: "Item";
+    Anchor: (Horizontal: 0, Height: 28);
+  }
+}

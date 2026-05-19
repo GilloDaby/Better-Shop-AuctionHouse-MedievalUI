@@ -1,0 +1,351 @@
+$C = "../BetterShopCommon.ui";
+
+$C.@PageOverlay {
+  LayoutMode: Middle;
+
+  $C.@DecoratedContainer {
+    Anchor: (Width: 1180, Height: 820);
+
+    #Title {
+      $C.@Title { @Text = ""; }
+      Label #AuctionAdminCatTitle {
+        Style: (FontSize: 22, TextColor: #f5f7ff, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center, VerticalAlignment: Center);
+        Text: "MANAGE AUCTION CATEGORIES";
+        Anchor: (Full: 0);
+      }
+    }
+
+    #Content {
+      LayoutMode: Top;
+      Padding: (Full: 14);
+
+      Label #AuctionAdminCatIntro {
+        Style: (FontSize: 11, TextColor: #94a3b8, HorizontalAlignment: Center, VerticalAlignment: Center, Wrap: true);
+        Text: "Pick a category on the left to edit, or click NEW CATEGORY. The right panel previews how it appears in the /ah sidebar.";
+        Anchor: (Horizontal: 0, Height: 18, Bottom: 12);
+      }
+
+      Group #AuctionAdminCatBody {
+        FlexWeight: 1;
+        LayoutMode: Left;
+
+        Group #AuctionAdminCatListColumn {
+          Anchor: (Width: 290, Right: 14);
+          LayoutMode: Top;
+          Padding: (Left: 14, Right: 14, Top: 14, Bottom: 14);
+          Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPatch.png", Border: 14);
+
+          Label #AuctionAdminCatListTitle {
+            Style: (FontSize: 12, TextColor: #cbd5e1, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+            Text: "CATEGORIES";
+            Anchor: (Height: 20, Bottom: 6);
+          }
+
+          Group #AuctionAdminCatListDivider {
+            Anchor: (Horizontal: 0, Height: 4, Bottom: 10);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerSectionSeparator.png", HorizontalBorder: 4);
+          }
+
+          $C.@TextField #AuctionAdminCatSearchInput {
+            @Anchor = (Horizontal: 0, Height: 32, Bottom: 8);
+            PlaceholderText: "Search...";
+          }
+
+          Group #AuctionAdminCatRows {
+            FlexWeight: 1;
+            LayoutMode: TopScrolling;
+            ScrollbarStyle: $C.@DefaultScrollbarStyle;
+            Padding: (Right: 4);
+
+            Group #AuctionAdminCatRowsList {
+              Anchor: (Horizontal: 0);
+              LayoutMode: Top;
+            }
+          }
+
+          $C.@SmallBuyTextButton #AuctionAdminCatNewButton {
+            @Anchor = (Horizontal: 0, Height: 36, Top: 8);
+            @Text = "+ NEW CATEGORY";
+          }
+        }
+
+        Group #AuctionAdminCatFormColumn {
+          Anchor: (Width: 380, Right: 14);
+          LayoutMode: Top;
+          Padding: (Left: 14, Right: 14, Top: 14, Bottom: 14);
+          Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPatch.png", Border: 14);
+
+          Label #AuctionAdminCatFormTitle {
+            Style: (FontSize: 12, TextColor: #cbd5e1, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+            Text: "CATEGORY DETAILS";
+            Anchor: (Height: 20, Bottom: 6);
+          }
+
+          Group #AuctionAdminCatFormDivider {
+            Anchor: (Horizontal: 0, Height: 4, Bottom: 12);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerSectionSeparator.png", HorizontalBorder: 4);
+          }
+
+          Label #AuctionAdminCatIdLabel {
+            Style: (FontSize: 10, TextColor: #94a3b8, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+            Text: "CATEGORY ID";
+            Anchor: (Height: 14, Bottom: 4);
+          }
+
+          $C.@TextField #AuctionAdminCatIdInput {
+            @Anchor = (Horizontal: 0, Bottom: 4);
+            PlaceholderText: "weapons";
+          }
+
+          Label #AuctionAdminCatIdHint {
+            Style: (FontSize: 9, TextColor: #64748b, VerticalAlignment: Center, Wrap: true);
+            Text: "Auto-derived from name. Lowercase + dashes/underscores only. Cannot change after creation.";
+            Anchor: (Horizontal: 0, Height: 24, Bottom: 12);
+          }
+
+          Label #AuctionAdminCatNameLabel {
+            Style: (FontSize: 10, TextColor: #94a3b8, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+            Text: "DISPLAY NAME";
+            Anchor: (Height: 14, Bottom: 4);
+          }
+
+          $C.@TextField #AuctionAdminCatNameInput {
+            @Anchor = (Horizontal: 0, Bottom: 12);
+            PlaceholderText: "Weapons";
+          }
+
+          Label #AuctionAdminCatIconLabel {
+            Style: (FontSize: 10, TextColor: #94a3b8, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+            Text: "ICON ITEM ID";
+            Anchor: (Height: 14, Bottom: 4);
+          }
+
+          Group #AuctionAdminCatIconRow {
+            Anchor: (Horizontal: 0, Height: 32, Bottom: 4);
+            LayoutMode: Left;
+
+            $C.@TextField #AuctionAdminCatIconInput {
+              @Anchor = (Height: 32, Right: 6);
+              FlexWeight: 1;
+              PlaceholderText: "Item_Sword";
+            }
+
+            $C.@SmallSecondaryTextButton #AuctionAdminCatBrowseIconButton {
+              @Anchor = (Width: 110, Height: 32);
+              @Text = "BROWSE";
+            }
+          }
+
+          Label #AuctionAdminCatIconHint {
+            Style: (FontSize: 9, TextColor: #64748b, VerticalAlignment: Center, Wrap: true);
+            Text: "Hytale item id (e.g. Item_Sword, Item_Diamond). Click BROWSE to pick.";
+            Anchor: (Horizontal: 0, Height: 22, Bottom: 12);
+          }
+
+          Group #AuctionAdminCatReorderDivider {
+            Anchor: (Horizontal: 0, Height: 4, Bottom: 10);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerSectionSeparator.png", HorizontalBorder: 4);
+          }
+
+          Label #AuctionAdminCatReorderTitle {
+            Style: (FontSize: 11, TextColor: #cbd5e1, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+            Text: "REORDER";
+            Anchor: (Height: 16, Bottom: 6);
+          }
+
+          Group #AuctionAdminCatReorderRow {
+            Anchor: (Horizontal: 0, Height: 32, Bottom: 12);
+            LayoutMode: Left;
+
+            $C.@SmallSecondaryTextButton #AuctionAdminCatMoveUpButton {
+              @Anchor = (Height: 32, Right: 8);
+              @Text = "MOVE UP";
+              FlexWeight: 1;
+            }
+
+            $C.@SmallSecondaryTextButton #AuctionAdminCatMoveDownButton {
+              @Anchor = (Height: 32);
+              @Text = "MOVE DOWN";
+              FlexWeight: 1;
+            }
+          }
+
+          Group { FlexWeight: 1; }
+
+          Group #AuctionAdminCatActionDivider {
+            Anchor: (Horizontal: 0, Height: 4, Bottom: 10);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerSectionSeparator.png", HorizontalBorder: 4);
+          }
+
+          Group #AuctionAdminCatActions {
+            Anchor: (Horizontal: 0, Height: 36);
+            LayoutMode: Left;
+
+            $C.@SmallBuyTextButton #AuctionAdminCatSaveButton {
+              @Anchor = (Width: 140, Height: 36, Right: 8);
+              @Text = "SAVE";
+            }
+
+            Group { FlexWeight: 1; }
+
+            $C.@SmallCancelTextButton #AuctionAdminCatDeleteButton {
+              @Anchor = (Width: 100, Height: 36, Right: 8);
+              @Text = "DELETE";
+            }
+
+            $C.@SmallSecondaryTextButton #AuctionAdminCatBackButton {
+              @Anchor = (Width: 100, Height: 36);
+              @Text = "BACK";
+            }
+          }
+        }
+
+        Group #AuctionAdminCatPreviewColumn {
+          FlexWeight: 1;
+          LayoutMode: Top;
+          Padding: (Left: 14, Right: 14, Top: 14, Bottom: 14);
+          Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPatch.png", Border: 14);
+
+          Label #AuctionAdminCatPreviewTitle {
+            Style: (FontSize: 12, TextColor: #cbd5e1, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center, VerticalAlignment: Center);
+            Text: "LIVE PREVIEW";
+            Anchor: (Horizontal: 0, Height: 20, Bottom: 6);
+          }
+
+          Group #AuctionAdminCatPreviewDivider {
+            Anchor: (Horizontal: 0, Height: 4, Bottom: 14);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerSectionSeparator.png", HorizontalBorder: 4);
+          }
+
+          Label #AuctionAdminCatPreviewSidebarLabel {
+            Style: (FontSize: 9, TextColor: #94a3b8, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center, VerticalAlignment: Center);
+            Text: "AS SHOWN IN /AH SIDEBAR";
+            Anchor: (Horizontal: 0, Height: 14, Bottom: 6);
+          }
+
+          Group #AuctionAdminCatPreviewWrap {
+            Anchor: (Horizontal: 0, Height: 64, Bottom: 14);
+            LayoutMode: CenterMiddle;
+            Padding: (Left: 8, Right: 8);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+            Group #AuctionAdminCatPreviewRow {
+              Anchor: (Horizontal: 0, Height: 44);
+              LayoutMode: Left;
+              Padding: (Left: 8, Right: 8);
+              Background: (TexturePath: "../../Common/Buttons/Tertiary.png", Border: 12);
+
+              Group #AuctionAdminCatPreviewIconWrap {
+                Anchor: (Width: 30, Height: 30, Right: 8);
+                LayoutMode: CenterMiddle;
+                Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 6);
+
+                AssetImage #AuctionAdminCatPreviewIconAsset {
+                  Anchor: (Width: 22, Height: 22);
+                  Visible: false;
+                }
+
+                ItemIcon #AuctionAdminCatPreviewIcon {
+                  Anchor: (Width: 22, Height: 22);
+                }
+              }
+
+              Label #AuctionAdminCatPreviewName {
+                Style: (FontSize: 12, TextColor: #e2e8f0, RenderBold: true, VerticalAlignment: Center, ShrinkTextToFit: true, MinShrinkTextToFitFontSize: 10);
+                Text: "Category";
+                FlexWeight: 1;
+              }
+
+              Label #AuctionAdminCatPreviewCount {
+                Style: (FontSize: 11, TextColor: #94a3b8, VerticalAlignment: Center, HorizontalAlignment: End);
+                Text: "0";
+                Anchor: (Width: 30, Height: 20);
+              }
+            }
+          }
+
+          Group #AuctionAdminCatPreviewSummary {
+            Anchor: (Horizontal: 0, Height: 140);
+            LayoutMode: Top;
+            Padding: (Left: 12, Right: 12, Top: 10, Bottom: 10);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 8);
+
+            Label #AuctionAdminCatSummaryTitle {
+              Style: (FontSize: 11, TextColor: #cbd5e1, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+              Text: "DETAILS";
+              Anchor: (Horizontal: 0, Height: 16, Bottom: 8);
+            }
+
+            Group #AuctionAdminCatSummaryRowId {
+              Anchor: (Horizontal: 0, Height: 16, Bottom: 4);
+              LayoutMode: Left;
+
+              Label #AuctionAdminCatSummaryLblId {
+                Style: (FontSize: 10, TextColor: #64748b, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center);
+                Text: "ID";
+                Anchor: (Width: 90, Height: 16);
+              }
+
+              Label #AuctionAdminCatSummaryIdValue {
+                Style: (FontSize: 10, TextColor: #38bdf8, RenderBold: true, VerticalAlignment: Center);
+                Text: "—";
+                FlexWeight: 1;
+              }
+            }
+
+            Group #AuctionAdminCatSummaryRowName {
+              Anchor: (Horizontal: 0, Height: 16, Bottom: 4);
+              LayoutMode: Left;
+
+              Label #AuctionAdminCatSummaryLblName {
+                Style: (FontSize: 10, TextColor: #64748b, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center);
+                Text: "NAME";
+                Anchor: (Width: 90, Height: 16);
+              }
+
+              Label #AuctionAdminCatSummaryNameValue {
+                Style: (FontSize: 10, TextColor: #e2e8f0, RenderBold: true, VerticalAlignment: Center);
+                Text: "—";
+                FlexWeight: 1;
+              }
+            }
+
+            Group #AuctionAdminCatSummaryRowIcon {
+              Anchor: (Horizontal: 0, Height: 16, Bottom: 4);
+              LayoutMode: Left;
+
+              Label #AuctionAdminCatSummaryLblIcon {
+                Style: (FontSize: 10, TextColor: #64748b, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center);
+                Text: "ICON";
+                Anchor: (Width: 90, Height: 16);
+              }
+
+              Label #AuctionAdminCatSummaryIconValue {
+                Style: (FontSize: 10, TextColor: #e2e8f0, RenderBold: true, VerticalAlignment: Center);
+                Text: "—";
+                FlexWeight: 1;
+              }
+            }
+
+            Group #AuctionAdminCatSummaryRowListings {
+              Anchor: (Horizontal: 0, Height: 16, Bottom: 4);
+              LayoutMode: Left;
+
+              Label #AuctionAdminCatSummaryLblListings {
+                Style: (FontSize: 10, TextColor: #64748b, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center);
+                Text: "LISTINGS";
+                Anchor: (Width: 90, Height: 16);
+              }
+
+              Label #AuctionAdminCatSummaryListingsValue {
+                Style: (FontSize: 10, TextColor: #4ade80, RenderBold: true, VerticalAlignment: Center);
+                Text: "0";
+                FlexWeight: 1;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

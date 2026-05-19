@@ -1,0 +1,822 @@
+$C = "../BetterShopCommon.ui";
+
+$C.@PageOverlay {
+  LayoutMode: Middle;
+
+  $C.@DecoratedContainer #ModernRoot {
+    Anchor: (Width: 1240, Height: 960);
+
+    #Title {
+      $C.@Title {
+        @Text = "";
+      }
+      Label #ModernPageTitle {
+        Style: (FontSize: 24, TextColor: #f5e8c8, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center);
+        Anchor: (Height: 32);
+      }
+    }
+
+    #Content {
+      LayoutMode: Top;
+      Padding: (Full: 14);
+
+      Group #HeaderBar {
+        Anchor: (Height: 64, Bottom: 10);
+        LayoutMode: Left;
+        Padding: (Left: 16, Right: 16, Top: 8, Bottom: 8);
+        Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerFullPatch.png", Border: 14);
+
+        Group #BalanceCard {
+          Anchor: (Width: 290, Height: 48, Right: 16);
+          LayoutMode: Top;
+          Padding: (Left: 14, Right: 14, Top: 4, Bottom: 4);
+          Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 8);
+
+          Label #ModernBalanceCaption {
+            Style: (FontSize: 10, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+            Text: "WALLET BALANCE";
+            Anchor: (Height: 14);
+          }
+
+          Label #ModernBalanceValue {
+            Style: (FontSize: 19, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center);
+            Text: "$0.00";
+            Anchor: (Height: 24);
+          }
+        }
+
+        Group #ModernSearchGroup {
+          Anchor: (Width: 280, Height: 48);
+          LayoutMode: CenterMiddle;
+
+          $C.@CompactTextField #ModernSearchInput {
+            @Anchor = (Width: 280, Height: 40);
+            @PlaceholderText = "Search items...";
+            @CollapsedWidth = 280;
+            @ExpandedWidth = 280;
+          }
+        }
+
+        Group { FlexWeight: 1; }
+
+        Group #ModernSortGroup {
+          Anchor: (Width: 160, Height: 48);
+          LayoutMode: Top;
+
+          $C.@DropdownBox #ModernSortDropdown {
+            @Anchor = (Horizontal: 0, Height: 32, Top: 8);
+            DropdownEntry { Value: "price_high_low"; Text: "Price: High"; }
+            DropdownEntry { Value: "price_low_high"; Text: "Price: Low"; }
+            DropdownEntry { Value: "name_asc"; Text: "Name: A>Z"; }
+            DropdownEntry { Value: "name_desc"; Text: "Name: Z>A"; }
+            DropdownEntry { Value: "rarity_desc"; Text: "Rarity: High"; }
+            DropdownEntry { Value: "rarity_asc"; Text: "Rarity: Low"; }
+          }
+        }
+
+        Group { FlexWeight: 1; }
+
+        Group #ModernStatsGroup {
+          Anchor: (Width: 110, Height: 48, Right: 8);
+          LayoutMode: CenterMiddle;
+
+          $C.@SmallSecondaryTextButton #ModernStatsButton {
+            @Anchor = (Width: 110);
+            @Text = "MY STATS";
+          }
+        }
+
+        Group #ModernCloseGroup {
+          Anchor: (Width: 100, Height: 48);
+          LayoutMode: CenterMiddle;
+
+          $C.@SmallCancelTextButton #ModernCloseButton {
+            @Anchor = (Width: 100);
+            @Text = "CLOSE";
+          }
+        }
+      }
+
+      Group #AdminTitleBar {
+        Visible: false;
+        Anchor: (Horizontal: 0, Height: 48, Bottom: 10);
+        LayoutMode: Left;
+        Padding: (Left: 16, Right: 16, Top: 8, Bottom: 8);
+        Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerHeaderNoRunes.png", Border: 14);
+
+        Label #AdminTitleBarLabel {
+          Style: (FontSize: 11, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+          Text: "ADMIN — PAGE TITLE";
+          Anchor: (Width: 200, Height: 32);
+        }
+
+        $C.@TextField #AdminShopTitleInput {
+          @Anchor = (Height: 32, Right: 8);
+          FlexWeight: 1;
+          PlaceholderText: "Better Shop";
+        }
+
+        $C.@SmallSecondaryTextButton #AdminUpdateShopTitleButton {
+          @Anchor = (Width: 140, Height: 32);
+          @Text = "SAVE TITLE";
+        }
+      }
+
+      Group #BodyRow {
+        FlexWeight: 1;
+        LayoutMode: Left;
+
+        Group #SidebarPanel {
+          Anchor: (Width: 200, Right: 12);
+          LayoutMode: Top;
+          Padding: (Left: 8, Right: 8, Top: 15, Bottom: 10);
+          Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPatch.png", Border: 14);
+
+          Label #SidebarTitle {
+            Style: (FontSize: 13, TextColor: #c9b181, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center, VerticalAlignment: Center);
+            Text: "CATEGORIES";
+            Anchor: (Height: 22, Top: 5, Bottom: 8);
+          }
+
+          Group #CategoryDivider {
+            Anchor: (Height: 4, Bottom: 8);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerSectionSeparator.png", HorizontalBorder: 4);
+          }
+
+          Group #ModernCategoryList {
+            FlexWeight: 1;
+            LayoutMode: TopScrolling;
+            ScrollbarStyle: $C.@DefaultScrollbarStyle;
+          }
+
+          Group #SidebarTrackerSection {
+            Anchor: (Horizontal: 0);
+            LayoutMode: Top;
+            Padding: (Top: 10);
+
+            Group #SidebarTrackerDivider {
+              Anchor: (Horizontal: 0, Height: 4, Bottom: 8);
+              Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerSectionSeparator.png", HorizontalBorder: 4);
+            }
+
+            Label #SidebarTrackerTitle {
+              Style: (FontSize: 11, TextColor: #d4a849, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center, VerticalAlignment: Center);
+              Text: "PRICE TRACKER";
+              Anchor: (Height: 16, Bottom: 4);
+            }
+
+            Label #SidebarTrackerCount {
+              Style: (FontSize: 10, TextColor: #9c8463, HorizontalAlignment: Center, VerticalAlignment: Center);
+              Text: "0 tracked";
+              Anchor: (Height: 14, Bottom: 6);
+            }
+
+            $C.@SmallSecondaryTextButton #ModernTrackToggleButton {
+              @Anchor = (Horizontal: 0, Bottom: 6);
+              @Text = "TRACK MODE: OFF";
+            }
+
+            $C.@SmallSecondaryTextButton #ModernTrackPlacementButton {
+              @Anchor = (Horizontal: 0);
+              @Text = "PLACEMENT";
+            }
+          }
+        }
+
+        Group #GridArea {
+          FlexWeight: 1;
+          LayoutMode: Top;
+
+          Group #ModernCategoryHeader {
+            Anchor: (Height: 44, Bottom: 8);
+            LayoutMode: Left;
+            Padding: (Left: 16, Right: 16, Top: 6, Bottom: 6);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+            AssetImage #ModernCategoryHeaderIconAsset {
+              Anchor: (Width: 26, Height: 26, Right: 10);
+              Visible: false;
+            }
+
+            ItemIcon #ModernCategoryHeaderIcon {
+              Anchor: (Width: 26, Height: 26, Right: 10);
+            }
+
+            Label #ModernCategoryName {
+              Style: (FontSize: 18, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center);
+              Text: "All Items";
+              FlexWeight: 1;
+            }
+
+            Group #ModernCategoryAdminActions {
+              Visible: false;
+              Anchor: (Width: 300, Height: 32, Right: 12);
+              LayoutMode: Left;
+
+              $C.@SmallSecondaryTextButton #ModernAdminManageCategoryButton {
+                @Anchor = (Width: 160, Height: 32, Right: 8);
+                @Text = "MANAGE CATEGORY";
+              }
+
+              $C.@SmallBuyTextButton #ModernAdminAddItemButton {
+                @Anchor = (Width: 130, Height: 32);
+                @Text = "+ ADD ITEM";
+              }
+            }
+
+            Group #ModernViewModeWrap {
+              Anchor: (Width: 130, Height: 32, Right: 12);
+              LayoutMode: Top;
+
+              $C.@DropdownBox #ModernViewModeDropdown {
+                @Anchor = (Horizontal: 0, Height: 32);
+                Value: "tiles";
+                DropdownEntry { Value: "tiles"; Text: "Tiles"; }
+                DropdownEntry { Value: "list";  Text: "List";  }
+              }
+            }
+
+            Label #ModernResultCount {
+              Style: (FontSize: 12, TextColor: #9c8463, VerticalAlignment: Center, HorizontalAlignment: End);
+              Text: "0 items";
+              Anchor: (Width: 110, Height: 18);
+            }
+          }
+
+          Group #ModernGridScroll {
+            FlexWeight: 1;
+            LayoutMode: TopScrolling;
+            ScrollbarStyle: $C.@DefaultScrollbarStyle;
+            Padding: (Right: 4);
+
+            Group #ModernItemGrid {
+              LayoutMode: LeftCenterWrap;
+            }
+            Group #ModernItemGridList {
+              Visible: false;
+              LayoutMode: Top;
+            }
+
+            Label #ModernEmptyState {
+              Visible: false;
+              Style: (FontSize: 14, TextColor: #6e5839, HorizontalAlignment: Center, VerticalAlignment: Center, Wrap: true);
+              Text: "No items match your search.";
+              Anchor: (Height: 64);
+            }
+          }
+        }
+
+        Group #DetailsPanel {
+          Anchor: (Width: 290);
+          LayoutMode: Top;
+          Padding: (Left: 12, Right: 12, Top: 15, Bottom: 10);
+          Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPatch.png", Border: 14);
+
+          Group #DetailsTitleRow {
+            Anchor: (Height: 22, Top: 5, Bottom: 6);
+            LayoutMode: Left;
+
+            Label #DetailsTitle {
+              Style: (FontSize: 13, TextColor: #c9b181, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center, VerticalAlignment: Center);
+              Text: "ITEM DETAILS";
+              FlexWeight: 1;
+            }
+
+            Label #DetailsLockBadge {
+              Visible: false;
+              Style: (FontSize: 10, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: End, VerticalAlignment: Center);
+              Text: "LOCKED";
+              Anchor: (Width: 80, Height: 20);
+            }
+          }
+
+          Group #DetailsDivider {
+            Anchor: (Height: 4, Bottom: 8);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerSectionSeparator.png", HorizontalBorder: 4);
+          }
+
+          Group #DetailsHoverPlaceholder {
+            FlexWeight: 1;
+            LayoutMode: CenterMiddle;
+            Padding: (Full: 14);
+
+            Label #DetailsPlaceholderText {
+              Style: (FontSize: 12, TextColor: #5e3e1f, HorizontalAlignment: Center, VerticalAlignment: Center, Wrap: true);
+              Text: "Hover an item to see its full stats and details.";
+            }
+          }
+
+          Group #DetailsContent {
+            FlexWeight: 1;
+            Anchor: (Right: -12);
+            LayoutMode: TopScrolling;
+            ScrollbarStyle: $C.@DefaultScrollbarStyle;
+            Visible: false;
+
+            Group #DetailsItemHeader {
+              Anchor: (Height: 88, Bottom: 8);
+              LayoutMode: Left;
+              Padding: (Left: 8, Right: 8, Top: 6, Bottom: 6);
+              Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+              Group #DetailsIconWrapper {
+                Anchor: (Width: 64, Height: 64, Right: 8);
+                LayoutMode: CenterMiddle;
+                Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+                AssetImage #DetailsItemIconAsset {
+                  Anchor: (Width: 48, Height: 48);
+                  Visible: false;
+                }
+
+                ItemIcon #DetailsItemIcon {
+                  Anchor: (Width: 48, Height: 48);
+                }
+              }
+
+              Group {
+                FlexWeight: 1;
+                LayoutMode: Left;
+
+                Group #DetailsHeaderTextStack {
+                  FlexWeight: 1;
+                  LayoutMode: Top;
+                  Padding: (Top: 4);
+
+                  Label #DetailsItemName {
+                    Style: (FontSize: 14, TextColor: #f5e8c8, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center, Wrap: true, ShrinkTextToFit: true, MinShrinkTextToFitFontSize: 10);
+                    Text: "Item";
+                    Anchor: (Horizontal: 0, Height: 36, Bottom: 4);
+                  }
+
+                  Group #DetailsRarityBadgeWrap {
+                    Anchor: (Horizontal: 0, Height: 20);
+                    LayoutMode: CenterMiddle;
+
+                    Label #DetailsRarityBadge {
+                      Style: (FontSize: 10, TextColor: #c9b181, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center, VerticalAlignment: Center);
+                      Text: "COMMON";
+                      Anchor: (Width: 86, Height: 20);
+                      Background: (TexturePath: "../../Textures/MedievalShop/Patches/Buttons/Tertiary.png", Border: 8);
+                    }
+                  }
+                }
+
+                Group #DetailsDynamicPriceStack {
+                  Visible: false;
+                  Anchor: (Width: 100, Left: 6);
+                  LayoutMode: Top;
+                  Padding: (Top: 4);
+
+                  Label #DetailsDynamicPriceLabel {
+                    Style: (FontSize: 10, TextColor: #d4a849, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center, Wrap: true, ShrinkTextToFit: true, MinShrinkTextToFitFontSize: 8);
+                    Text: "Dynamic price";
+                    Anchor: (Horizontal: 0, Height: 36, Bottom: 4);
+                  }
+
+                  Group #DetailsDynamicPriceBadgeWrap {
+                    Anchor: (Horizontal: 0, Height: 20);
+                    LayoutMode: CenterMiddle;
+
+                    Label #DetailsDynamicPriceBadge {
+                      Style: (FontSize: 10, TextColor: #d4a849, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center, ShrinkTextToFit: true, MinShrinkTextToFitFontSize: 7);
+                      Text: "x1.000";
+                      Anchor: (Width: 76, Height: 20);
+                      Background: (TexturePath: "../../Textures/MedievalShop/Patches/Buttons/Tertiary.png", Border: 8);
+                    }
+                  }
+                }
+              }
+            }
+
+            Label #DetailsStatsTitle {
+              Style: (FontSize: 11, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+              Text: "STATS";
+              Anchor: (Height: 18, Bottom: 6);
+            }
+
+            Group #DetailsStatsList {
+              LayoutMode: Top;
+              Padding: (Bottom: 6);
+            }
+
+            Label #DetailsNoStats {
+              Visible: false;
+              Style: (FontSize: 11, TextColor: #5e3e1f, HorizontalAlignment: Center, VerticalAlignment: Center, Wrap: true);
+              Text: "No combat stats on this item.";
+              Anchor: (Height: 28, Bottom: 6);
+            }
+
+            Group #DetailsBuySectionDivider {
+              Anchor: (Height: 4, Bottom: 6);
+              Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerSectionSeparator.png", HorizontalBorder: 4);
+            }
+
+            Group #DetailsLockCard {
+              Visible: false;
+              Anchor: (Horizontal: 0, Height: 44, Bottom: 8);
+              LayoutMode: CenterMiddle;
+              Padding: (Left: 8, Right: 8, Top: 6, Bottom: 6);
+              Background: (Color: #7f1d1d);
+
+              Label #DetailsLockHint {
+                Style: (FontSize: 11, TextColor: #fee2e2, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center, Wrap: true);
+                Text: "Locked";
+                Anchor: (Horizontal: 0, Height: 32);
+              }
+            }
+
+            Label #DetailsBuyTitle {
+              Style: (FontSize: 12, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center, VerticalAlignment: Center);
+              Text: "BUY";
+              Anchor: (Height: 18, Bottom: 6);
+            }
+
+            Group #DetailsBuyPriceCard {
+              Anchor: (Height: 56, Bottom: 6);
+              LayoutMode: Top;
+              Padding: (Left: 10, Right: 10, Top: 6, Bottom: 6);
+              Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 8);
+
+              Label #DetailsBuyPriceLabel {
+                Style: (FontSize: 9, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center, VerticalAlignment: Center);
+                Text: "BUY PRICE";
+                Anchor: (Height: 14, Bottom: 2);
+              }
+
+              Label #DetailsBuyPrice {
+                Style: (FontSize: 18, TextColor: #e8a93b, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center, ShrinkTextToFit: true, MinShrinkTextToFitFontSize: 10);
+                Text: "$0";
+                Anchor: (Height: 26);
+              }
+            }
+
+            Group #DetailsBuyQtyRow {
+              Anchor: (Height: 32, Horizontal: 0, Bottom: 6);
+              LayoutMode: CenterMiddle;
+
+              Group #DetailsBuyQtyRowInner {
+                Anchor: (Width: 244, Height: 32);
+                LayoutMode: Left;
+
+                $C.@NumberField #DetailsQtyInput {
+                  @Anchor = (Width: 114, Right: 6);
+                }
+
+                $C.@SmallSecondaryTextButton #DetailsQty10 {
+                  @Anchor = (Width: 60, Right: 4);
+                  @Text = "10";
+                }
+
+                $C.@SmallSecondaryTextButton #DetailsQty64 {
+                  @Anchor = (Width: 60);
+                  @Text = "MAX";
+                }
+              }
+            }
+
+            $C.@SmallBuyTextButton #DetailsAddCartButton {
+              @Anchor = (Horizontal: 0, Bottom: 6);
+              @Text = "+ ADD TO CART";
+            }
+
+            $C.@SmallBuyTextButton #DetailsBuyNowButton {
+              @Anchor = (Horizontal: 0, Bottom: 8);
+              @Text = "BUY NOW";
+            }
+
+            Group #DetailsSellSectionDivider {
+              Anchor: (Height: 4, Bottom: 6);
+              Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerSectionSeparator.png", HorizontalBorder: 4);
+            }
+
+            Label #DetailsSellTitle {
+              Style: (FontSize: 12, TextColor: #94d2bd, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center, VerticalAlignment: Center);
+              Text: "SELL";
+              Anchor: (Height: 18, Bottom: 6);
+            }
+
+            Group #DetailsSellPriceCard {
+              Anchor: (Height: 56, Bottom: 6);
+              LayoutMode: Top;
+              Padding: (Left: 10, Right: 10, Top: 6, Bottom: 6);
+              Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 8);
+
+              Label #DetailsSellPriceLabel {
+                Style: (FontSize: 9, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center, VerticalAlignment: Center);
+                Text: "SELL VALUE";
+                Anchor: (Height: 14, Bottom: 2);
+              }
+
+              Label #DetailsSellPrice {
+                Style: (FontSize: 18, TextColor: #94d2bd, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center, ShrinkTextToFit: true, MinShrinkTextToFitFontSize: 10);
+                Text: "$0";
+                Anchor: (Height: 26);
+              }
+            }
+
+            Group #DetailsSellRow {
+              Anchor: (Height: 32, Horizontal: 0, Bottom: 6);
+              LayoutMode: CenterMiddle;
+
+              Group #DetailsSellRowInner {
+                Anchor: (Width: 244, Height: 32);
+                LayoutMode: Left;
+
+                $C.@NumberField #DetailsSellQtyInput {
+                  @Anchor = (Width: 114, Right: 6);
+                }
+
+                $C.@SmallSellTextButton #DetailsSellButton {
+                  @Anchor = (Width: 124);
+                  @Text = "SELL";
+                }
+              }
+            }
+
+            $C.@SmallSellTextButton #DetailsSellAllButton {
+              @Anchor = (Horizontal: 0);
+              @Text = "SELL ALL";
+            }
+          }
+        }
+      }
+
+      Group #CartExpandedOverlay {
+        Visible: false;
+        FlexWeight: 1;
+        LayoutMode: Top;
+        Padding: (Full: 0);
+        Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerFullPatch.png", Border: 14);
+
+        Group #CartExpandedHeader {
+          Anchor: (Height: 72, Bottom: 10);
+          LayoutMode: Left;
+          Padding: (Left: 20, Right: 14);
+          Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerHeader.png", Border: 14);
+
+          Group #CartExpandedHeaderText {
+            FlexWeight: 1;
+            LayoutMode: CenterMiddle;
+
+            Group #CartExpandedTitleStack {
+              Anchor: (Width: 600, Height: 46);
+              LayoutMode: Top;
+
+              Label #CartExpandedTitle {
+                Style: (FontSize: 18, TextColor: #f5e8c8, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center, VerticalAlignment: Center);
+                Text: "FULL SHOPPING CART";
+                Anchor: (Height: 24, Bottom: 2);
+              }
+
+              Label #CartExpandedSubtitle {
+                Style: (FontSize: 12, TextColor: #9c8463, HorizontalAlignment: Center, VerticalAlignment: Center);
+                Text: "0 items";
+                Anchor: (Height: 18);
+              }
+            }
+          }
+
+          Group #CartExpandedTotalWrap {
+            Anchor: (Width: 220, Right: 14);
+            LayoutMode: CenterMiddle;
+
+            Group #CartExpandedTotalCard {
+              Anchor: (Width: 220, Height: 50);
+              LayoutMode: CenterMiddle;
+              Padding: (Left: 14, Right: 14);
+              Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 8);
+
+              Group #CartExpandedTotalStack {
+                Anchor: (Width: 192, Height: 42);
+                LayoutMode: Top;
+
+                Label #CartExpandedTotalCaption {
+                  Style: (FontSize: 10, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+                  Text: "TOTAL";
+                  Anchor: (Height: 14, Bottom: 2);
+                }
+
+                Label #CartExpandedTotalValue {
+                  Style: (FontSize: 19, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center);
+                  Text: "$0.00";
+                  Anchor: (Height: 24);
+                }
+              }
+            }
+          }
+
+          Group #CartExpandedCloseGroup {
+            Anchor: (Width: 48);
+            LayoutMode: CenterMiddle;
+
+            Button #CartExpandedCloseButton {
+              Anchor: (Width: 40, Height: 40);
+              Style: (
+                Default: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerCloseButton.png", Border: 6)),
+                Hovered: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerCloseButtonHovered.png", Border: 6)),
+                Pressed: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerCloseButtonPressed.png", Border: 6))
+              );
+            }
+          }
+        }
+
+        Group #CartExpandedBody {
+          FlexWeight: 1;
+          LayoutMode: TopScrolling;
+          ScrollbarStyle: $C.@DefaultScrollbarStyle;
+          Padding: (Left: 14, Right: 14, Top: 8, Bottom: 8);
+
+          Group #CartExpandedItemList {
+            LayoutMode: Top;
+          }
+        }
+
+        Group #CartExpandedFooter {
+          Anchor: (Height: 70, Top: 10);
+          LayoutMode: Left;
+          Padding: (Left: 14, Right: 14, Top: 12, Bottom: 12);
+          Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerHeaderNoRunes.png", Border: 14);
+
+          Group { FlexWeight: 1; }
+
+          $C.@TextButton #CartExpandedCheckoutButton {
+            @Anchor = (Width: 240, Right: 12);
+            @Text = "BUY ALL";
+          }
+
+          $C.@CancelTextButton #CartExpandedClearButton {
+            @Anchor = (Width: 180);
+            @Text = "CLEAR CART";
+          }
+        }
+      }
+
+      Group #CartAdminBar {
+        Visible: false;
+        Anchor: (Height: 90, Top: 12);
+        LayoutMode: Top;
+        Padding: (Left: 16, Right: 16, Top: 10, Bottom: 10);
+        Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerFullPatch.png", Border: 14);
+
+        Label #CartAdminBarTitle {
+          Style: (FontSize: 11, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+          Text: "ITEM CONTROLS — HOVER AN ITEM TO EDIT IT";
+          Anchor: (Horizontal: 0, Height: 14, Bottom: 8);
+        }
+
+        Group #CartAdminItemRow {
+          Visible: false;
+          Anchor: (Horizontal: 0, Height: 36);
+          LayoutMode: Left;
+
+          Label #CartAdminItemNameLabel {
+            Style: (FontSize: 11, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center);
+            Text: "Item";
+            Anchor: (Width: 200, Height: 36);
+          }
+
+          Label #CartAdminBuyLabel {
+            Style: (FontSize: 10, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center, HorizontalAlignment: End);
+            Text: "BUY";
+            Anchor: (Width: 36, Height: 36, Right: 6);
+          }
+
+          $C.@TextField #CartAdminBuyPriceInput {
+            @Anchor = (Width: 100, Height: 36, Right: 4);
+            PlaceholderText: "0";
+          }
+
+          $C.@SmallBuyTextButton #CartAdminUpdateBuyPriceButton {
+            @Anchor = (Width: 60, Height: 36, Right: 12);
+            @Text = "SET";
+          }
+
+          Label #CartAdminSellLabel {
+            Style: (FontSize: 10, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center, HorizontalAlignment: End);
+            Text: "SELL";
+            Anchor: (Width: 36, Height: 36, Right: 6);
+          }
+
+          $C.@TextField #CartAdminSellPriceInput {
+            @Anchor = (Width: 100, Height: 36, Right: 4);
+            PlaceholderText: "0";
+          }
+
+          $C.@SmallBuyTextButton #CartAdminUpdateSellPriceButton {
+            @Anchor = (Width: 60, Height: 36);
+            @Text = "SET";
+          }
+
+          Group { FlexWeight: 1; }
+
+          $C.@SmallSecondaryTextButton #CartAdminFullEditorButton {
+            @Anchor = (Width: 140, Height: 36, Right: 6);
+            @Text = "FULL EDIT";
+          }
+
+          $C.@SmallCancelTextButton #CartAdminDeleteItemButton {
+            @Anchor = (Width: 110, Height: 36);
+            @Text = "DELETE";
+          }
+        }
+      }
+
+      Group #CartBar {
+        Anchor: (Height: 130, Top: 12);
+        LayoutMode: Left;
+        Padding: (Left: 14, Right: 14, Top: 8, Bottom: 8);
+        Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerFullPatch.png", Border: 14);
+
+        Group #CartLeftCol {
+          Anchor: (Width: 220, Right: 12);
+          LayoutMode: CenterMiddle;
+
+          Group #CartLeftStack {
+            Anchor: (Width: 220, Height: 78);
+            LayoutMode: Top;
+
+            Label #CartHeader {
+              Style: (FontSize: 12, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+              Text: "SHOPPING CART";
+              Anchor: (Height: 16, Bottom: 4);
+            }
+
+            Label #CartItemCount {
+              Style: (FontSize: 20, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center);
+              Text: "0 items";
+              Anchor: (Height: 26, Bottom: 4);
+            }
+
+            Label #CartOverflowWarning {
+              Visible: false;
+              Style: (FontSize: 10, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center);
+              Text: "MORE HIDDEN — CLICK EXPAND";
+              Anchor: (Height: 14, Bottom: 4);
+            }
+
+            Group #CartTotalsRow {
+              Anchor: (Height: 22);
+              LayoutMode: Left;
+
+              Label #CartTotalLabel {
+                Style: (FontSize: 11, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center);
+                Text: "TOTAL: ";
+                Anchor: (Width: 60, Height: 22);
+              }
+
+              Label #CartTotalValue {
+                Style: (FontSize: 17, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center);
+                Text: "$0.00";
+                FlexWeight: 1;
+              }
+            }
+          }
+        }
+
+        Group #CartItemsScroll {
+          FlexWeight: 1;
+          LayoutMode: Top;
+          Padding: (Top: 7, Bottom: 7);
+
+          Group #CartItemList {
+            FlexWeight: 1;
+            LayoutMode: Left;
+          }
+
+          Label #CartEmptyState {
+            Visible: false;
+            Style: (FontSize: 12, TextColor: #5e3e1f, HorizontalAlignment: Center, VerticalAlignment: Center);
+            Text: "Cart is empty - click an item to add it.";
+            Anchor: (Width: 380, Height: 30);
+          }
+        }
+
+        Group #CartActionsCol {
+          Anchor: (Width: 180, Left: 12);
+          LayoutMode: CenterMiddle;
+
+          Group #CartActionsStack {
+            Anchor: (Width: 180, Height: 108);
+            LayoutMode: Top;
+
+            $C.@SmallTextButton #CartCheckoutButton {
+              @Anchor = (Width: 180, Bottom: 6);
+              @Text = "BUY ALL";
+            }
+
+            $C.@SmallSecondaryTextButton #CartExpandButton {
+              @Anchor = (Width: 180, Bottom: 6);
+              @Text = "EXPAND CART";
+            }
+
+            $C.@SmallCancelTextButton #CartClearButton {
+              @Anchor = (Width: 180);
+              @Text = "CLEAR CART";
+            }
+          }
+        }
+      }
+    }
+  }
+}

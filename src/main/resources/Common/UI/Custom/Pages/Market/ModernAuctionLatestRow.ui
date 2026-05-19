@@ -1,0 +1,18 @@
+$C = "../BetterShopCommon.ui";
+
+Group {
+  Anchor: (Horizontal: 0, Height: 22, Bottom: 4);
+  LayoutMode: Left;
+
+  Label #LatestRowItem {
+    Style: (FontSize: 10, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, ShrinkTextToFit: true, MinShrinkTextToFitFontSize: 8);
+    Text: "Item";
+    FlexWeight: 1;
+  }
+
+  Label #LatestRowPrice {
+    Style: (FontSize: 10, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+    Text: "$0";
+    Anchor: (Width: 76, Height: 22);
+  }
+}

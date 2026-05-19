@@ -1,0 +1,97 @@
+$C = "../BetterShopCommon.ui";
+
+Group {
+  Anchor: (Horizontal: 0, Height: 52, Bottom: 4);
+  LayoutMode: Top;
+
+  Button #ModernAuctionTile {
+    Anchor: (Full: 0);
+    LayoutMode: Left;
+    Padding: (Left: 8, Right: 8, Top: 4, Bottom: 4);
+    Style: (
+      Default: (Background: PatchStyle(TexturePath: "../../Common/ContainerPanelPatch.png", Border: 8)),
+      Hovered: (Background: PatchStyle(TexturePath: "../../Common/ContainerPanelLightPatch.png", Border: 8)),
+      Pressed: (Background: PatchStyle(TexturePath: "../../Common/ContainerPanelLightPatch.png", Border: 8))
+    );
+
+    Group #ModernAuctionIconWrap {
+      Anchor: (Width: 44, Height: 44, Right: 10);
+      Background: (TexturePath: "Textures/ModernShop/Rarities/SlotCommon.png", Border: 12);
+
+      Group #ModernAuctionIconCenter {
+        Anchor: (Full: 0);
+        LayoutMode: CenterMiddle;
+
+        AssetImage #ModernAuctionIconAsset {
+          Anchor: (Width: 32, Height: 32);
+          Visible: false;
+        }
+
+        ItemIcon #ModernAuctionIcon {
+          Anchor: (Width: 32, Height: 32);
+        }
+      }
+
+      Label #ModernAuctionQtyBadge {
+        Visible: false;
+        Anchor: (Width: 26, Height: 14, Right: 2, Bottom: 2);
+        Style: (FontSize: 9, TextColor: #ffffff, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center);
+        Background: (TexturePath: "../../Common/Buttons/Tertiary.png", Border: 6);
+        Text: "x1";
+      }
+
+      Group #ModernAuctionSelectedRing {
+        Visible: false;
+        Anchor: (Full: 0);
+        OutlineColor: #facc15;
+        OutlineSize: 2;
+      }
+
+      Label #ModernAuctionBadge {
+        Visible: false;
+        Anchor: (Width: 42, Height: 12, Left: 2, Top: 2);
+        Style: (FontSize: 8, TextColor: #ffffff, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, HorizontalAlignment: Center, VerticalAlignment: Center);
+        Background: (Color: #22c55e);
+        Text: "BEST";
+      }
+
+      Label #ModernAuctionFeaturedBadge {
+        Visible: false;
+        Anchor: (Width: 50, Height: 12, Right: 2, Top: 2);
+        Style: (FontSize: 8, TextColor: #1a1a00, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, HorizontalAlignment: Center, VerticalAlignment: Center);
+        Background: (Color: #facc15);
+        Text: "FEATURED";
+      }
+    }
+
+    Group {
+      FlexWeight: 1;
+      LayoutMode: Top;
+      Padding: (Right: 10);
+
+      Label #ModernAuctionName {
+        Style: (FontSize: 13, TextColor: #f1f5f9, RenderBold: true, VerticalAlignment: Center, ShrinkTextToFit: true, MinShrinkTextToFitFontSize: 9);
+        Text: "Item";
+        Anchor: (Height: 20);
+      }
+
+      Label #ModernAuctionExpiry {
+        Style: (FontSize: 10, TextColor: #facc15, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center);
+        Text: "—";
+        Anchor: (Height: 14);
+      }
+    }
+
+    Group #ModernAuctionPricePill {
+      Anchor: (Width: 140, Height: 32);
+      LayoutMode: CenterMiddle;
+      Padding: (Left: 8, Right: 8);
+      Background: (TexturePath: "../../Common/Buttons/Tertiary.png", Border: 6);
+
+      Label #ModernAuctionPrice {
+        Style: (FontSize: 12, TextColor: #ffd166, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center, ShrinkTextToFit: true, MinShrinkTextToFitFontSize: 8);
+        Text: "$0";
+      }
+    }
+  }
+}

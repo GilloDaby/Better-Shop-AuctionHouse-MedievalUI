@@ -1,0 +1,23 @@
+$C = "../BetterShopCommon.ui";
+
+Group {
+  Anchor: (Horizontal: 0);
+  LayoutMode: Top;
+  Padding: (Bottom: 8);
+
+  Label #CartCategoryName {
+    Style: (FontSize: 13, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+    Text: "CATEGORY";
+    Anchor: (Height: 18, Bottom: 2);
+  }
+
+  Group #CartCategoryDividerLine {
+    Anchor: (Horizontal: 0, Height: 4, Bottom: 8);
+    Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerSectionSeparator.png", HorizontalBorder: 4);
+  }
+
+  Group #CartCategoryItemsList {
+    Anchor: (Horizontal: 0);
+    LayoutMode: LeftCenterWrap;
+  }
+}

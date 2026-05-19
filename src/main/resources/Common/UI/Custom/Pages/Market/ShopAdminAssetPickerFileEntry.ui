@@ -1,0 +1,29 @@
+$C = "../BetterShopCommon.ui";
+
+Group {
+  Anchor: (Width: 138, Height: 174, Right: 6, Bottom: 6);
+  LayoutMode: Top;
+  Padding: (Full: 4);
+  Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+  Group #PreviewBox {
+    Anchor: (Width: 130, Height: 116, Bottom: 4);
+    LayoutMode: CenterMiddle;
+    Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 6);
+
+    AssetImage #PreviewAsset {
+      Anchor: (Width: 110, Height: 100);
+    }
+  }
+
+  Label #FileName {
+    Style: (FontSize: 10, TextColor: #c9b181, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center, ShrinkTextToFit: true, MinShrinkTextToFitFontSize: 8);
+    Text: "filename.png";
+    Anchor: (Horizontal: 0, Height: 16, Bottom: 4);
+  }
+
+  $C.@SmallSecondaryTextButton #SelectButton {
+    @Anchor = (Width: 130, Height: 28);
+    @Text = "USE";
+  }
+}

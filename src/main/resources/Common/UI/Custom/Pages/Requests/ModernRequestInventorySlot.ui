@@ -1,0 +1,57 @@
+$C = "../BetterShopCommon.ui";
+
+Group {
+  Anchor: (Width: 76, Height: 96, Right: 6, Bottom: 6);
+  LayoutMode: Top;
+
+  Button #ModernRequestSlotButton {
+    Anchor: (Full: 0);
+    LayoutMode: Top;
+    Padding: (Left: 4, Right: 4, Top: 4, Bottom: 4);
+    Style: (
+      Default: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8)),
+      Hovered: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 8)),
+      Pressed: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 8))
+    );
+
+    Group #ModernRequestSlotIconWrap {
+      Anchor: (Width: 64, Height: 56, Bottom: 2);
+      Background: (TexturePath: "Textures/MedievalShop/Rarities/SlotCommon.png", Border: 12);
+
+      Group #ModernRequestSlotIconCenter {
+        Anchor: (Full: 0);
+        LayoutMode: CenterMiddle;
+
+        AssetImage #ModernRequestSlotIconAsset {
+          Anchor: (Width: 40, Height: 40);
+          Visible: false;
+        }
+
+        ItemIcon #ModernRequestSlotIcon {
+          Anchor: (Width: 40, Height: 40);
+        }
+      }
+
+      Label #ModernRequestSlotQty {
+        Visible: false;
+        Anchor: (Width: 28, Height: 14, Right: 2, Bottom: 2);
+        Style: (FontSize: 9, TextColor: #ffffff, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center);
+        Background: (TexturePath: "../../Textures/MedievalShop/Patches/Buttons/Tertiary.png", Border: 6);
+        Text: "x1";
+      }
+
+      Group #ModernRequestSlotSelectedRing {
+        Visible: false;
+        Anchor: (Full: 0);
+        OutlineColor: #e8a93b;
+        OutlineSize: 2;
+      }
+    }
+
+    Label #ModernRequestSlotName {
+      Anchor: (Width: 64, Height: 28);
+      Style: (FontSize: 9, TextColor: #f5e8c8, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center, Wrap: true, ShrinkTextToFit: true, MinShrinkTextToFitFontSize: 7);
+      Text: "Item";
+    }
+  }
+}

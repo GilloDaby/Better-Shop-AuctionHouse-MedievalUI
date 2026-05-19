@@ -1,0 +1,67 @@
+$C = "../BetterShopCommon.ui";
+
+Group {
+  Anchor: (Horizontal: 0, Height: 44, Bottom: 6);
+  LayoutMode: Left;
+  Padding: (Left: 8, Right: 8, Top: 4, Bottom: 4);
+  Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+  Group #TimelineIconWrap {
+    Anchor: (Width: 32, Height: 32, Right: 8);
+    LayoutMode: CenterMiddle;
+    Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 6);
+
+    ItemIcon #TimelineIcon {
+      Anchor: (Width: 24, Height: 24);
+    }
+  }
+
+  Group {
+    FlexWeight: 1;
+    LayoutMode: Top;
+    Padding: (Top: 2);
+
+    Group #TimelineTopRow {
+      Anchor: (Horizontal: 0, Height: 16, Bottom: 2);
+      LayoutMode: Left;
+
+      Label #TimelineDir {
+        Style: (FontSize: 9, TextColor: #ffffff, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, HorizontalAlignment: Center, VerticalAlignment: Center);
+        Text: "BOUGHT";
+        Anchor: (Width: 60, Height: 14, Right: 4);
+        Background: (Color: #c44a3a);
+      }
+
+      Label #TimelineSource {
+        Style: (FontSize: 9, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+        Text: "SHOP";
+        Anchor: (Width: 70, Height: 14);
+      }
+
+      Group { FlexWeight: 1; }
+
+      Label #TimelineWhen {
+        Style: (FontSize: 9, TextColor: #6e5839, VerticalAlignment: Center, HorizontalAlignment: End);
+        Text: "—";
+        Anchor: (Width: 70, Height: 14);
+      }
+    }
+
+    Group #TimelineBottomRow {
+      Anchor: (Horizontal: 0, Height: 16);
+      LayoutMode: Left;
+
+      Label #TimelineItem {
+        Style: (FontSize: 11, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, ShrinkTextToFit: true, MinShrinkTextToFitFontSize: 9);
+        Text: "—";
+        FlexWeight: 1;
+      }
+
+      Label #TimelineAmount {
+        Style: (FontSize: 11, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+        Text: "$0";
+        Anchor: (Width: 90, Height: 16);
+      }
+    }
+  }
+}

@@ -1,0 +1,38 @@
+$C = "../BetterShopCommon.ui";
+
+Group {
+  Anchor: (Width: 64, Height: 64, Right: 4, Bottom: 4);
+
+  Button #SlotButton {
+    Anchor: (Full: 0);
+    Padding: (Full: 3);
+    Style: (
+      Default: (Background: #2a1d10),
+      Hovered: (Background: #3a2a18),
+      Pressed: (Background: #3a2a18),
+      Disabled: (Background: #1a120a)
+    );
+
+    Group #SlotContent {
+      Anchor: (Full: 0);
+      Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+      Group #SlotIconCenter {
+        Anchor: (Full: 0);
+        LayoutMode: CenterMiddle;
+
+        ItemSlot #SlotItem {
+          Anchor: (Width: 48, Height: 48);
+          ShowQualityBackground: true;
+        }
+      }
+
+      Label #SlotQuantity {
+        Anchor: (Width: 28, Height: 14, Right: 3, Bottom: 3);
+        Style: (FontSize: 9, TextColor: #ffffff, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center);
+        Background: (TexturePath: "../../Textures/MedievalShop/Patches/Buttons/Tertiary.png", Border: 6);
+        Text: "";
+      }
+    }
+  }
+}

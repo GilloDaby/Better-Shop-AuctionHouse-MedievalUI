@@ -1,0 +1,1970 @@
+$C = "../BetterShopCommon.ui";
+
+$C.@PageOverlay {
+  LayoutMode: Middle;
+
+  $C.@DecoratedContainer {
+    Anchor: (Width: 1240, Height: 880);
+
+    #Title {
+      $C.@Title {
+        @Text = "";
+      }
+      Label #PageTitle {
+        Style: (FontSize: 22, TextColor: #f5e8c8, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center);
+        Text: "TRANSACTION LEDGER";
+        Anchor: (Height: 30);
+      }
+    }
+
+    #Content {
+      LayoutMode: Top;
+      Padding: (Full: 16);
+
+      Group #ToolbarRow {
+        Anchor: (Horizontal: 0, Height: 48, Bottom: 12);
+        LayoutMode: Left;
+
+        Button #TabAll {
+          Anchor: (Width: 130, Height: 36, Right: 6);
+          Padding: (Left: 12, Right: 12);
+          Background: (Color: #3a2a18);
+          LayoutMode: CenterMiddle;
+
+          Label #TabAllText {
+            Style: (FontSize: 11, TextColor: #f5e8c8, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center, VerticalAlignment: Center);
+            Text: "ALL";
+          }
+        }
+
+        Button #TabShop {
+          Anchor: (Width: 130, Height: 36, Right: 6);
+          Padding: (Left: 12, Right: 12);
+          Background: (Color: #3a2a18);
+          LayoutMode: CenterMiddle;
+
+          Label #TabShopText {
+            Style: (FontSize: 11, TextColor: #f5e8c8, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center, VerticalAlignment: Center);
+            Text: "SHOP";
+          }
+        }
+
+        Button #TabAuction {
+          Anchor: (Width: 130, Height: 36, Right: 6);
+          Padding: (Left: 12, Right: 12);
+          Background: (Color: #3a2a18);
+          LayoutMode: CenterMiddle;
+
+          Label #TabAuctionText {
+            Style: (FontSize: 11, TextColor: #f5e8c8, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center, VerticalAlignment: Center);
+            Text: "AUCTION";
+          }
+        }
+
+        Button #TabOffer {
+          Anchor: (Width: 130, Height: 36, Right: 6);
+          Padding: (Left: 12, Right: 12);
+          Background: (Color: #3a2a18);
+          LayoutMode: CenterMiddle;
+
+          Label #TabOfferText {
+            Style: (FontSize: 11, TextColor: #f5e8c8, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center, VerticalAlignment: Center);
+            Text: "OFFER HOUSE";
+          }
+        }
+
+        Group { FlexWeight: 1; }
+
+        $C.@TextField #LedgerSearchInput {
+          @Anchor = (Width: 320, Height: 36);
+          PlaceholderText: "Filter item or counterparty...";
+        }
+      }
+
+      Group #BodyRow {
+        FlexWeight: 1;
+        LayoutMode: Left;
+
+        Group #PlayersPanel {
+          Anchor: (Width: 300, Right: 14);
+          LayoutMode: Top;
+          Padding: (Left: 12, Right: 12, Top: 12, Bottom: 12);
+          Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPatch.png", Border: 14);
+
+          Label #PlayersTitle {
+            Style: (FontSize: 12, TextColor: #c9b181, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+            Text: "PLAYERS";
+            Anchor: (Height: 18, Bottom: 4);
+          }
+
+          Label #PlayersCount {
+            Style: (FontSize: 10, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center);
+            Text: "0 active";
+            Anchor: (Height: 14, Bottom: 6);
+          }
+
+          $C.@TextField #PlayerSearchInput {
+            @Anchor = (Horizontal: 0, Height: 32, Bottom: 8);
+            PlaceholderText: "Search player...";
+          }
+
+          $C.@SmallSecondaryTextButton #PlayerClearSelectionButton {
+            @Anchor = (Horizontal: 0, Height: 30, Bottom: 8);
+            @Text = "VIEW ALL TRANSACTIONS";
+          }
+
+          Group #PlayersDivider {
+            Anchor: (Horizontal: 0, Height: 4, Bottom: 8);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerSectionSeparator.png", HorizontalBorder: 4);
+          }
+
+          Group #PlayersList {
+            FlexWeight: 1;
+            LayoutMode: TopScrolling;
+            ScrollbarStyle: $C.@DefaultScrollbarStyle;
+            Padding: (Right: 6);
+
+              Button #PlayerRow0 {
+                Visible: false;
+                Anchor: (Horizontal: 0, Height: 44, Bottom: 4);
+                LayoutMode: Left;
+                Padding: (Left: 10, Right: 10, Top: 6, Bottom: 6);
+                Style: (
+                  Default: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8)),
+                  Hovered: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 8)),
+                  Pressed: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 8))
+                );
+
+                Group #PlayerRowAvatar0 {
+                  Anchor: (Width: 32, Height: 32, Right: 10);
+                  LayoutMode: CenterMiddle;
+                  Background: (Color: #3a2a18);
+
+                  Label #PlayerRowInitial0 {
+                    Style: (FontSize: 14, TextColor: #e8a93b, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center);
+                    Text: "?";
+                  }
+                }
+
+                Group {
+                  FlexWeight: 1;
+                  LayoutMode: CenterMiddle;
+
+                  Group #PlayerRowStack0 {
+                    Anchor: (Full: 0);
+                    LayoutMode: Top;
+
+                    Label #PlayerRowName0 {
+                      Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center);
+                      Text: "";
+                      Anchor: (Height: 16);
+                    }
+
+                    Label #PlayerRowMeta0 {
+                      Style: (FontSize: 9, TextColor: #9c8463, VerticalAlignment: Center);
+                      Text: "";
+                      Anchor: (Height: 12);
+                    }
+                  }
+                }
+
+                Label #PlayerRowSelectedDot0 {
+                  Visible: false;
+                  Anchor: (Width: 10, Height: 10);
+                  Style: (FontSize: 14, TextColor: #e8a93b, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center);
+                  Text: ">";
+                }
+              }
+
+              Button #PlayerRow1 {
+                Visible: false;
+                Anchor: (Horizontal: 0, Height: 44, Bottom: 4);
+                LayoutMode: Left;
+                Padding: (Left: 10, Right: 10, Top: 6, Bottom: 6);
+                Style: (
+                  Default: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8)),
+                  Hovered: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 8)),
+                  Pressed: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 8))
+                );
+
+                Group #PlayerRowAvatar1 {
+                  Anchor: (Width: 32, Height: 32, Right: 10);
+                  LayoutMode: CenterMiddle;
+                  Background: (Color: #3a2a18);
+
+                  Label #PlayerRowInitial1 {
+                    Style: (FontSize: 14, TextColor: #e8a93b, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center);
+                    Text: "?";
+                  }
+                }
+
+                Group {
+                  FlexWeight: 1;
+                  LayoutMode: CenterMiddle;
+
+                  Group #PlayerRowStack1 {
+                    Anchor: (Full: 0);
+                    LayoutMode: Top;
+
+                    Label #PlayerRowName1 {
+                      Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center);
+                      Text: "";
+                      Anchor: (Height: 16);
+                    }
+
+                    Label #PlayerRowMeta1 {
+                      Style: (FontSize: 9, TextColor: #9c8463, VerticalAlignment: Center);
+                      Text: "";
+                      Anchor: (Height: 12);
+                    }
+                  }
+                }
+
+                Label #PlayerRowSelectedDot1 {
+                  Visible: false;
+                  Anchor: (Width: 10, Height: 10);
+                  Style: (FontSize: 14, TextColor: #e8a93b, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center);
+                  Text: ">";
+                }
+              }
+
+              Button #PlayerRow2 {
+                Visible: false;
+                Anchor: (Horizontal: 0, Height: 44, Bottom: 4);
+                LayoutMode: Left;
+                Padding: (Left: 10, Right: 10, Top: 6, Bottom: 6);
+                Style: (
+                  Default: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8)),
+                  Hovered: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 8)),
+                  Pressed: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 8))
+                );
+
+                Group #PlayerRowAvatar2 {
+                  Anchor: (Width: 32, Height: 32, Right: 10);
+                  LayoutMode: CenterMiddle;
+                  Background: (Color: #3a2a18);
+
+                  Label #PlayerRowInitial2 {
+                    Style: (FontSize: 14, TextColor: #e8a93b, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center);
+                    Text: "?";
+                  }
+                }
+
+                Group {
+                  FlexWeight: 1;
+                  LayoutMode: CenterMiddle;
+
+                  Group #PlayerRowStack2 {
+                    Anchor: (Full: 0);
+                    LayoutMode: Top;
+
+                    Label #PlayerRowName2 {
+                      Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center);
+                      Text: "";
+                      Anchor: (Height: 16);
+                    }
+
+                    Label #PlayerRowMeta2 {
+                      Style: (FontSize: 9, TextColor: #9c8463, VerticalAlignment: Center);
+                      Text: "";
+                      Anchor: (Height: 12);
+                    }
+                  }
+                }
+
+                Label #PlayerRowSelectedDot2 {
+                  Visible: false;
+                  Anchor: (Width: 10, Height: 10);
+                  Style: (FontSize: 14, TextColor: #e8a93b, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center);
+                  Text: ">";
+                }
+              }
+
+              Button #PlayerRow3 {
+                Visible: false;
+                Anchor: (Horizontal: 0, Height: 44, Bottom: 4);
+                LayoutMode: Left;
+                Padding: (Left: 10, Right: 10, Top: 6, Bottom: 6);
+                Style: (
+                  Default: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8)),
+                  Hovered: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 8)),
+                  Pressed: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 8))
+                );
+
+                Group #PlayerRowAvatar3 {
+                  Anchor: (Width: 32, Height: 32, Right: 10);
+                  LayoutMode: CenterMiddle;
+                  Background: (Color: #3a2a18);
+
+                  Label #PlayerRowInitial3 {
+                    Style: (FontSize: 14, TextColor: #e8a93b, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center);
+                    Text: "?";
+                  }
+                }
+
+                Group {
+                  FlexWeight: 1;
+                  LayoutMode: CenterMiddle;
+
+                  Group #PlayerRowStack3 {
+                    Anchor: (Full: 0);
+                    LayoutMode: Top;
+
+                    Label #PlayerRowName3 {
+                      Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center);
+                      Text: "";
+                      Anchor: (Height: 16);
+                    }
+
+                    Label #PlayerRowMeta3 {
+                      Style: (FontSize: 9, TextColor: #9c8463, VerticalAlignment: Center);
+                      Text: "";
+                      Anchor: (Height: 12);
+                    }
+                  }
+                }
+
+                Label #PlayerRowSelectedDot3 {
+                  Visible: false;
+                  Anchor: (Width: 10, Height: 10);
+                  Style: (FontSize: 14, TextColor: #e8a93b, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center);
+                  Text: ">";
+                }
+              }
+
+              Button #PlayerRow4 {
+                Visible: false;
+                Anchor: (Horizontal: 0, Height: 44, Bottom: 4);
+                LayoutMode: Left;
+                Padding: (Left: 10, Right: 10, Top: 6, Bottom: 6);
+                Style: (
+                  Default: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8)),
+                  Hovered: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 8)),
+                  Pressed: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 8))
+                );
+
+                Group #PlayerRowAvatar4 {
+                  Anchor: (Width: 32, Height: 32, Right: 10);
+                  LayoutMode: CenterMiddle;
+                  Background: (Color: #3a2a18);
+
+                  Label #PlayerRowInitial4 {
+                    Style: (FontSize: 14, TextColor: #e8a93b, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center);
+                    Text: "?";
+                  }
+                }
+
+                Group {
+                  FlexWeight: 1;
+                  LayoutMode: CenterMiddle;
+
+                  Group #PlayerRowStack4 {
+                    Anchor: (Full: 0);
+                    LayoutMode: Top;
+
+                    Label #PlayerRowName4 {
+                      Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center);
+                      Text: "";
+                      Anchor: (Height: 16);
+                    }
+
+                    Label #PlayerRowMeta4 {
+                      Style: (FontSize: 9, TextColor: #9c8463, VerticalAlignment: Center);
+                      Text: "";
+                      Anchor: (Height: 12);
+                    }
+                  }
+                }
+
+                Label #PlayerRowSelectedDot4 {
+                  Visible: false;
+                  Anchor: (Width: 10, Height: 10);
+                  Style: (FontSize: 14, TextColor: #e8a93b, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center);
+                  Text: ">";
+                }
+              }
+
+              Button #PlayerRow5 {
+                Visible: false;
+                Anchor: (Horizontal: 0, Height: 44, Bottom: 4);
+                LayoutMode: Left;
+                Padding: (Left: 10, Right: 10, Top: 6, Bottom: 6);
+                Style: (
+                  Default: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8)),
+                  Hovered: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 8)),
+                  Pressed: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 8))
+                );
+
+                Group #PlayerRowAvatar5 {
+                  Anchor: (Width: 32, Height: 32, Right: 10);
+                  LayoutMode: CenterMiddle;
+                  Background: (Color: #3a2a18);
+
+                  Label #PlayerRowInitial5 {
+                    Style: (FontSize: 14, TextColor: #e8a93b, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center);
+                    Text: "?";
+                  }
+                }
+
+                Group {
+                  FlexWeight: 1;
+                  LayoutMode: CenterMiddle;
+
+                  Group #PlayerRowStack5 {
+                    Anchor: (Full: 0);
+                    LayoutMode: Top;
+
+                    Label #PlayerRowName5 {
+                      Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center);
+                      Text: "";
+                      Anchor: (Height: 16);
+                    }
+
+                    Label #PlayerRowMeta5 {
+                      Style: (FontSize: 9, TextColor: #9c8463, VerticalAlignment: Center);
+                      Text: "";
+                      Anchor: (Height: 12);
+                    }
+                  }
+                }
+
+                Label #PlayerRowSelectedDot5 {
+                  Visible: false;
+                  Anchor: (Width: 10, Height: 10);
+                  Style: (FontSize: 14, TextColor: #e8a93b, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center);
+                  Text: ">";
+                }
+              }
+
+              Button #PlayerRow6 {
+                Visible: false;
+                Anchor: (Horizontal: 0, Height: 44, Bottom: 4);
+                LayoutMode: Left;
+                Padding: (Left: 10, Right: 10, Top: 6, Bottom: 6);
+                Style: (
+                  Default: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8)),
+                  Hovered: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 8)),
+                  Pressed: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 8))
+                );
+
+                Group #PlayerRowAvatar6 {
+                  Anchor: (Width: 32, Height: 32, Right: 10);
+                  LayoutMode: CenterMiddle;
+                  Background: (Color: #3a2a18);
+
+                  Label #PlayerRowInitial6 {
+                    Style: (FontSize: 14, TextColor: #e8a93b, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center);
+                    Text: "?";
+                  }
+                }
+
+                Group {
+                  FlexWeight: 1;
+                  LayoutMode: CenterMiddle;
+
+                  Group #PlayerRowStack6 {
+                    Anchor: (Full: 0);
+                    LayoutMode: Top;
+
+                    Label #PlayerRowName6 {
+                      Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center);
+                      Text: "";
+                      Anchor: (Height: 16);
+                    }
+
+                    Label #PlayerRowMeta6 {
+                      Style: (FontSize: 9, TextColor: #9c8463, VerticalAlignment: Center);
+                      Text: "";
+                      Anchor: (Height: 12);
+                    }
+                  }
+                }
+
+                Label #PlayerRowSelectedDot6 {
+                  Visible: false;
+                  Anchor: (Width: 10, Height: 10);
+                  Style: (FontSize: 14, TextColor: #e8a93b, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center);
+                  Text: ">";
+                }
+              }
+
+              Button #PlayerRow7 {
+                Visible: false;
+                Anchor: (Horizontal: 0, Height: 44, Bottom: 4);
+                LayoutMode: Left;
+                Padding: (Left: 10, Right: 10, Top: 6, Bottom: 6);
+                Style: (
+                  Default: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8)),
+                  Hovered: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 8)),
+                  Pressed: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 8))
+                );
+
+                Group #PlayerRowAvatar7 {
+                  Anchor: (Width: 32, Height: 32, Right: 10);
+                  LayoutMode: CenterMiddle;
+                  Background: (Color: #3a2a18);
+
+                  Label #PlayerRowInitial7 {
+                    Style: (FontSize: 14, TextColor: #e8a93b, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center);
+                    Text: "?";
+                  }
+                }
+
+                Group {
+                  FlexWeight: 1;
+                  LayoutMode: CenterMiddle;
+
+                  Group #PlayerRowStack7 {
+                    Anchor: (Full: 0);
+                    LayoutMode: Top;
+
+                    Label #PlayerRowName7 {
+                      Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center);
+                      Text: "";
+                      Anchor: (Height: 16);
+                    }
+
+                    Label #PlayerRowMeta7 {
+                      Style: (FontSize: 9, TextColor: #9c8463, VerticalAlignment: Center);
+                      Text: "";
+                      Anchor: (Height: 12);
+                    }
+                  }
+                }
+
+                Label #PlayerRowSelectedDot7 {
+                  Visible: false;
+                  Anchor: (Width: 10, Height: 10);
+                  Style: (FontSize: 14, TextColor: #e8a93b, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center);
+                  Text: ">";
+                }
+              }
+
+              Button #PlayerRow8 {
+                Visible: false;
+                Anchor: (Horizontal: 0, Height: 44, Bottom: 4);
+                LayoutMode: Left;
+                Padding: (Left: 10, Right: 10, Top: 6, Bottom: 6);
+                Style: (
+                  Default: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8)),
+                  Hovered: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 8)),
+                  Pressed: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 8))
+                );
+
+                Group #PlayerRowAvatar8 {
+                  Anchor: (Width: 32, Height: 32, Right: 10);
+                  LayoutMode: CenterMiddle;
+                  Background: (Color: #3a2a18);
+
+                  Label #PlayerRowInitial8 {
+                    Style: (FontSize: 14, TextColor: #e8a93b, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center);
+                    Text: "?";
+                  }
+                }
+
+                Group {
+                  FlexWeight: 1;
+                  LayoutMode: CenterMiddle;
+
+                  Group #PlayerRowStack8 {
+                    Anchor: (Full: 0);
+                    LayoutMode: Top;
+
+                    Label #PlayerRowName8 {
+                      Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center);
+                      Text: "";
+                      Anchor: (Height: 16);
+                    }
+
+                    Label #PlayerRowMeta8 {
+                      Style: (FontSize: 9, TextColor: #9c8463, VerticalAlignment: Center);
+                      Text: "";
+                      Anchor: (Height: 12);
+                    }
+                  }
+                }
+
+                Label #PlayerRowSelectedDot8 {
+                  Visible: false;
+                  Anchor: (Width: 10, Height: 10);
+                  Style: (FontSize: 14, TextColor: #e8a93b, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center);
+                  Text: ">";
+                }
+              }
+
+              Button #PlayerRow9 {
+                Visible: false;
+                Anchor: (Horizontal: 0, Height: 44, Bottom: 4);
+                LayoutMode: Left;
+                Padding: (Left: 10, Right: 10, Top: 6, Bottom: 6);
+                Style: (
+                  Default: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8)),
+                  Hovered: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 8)),
+                  Pressed: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 8))
+                );
+
+                Group #PlayerRowAvatar9 {
+                  Anchor: (Width: 32, Height: 32, Right: 10);
+                  LayoutMode: CenterMiddle;
+                  Background: (Color: #3a2a18);
+
+                  Label #PlayerRowInitial9 {
+                    Style: (FontSize: 14, TextColor: #e8a93b, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center);
+                    Text: "?";
+                  }
+                }
+
+                Group {
+                  FlexWeight: 1;
+                  LayoutMode: CenterMiddle;
+
+                  Group #PlayerRowStack9 {
+                    Anchor: (Full: 0);
+                    LayoutMode: Top;
+
+                    Label #PlayerRowName9 {
+                      Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center);
+                      Text: "";
+                      Anchor: (Height: 16);
+                    }
+
+                    Label #PlayerRowMeta9 {
+                      Style: (FontSize: 9, TextColor: #9c8463, VerticalAlignment: Center);
+                      Text: "";
+                      Anchor: (Height: 12);
+                    }
+                  }
+                }
+
+                Label #PlayerRowSelectedDot9 {
+                  Visible: false;
+                  Anchor: (Width: 10, Height: 10);
+                  Style: (FontSize: 14, TextColor: #e8a93b, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center);
+                  Text: ">";
+                }
+              }
+
+              Button #PlayerRow10 {
+                Visible: false;
+                Anchor: (Horizontal: 0, Height: 44, Bottom: 4);
+                LayoutMode: Left;
+                Padding: (Left: 10, Right: 10, Top: 6, Bottom: 6);
+                Style: (
+                  Default: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8)),
+                  Hovered: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 8)),
+                  Pressed: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 8))
+                );
+
+                Group #PlayerRowAvatar10 {
+                  Anchor: (Width: 32, Height: 32, Right: 10);
+                  LayoutMode: CenterMiddle;
+                  Background: (Color: #3a2a18);
+
+                  Label #PlayerRowInitial10 {
+                    Style: (FontSize: 14, TextColor: #e8a93b, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center);
+                    Text: "?";
+                  }
+                }
+
+                Group {
+                  FlexWeight: 1;
+                  LayoutMode: CenterMiddle;
+
+                  Group #PlayerRowStack10 {
+                    Anchor: (Full: 0);
+                    LayoutMode: Top;
+
+                    Label #PlayerRowName10 {
+                      Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center);
+                      Text: "";
+                      Anchor: (Height: 16);
+                    }
+
+                    Label #PlayerRowMeta10 {
+                      Style: (FontSize: 9, TextColor: #9c8463, VerticalAlignment: Center);
+                      Text: "";
+                      Anchor: (Height: 12);
+                    }
+                  }
+                }
+
+                Label #PlayerRowSelectedDot10 {
+                  Visible: false;
+                  Anchor: (Width: 10, Height: 10);
+                  Style: (FontSize: 14, TextColor: #e8a93b, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center);
+                  Text: ">";
+                }
+              }
+
+              Button #PlayerRow11 {
+                Visible: false;
+                Anchor: (Horizontal: 0, Height: 44, Bottom: 4);
+                LayoutMode: Left;
+                Padding: (Left: 10, Right: 10, Top: 6, Bottom: 6);
+                Style: (
+                  Default: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8)),
+                  Hovered: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 8)),
+                  Pressed: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 8))
+                );
+
+                Group #PlayerRowAvatar11 {
+                  Anchor: (Width: 32, Height: 32, Right: 10);
+                  LayoutMode: CenterMiddle;
+                  Background: (Color: #3a2a18);
+
+                  Label #PlayerRowInitial11 {
+                    Style: (FontSize: 14, TextColor: #e8a93b, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center);
+                    Text: "?";
+                  }
+                }
+
+                Group {
+                  FlexWeight: 1;
+                  LayoutMode: CenterMiddle;
+
+                  Group #PlayerRowStack11 {
+                    Anchor: (Full: 0);
+                    LayoutMode: Top;
+
+                    Label #PlayerRowName11 {
+                      Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center);
+                      Text: "";
+                      Anchor: (Height: 16);
+                    }
+
+                    Label #PlayerRowMeta11 {
+                      Style: (FontSize: 9, TextColor: #9c8463, VerticalAlignment: Center);
+                      Text: "";
+                      Anchor: (Height: 12);
+                    }
+                  }
+                }
+
+                Label #PlayerRowSelectedDot11 {
+                  Visible: false;
+                  Anchor: (Width: 10, Height: 10);
+                  Style: (FontSize: 14, TextColor: #e8a93b, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center);
+                  Text: ">";
+                }
+              }
+
+            Label #PlayersEmpty {
+              Visible: false;
+              Anchor: (Horizontal: 0, Height: 30);
+              Style: (FontSize: 11, TextColor: #6e5839, HorizontalAlignment: Center, VerticalAlignment: Center, Wrap: true);
+              Text: "No players in selected source";
+            }
+          }
+        }
+
+        Group #DetailsPanel {
+          FlexWeight: 1;
+          LayoutMode: Top;
+
+          Group #ProfileCard {
+            Visible: false;
+            Anchor: (Horizontal: 0, Height: 130, Bottom: 12);
+            LayoutMode: Top;
+            Padding: (Left: 16, Right: 16, Top: 12, Bottom: 12);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerFullPatch.png", Border: 14);
+
+            Group #ProfileHeaderRow {
+              Anchor: (Horizontal: 0, Height: 30, Bottom: 8);
+              LayoutMode: Left;
+
+              Group #ProfileAvatar {
+                Anchor: (Width: 30, Height: 30, Right: 10);
+                LayoutMode: CenterMiddle;
+                Background: (Color: #3a2a18);
+
+                Label #ProfileInitial {
+                  Style: (FontSize: 14, TextColor: #e8a93b, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center);
+                  Text: "?";
+                }
+              }
+
+              Label #ProfilePlayerName {
+                Style: (FontSize: 16, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center);
+                Text: "Player";
+                FlexWeight: 1;
+              }
+
+              Label #ProfileSubtitle {
+                Style: (FontSize: 10, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center, HorizontalAlignment: End);
+                Text: "PROFILE";
+                Anchor: (Width: 200, Height: 30);
+              }
+            }
+
+            Group #ProfileStatsRow {
+              Anchor: (Horizontal: 0, Height: 56);
+              LayoutMode: Left;
+
+              Group #ProfileStatEarned {
+                FlexWeight: 1;
+                LayoutMode: Top;
+                Padding: (Left: 8, Right: 8, Top: 6, Bottom: 6);
+                Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+                Label {
+                  Style: (FontSize: 9, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center, VerticalAlignment: Center);
+                  Text: "EARNED";
+                  Anchor: (Horizontal: 0, Height: 12, Bottom: 2);
+                }
+
+                Label #ProfileEarnedValue {
+                  Style: (FontSize: 15, TextColor: #4ade80, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center, ShrinkTextToFit: true, MinShrinkTextToFitFontSize: 9);
+                  Text: "$0";
+                  Anchor: (Horizontal: 0, Height: 22);
+                }
+              }
+
+              Group { Anchor: (Width: 6); }
+
+              Group #ProfileStatSpent {
+                FlexWeight: 1;
+                LayoutMode: Top;
+                Padding: (Left: 8, Right: 8, Top: 6, Bottom: 6);
+                Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+                Label {
+                  Style: (FontSize: 9, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center, VerticalAlignment: Center);
+                  Text: "SPENT";
+                  Anchor: (Horizontal: 0, Height: 12, Bottom: 2);
+                }
+
+                Label #ProfileSpentValue {
+                  Style: (FontSize: 15, TextColor: #c44a3a, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center, ShrinkTextToFit: true, MinShrinkTextToFitFontSize: 9);
+                  Text: "$0";
+                  Anchor: (Horizontal: 0, Height: 22);
+                }
+              }
+
+              Group { Anchor: (Width: 6); }
+
+              Group #ProfileStatNet {
+                FlexWeight: 1;
+                LayoutMode: Top;
+                Padding: (Left: 8, Right: 8, Top: 6, Bottom: 6);
+                Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+                Label {
+                  Style: (FontSize: 9, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center, VerticalAlignment: Center);
+                  Text: "NET";
+                  Anchor: (Horizontal: 0, Height: 12, Bottom: 2);
+                }
+
+                Label #ProfileNetValue {
+                  Style: (FontSize: 15, TextColor: #e8a93b, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center, ShrinkTextToFit: true, MinShrinkTextToFitFontSize: 9);
+                  Text: "$0";
+                  Anchor: (Horizontal: 0, Height: 22);
+                }
+              }
+
+              Group { Anchor: (Width: 6); }
+
+              Group #ProfileStatSales {
+                FlexWeight: 1;
+                LayoutMode: Top;
+                Padding: (Left: 8, Right: 8, Top: 6, Bottom: 6);
+                Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+                Label {
+                  Style: (FontSize: 9, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center, VerticalAlignment: Center);
+                  Text: "SALES";
+                  Anchor: (Horizontal: 0, Height: 12, Bottom: 2);
+                }
+
+                Label #ProfileSalesValue {
+                  Style: (FontSize: 15, TextColor: #f5e8c8, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center);
+                  Text: "0";
+                  Anchor: (Horizontal: 0, Height: 22);
+                }
+              }
+
+              Group { Anchor: (Width: 6); }
+
+              Group #ProfileStatPurchases {
+                FlexWeight: 1;
+                LayoutMode: Top;
+                Padding: (Left: 8, Right: 8, Top: 6, Bottom: 6);
+                Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+                Label {
+                  Style: (FontSize: 9, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center, VerticalAlignment: Center);
+                  Text: "PURCHASES";
+                  Anchor: (Horizontal: 0, Height: 12, Bottom: 2);
+                }
+
+                Label #ProfilePurchasesValue {
+                  Style: (FontSize: 15, TextColor: #f5e8c8, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center);
+                  Text: "0";
+                  Anchor: (Horizontal: 0, Height: 22);
+                }
+              }
+            }
+          }
+
+          Group #LedgerListPanel {
+            FlexWeight: 1;
+            LayoutMode: Top;
+            Padding: (Left: 12, Right: 12, Top: 12, Bottom: 12);
+            Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPatch.png", Border: 14);
+
+            Group #LedgerHeader {
+              Anchor: (Horizontal: 0, Height: 32, Bottom: 6);
+              LayoutMode: Left;
+
+              Label #LedgerListTitle {
+                Style: (FontSize: 12, TextColor: #c9b181, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+                Text: "TRANSACTIONS";
+                Anchor: (Width: 160, Height: 32);
+              }
+
+              Group { FlexWeight: 1; }
+
+              Button #FilterDirAll {
+                Anchor: (Width: 70, Height: 28, Right: 6);
+                Padding: (Left: 8, Right: 8);
+                Background: (Color: #3a2a18);
+                LayoutMode: CenterMiddle;
+
+                Label #FilterDirAllText {
+                  Style: (FontSize: 10, TextColor: #f5e8c8, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center, VerticalAlignment: Center);
+                  Text: "ALL";
+                }
+              }
+
+              Button #FilterDirBought {
+                Anchor: (Width: 90, Height: 28, Right: 6);
+                Padding: (Left: 8, Right: 8);
+                Background: (Color: #3a2a18);
+                LayoutMode: CenterMiddle;
+
+                Label #FilterDirBoughtText {
+                  Style: (FontSize: 10, TextColor: #c44a3a, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center, VerticalAlignment: Center);
+                  Text: "BOUGHT";
+                }
+              }
+
+              Button #FilterDirSold {
+                Anchor: (Width: 80, Height: 28, Right: 12);
+                Padding: (Left: 8, Right: 8);
+                Background: (Color: #3a2a18);
+                LayoutMode: CenterMiddle;
+
+                Label #FilterDirSoldText {
+                  Style: (FontSize: 10, TextColor: #4ade80, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center, VerticalAlignment: Center);
+                  Text: "SOLD";
+                }
+              }
+
+              Label #LedgerCount {
+                Style: (FontSize: 11, TextColor: #e8a93b, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+                Text: "0 entries";
+                Anchor: (Width: 130, Height: 32);
+              }
+            }
+
+            Group #LedgerDivider {
+              Anchor: (Horizontal: 0, Height: 4, Bottom: 8);
+              Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerSectionSeparator.png", HorizontalBorder: 4);
+            }
+
+            Group #LedgerList {
+              FlexWeight: 1;
+              LayoutMode: TopScrolling;
+              ScrollbarStyle: $C.@DefaultScrollbarStyle;
+              Padding: (Right: 6);
+
+              Group #TxRow0 {
+                Visible: false;
+                Anchor: (Horizontal: 0, Height: 56, Bottom: 4);
+                LayoutMode: Left;
+                Padding: (Left: 10, Right: 10, Top: 6, Bottom: 6);
+                Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+                Group #TxRowIconWrap0 {
+                  Anchor: (Width: 44, Height: 44, Right: 10);
+                  Background: (TexturePath: "Textures/MedievalShop/Rarities/SlotCommon.png", Border: 10);
+
+                  Group {
+                    Anchor: (Full: 0);
+                    LayoutMode: CenterMiddle;
+
+                    ItemIcon #TxRowIcon0 {
+                      Anchor: (Width: 32, Height: 32);
+                    }
+                  }
+                }
+
+                Group #TxRowMainCol0 {
+                  FlexWeight: 1;
+                  LayoutMode: CenterMiddle;
+
+                  Group #TxRowMainStack0 {
+                    Anchor: (Full: 0);
+                    LayoutMode: Top;
+
+                    Group #TxRowTopRow0 {
+                      Anchor: (Horizontal: 0, Height: 18, Bottom: 4);
+                      LayoutMode: Left;
+
+                      Label #TxRowSourceBadge0 {
+                        Style: (FontSize: 9, TextColor: #ffffff, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, HorizontalAlignment: Center, VerticalAlignment: Center);
+                        Text: "SHOP";
+                        Anchor: (Width: 70, Height: 18, Right: 6);
+                        Background: (Color: #16a34a);
+                      }
+
+                      Label #TxRowDirectionBadge0 {
+                        Style: (FontSize: 9, TextColor: #ffffff, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, HorizontalAlignment: Center, VerticalAlignment: Center);
+                        Text: "BOUGHT";
+                        Anchor: (Width: 70, Height: 18, Right: 6);
+                        Background: (Color: #8b1e1e);
+                      }
+
+                      Label #TxRowItemName0 {
+                        Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center);
+                        Text: "";
+                        FlexWeight: 1;
+                      }
+                    }
+
+                    Label #TxRowSubLine0 {
+                      Style: (FontSize: 10, TextColor: #9c8463, VerticalAlignment: Center);
+                      Text: "";
+                      Anchor: (Horizontal: 0, Height: 14);
+                    }
+                  }
+                }
+
+                Group #TxRowAmountCol0 {
+                  Anchor: (Width: 160, Height: 44);
+                  LayoutMode: CenterMiddle;
+
+                  Group #TxRowAmountStack0 {
+                    Anchor: (Full: 0);
+                    LayoutMode: Top;
+
+                    Label #TxRowAmount0 {
+                      Style: (FontSize: 14, TextColor: #e8a93b, RenderBold: true, HorizontalAlignment: End, VerticalAlignment: Center);
+                      Text: "$0";
+                      Anchor: (Horizontal: 0, Height: 20, Bottom: 2);
+                    }
+
+                    Label #TxRowQty0 {
+                      Style: (FontSize: 10, TextColor: #d4a849, RenderBold: true, HorizontalAlignment: End, VerticalAlignment: Center);
+                      Text: "x0";
+                      Anchor: (Horizontal: 0, Height: 14);
+                    }
+                  }
+                }
+
+                Group #TxRowTimeCol0 {
+                  Anchor: (Width: 110, Height: 44, Left: 8);
+                  LayoutMode: CenterMiddle;
+
+                  Label #TxRowTime0 {
+                    Style: (FontSize: 10, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, HorizontalAlignment: End, VerticalAlignment: Center);
+                    Text: "";
+                  }
+                }
+              }
+
+              Group #TxRow1 {
+                Visible: false;
+                Anchor: (Horizontal: 0, Height: 56, Bottom: 4);
+                LayoutMode: Left;
+                Padding: (Left: 10, Right: 10, Top: 6, Bottom: 6);
+                Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+                Group #TxRowIconWrap1 {
+                  Anchor: (Width: 44, Height: 44, Right: 10);
+                  Background: (TexturePath: "Textures/MedievalShop/Rarities/SlotCommon.png", Border: 10);
+
+                  Group {
+                    Anchor: (Full: 0);
+                    LayoutMode: CenterMiddle;
+
+                    ItemIcon #TxRowIcon1 {
+                      Anchor: (Width: 32, Height: 32);
+                    }
+                  }
+                }
+
+                Group #TxRowMainCol1 {
+                  FlexWeight: 1;
+                  LayoutMode: CenterMiddle;
+
+                  Group #TxRowMainStack1 {
+                    Anchor: (Full: 0);
+                    LayoutMode: Top;
+
+                    Group #TxRowTopRow1 {
+                      Anchor: (Horizontal: 0, Height: 18, Bottom: 4);
+                      LayoutMode: Left;
+
+                      Label #TxRowSourceBadge1 {
+                        Style: (FontSize: 9, TextColor: #ffffff, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, HorizontalAlignment: Center, VerticalAlignment: Center);
+                        Text: "SHOP";
+                        Anchor: (Width: 70, Height: 18, Right: 6);
+                        Background: (Color: #16a34a);
+                      }
+
+                      Label #TxRowDirectionBadge1 {
+                        Style: (FontSize: 9, TextColor: #ffffff, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, HorizontalAlignment: Center, VerticalAlignment: Center);
+                        Text: "BOUGHT";
+                        Anchor: (Width: 70, Height: 18, Right: 6);
+                        Background: (Color: #8b1e1e);
+                      }
+
+                      Label #TxRowItemName1 {
+                        Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center);
+                        Text: "";
+                        FlexWeight: 1;
+                      }
+                    }
+
+                    Label #TxRowSubLine1 {
+                      Style: (FontSize: 10, TextColor: #9c8463, VerticalAlignment: Center);
+                      Text: "";
+                      Anchor: (Horizontal: 0, Height: 14);
+                    }
+                  }
+                }
+
+                Group #TxRowAmountCol1 {
+                  Anchor: (Width: 160, Height: 44);
+                  LayoutMode: CenterMiddle;
+
+                  Group #TxRowAmountStack1 {
+                    Anchor: (Full: 0);
+                    LayoutMode: Top;
+
+                    Label #TxRowAmount1 {
+                      Style: (FontSize: 14, TextColor: #e8a93b, RenderBold: true, HorizontalAlignment: End, VerticalAlignment: Center);
+                      Text: "$0";
+                      Anchor: (Horizontal: 0, Height: 20, Bottom: 2);
+                    }
+
+                    Label #TxRowQty1 {
+                      Style: (FontSize: 10, TextColor: #d4a849, RenderBold: true, HorizontalAlignment: End, VerticalAlignment: Center);
+                      Text: "x0";
+                      Anchor: (Horizontal: 0, Height: 14);
+                    }
+                  }
+                }
+
+                Group #TxRowTimeCol1 {
+                  Anchor: (Width: 110, Height: 44, Left: 8);
+                  LayoutMode: CenterMiddle;
+
+                  Label #TxRowTime1 {
+                    Style: (FontSize: 10, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, HorizontalAlignment: End, VerticalAlignment: Center);
+                    Text: "";
+                  }
+                }
+              }
+
+              Group #TxRow2 {
+                Visible: false;
+                Anchor: (Horizontal: 0, Height: 56, Bottom: 4);
+                LayoutMode: Left;
+                Padding: (Left: 10, Right: 10, Top: 6, Bottom: 6);
+                Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+                Group #TxRowIconWrap2 {
+                  Anchor: (Width: 44, Height: 44, Right: 10);
+                  Background: (TexturePath: "Textures/MedievalShop/Rarities/SlotCommon.png", Border: 10);
+
+                  Group {
+                    Anchor: (Full: 0);
+                    LayoutMode: CenterMiddle;
+
+                    ItemIcon #TxRowIcon2 {
+                      Anchor: (Width: 32, Height: 32);
+                    }
+                  }
+                }
+
+                Group #TxRowMainCol2 {
+                  FlexWeight: 1;
+                  LayoutMode: CenterMiddle;
+
+                  Group #TxRowMainStack2 {
+                    Anchor: (Full: 0);
+                    LayoutMode: Top;
+
+                    Group #TxRowTopRow2 {
+                      Anchor: (Horizontal: 0, Height: 18, Bottom: 4);
+                      LayoutMode: Left;
+
+                      Label #TxRowSourceBadge2 {
+                        Style: (FontSize: 9, TextColor: #ffffff, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, HorizontalAlignment: Center, VerticalAlignment: Center);
+                        Text: "SHOP";
+                        Anchor: (Width: 70, Height: 18, Right: 6);
+                        Background: (Color: #16a34a);
+                      }
+
+                      Label #TxRowDirectionBadge2 {
+                        Style: (FontSize: 9, TextColor: #ffffff, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, HorizontalAlignment: Center, VerticalAlignment: Center);
+                        Text: "BOUGHT";
+                        Anchor: (Width: 70, Height: 18, Right: 6);
+                        Background: (Color: #8b1e1e);
+                      }
+
+                      Label #TxRowItemName2 {
+                        Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center);
+                        Text: "";
+                        FlexWeight: 1;
+                      }
+                    }
+
+                    Label #TxRowSubLine2 {
+                      Style: (FontSize: 10, TextColor: #9c8463, VerticalAlignment: Center);
+                      Text: "";
+                      Anchor: (Horizontal: 0, Height: 14);
+                    }
+                  }
+                }
+
+                Group #TxRowAmountCol2 {
+                  Anchor: (Width: 160, Height: 44);
+                  LayoutMode: CenterMiddle;
+
+                  Group #TxRowAmountStack2 {
+                    Anchor: (Full: 0);
+                    LayoutMode: Top;
+
+                    Label #TxRowAmount2 {
+                      Style: (FontSize: 14, TextColor: #e8a93b, RenderBold: true, HorizontalAlignment: End, VerticalAlignment: Center);
+                      Text: "$0";
+                      Anchor: (Horizontal: 0, Height: 20, Bottom: 2);
+                    }
+
+                    Label #TxRowQty2 {
+                      Style: (FontSize: 10, TextColor: #d4a849, RenderBold: true, HorizontalAlignment: End, VerticalAlignment: Center);
+                      Text: "x0";
+                      Anchor: (Horizontal: 0, Height: 14);
+                    }
+                  }
+                }
+
+                Group #TxRowTimeCol2 {
+                  Anchor: (Width: 110, Height: 44, Left: 8);
+                  LayoutMode: CenterMiddle;
+
+                  Label #TxRowTime2 {
+                    Style: (FontSize: 10, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, HorizontalAlignment: End, VerticalAlignment: Center);
+                    Text: "";
+                  }
+                }
+              }
+
+              Group #TxRow3 {
+                Visible: false;
+                Anchor: (Horizontal: 0, Height: 56, Bottom: 4);
+                LayoutMode: Left;
+                Padding: (Left: 10, Right: 10, Top: 6, Bottom: 6);
+                Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+                Group #TxRowIconWrap3 {
+                  Anchor: (Width: 44, Height: 44, Right: 10);
+                  Background: (TexturePath: "Textures/MedievalShop/Rarities/SlotCommon.png", Border: 10);
+
+                  Group {
+                    Anchor: (Full: 0);
+                    LayoutMode: CenterMiddle;
+
+                    ItemIcon #TxRowIcon3 {
+                      Anchor: (Width: 32, Height: 32);
+                    }
+                  }
+                }
+
+                Group #TxRowMainCol3 {
+                  FlexWeight: 1;
+                  LayoutMode: CenterMiddle;
+
+                  Group #TxRowMainStack3 {
+                    Anchor: (Full: 0);
+                    LayoutMode: Top;
+
+                    Group #TxRowTopRow3 {
+                      Anchor: (Horizontal: 0, Height: 18, Bottom: 4);
+                      LayoutMode: Left;
+
+                      Label #TxRowSourceBadge3 {
+                        Style: (FontSize: 9, TextColor: #ffffff, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, HorizontalAlignment: Center, VerticalAlignment: Center);
+                        Text: "SHOP";
+                        Anchor: (Width: 70, Height: 18, Right: 6);
+                        Background: (Color: #16a34a);
+                      }
+
+                      Label #TxRowDirectionBadge3 {
+                        Style: (FontSize: 9, TextColor: #ffffff, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, HorizontalAlignment: Center, VerticalAlignment: Center);
+                        Text: "BOUGHT";
+                        Anchor: (Width: 70, Height: 18, Right: 6);
+                        Background: (Color: #8b1e1e);
+                      }
+
+                      Label #TxRowItemName3 {
+                        Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center);
+                        Text: "";
+                        FlexWeight: 1;
+                      }
+                    }
+
+                    Label #TxRowSubLine3 {
+                      Style: (FontSize: 10, TextColor: #9c8463, VerticalAlignment: Center);
+                      Text: "";
+                      Anchor: (Horizontal: 0, Height: 14);
+                    }
+                  }
+                }
+
+                Group #TxRowAmountCol3 {
+                  Anchor: (Width: 160, Height: 44);
+                  LayoutMode: CenterMiddle;
+
+                  Group #TxRowAmountStack3 {
+                    Anchor: (Full: 0);
+                    LayoutMode: Top;
+
+                    Label #TxRowAmount3 {
+                      Style: (FontSize: 14, TextColor: #e8a93b, RenderBold: true, HorizontalAlignment: End, VerticalAlignment: Center);
+                      Text: "$0";
+                      Anchor: (Horizontal: 0, Height: 20, Bottom: 2);
+                    }
+
+                    Label #TxRowQty3 {
+                      Style: (FontSize: 10, TextColor: #d4a849, RenderBold: true, HorizontalAlignment: End, VerticalAlignment: Center);
+                      Text: "x0";
+                      Anchor: (Horizontal: 0, Height: 14);
+                    }
+                  }
+                }
+
+                Group #TxRowTimeCol3 {
+                  Anchor: (Width: 110, Height: 44, Left: 8);
+                  LayoutMode: CenterMiddle;
+
+                  Label #TxRowTime3 {
+                    Style: (FontSize: 10, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, HorizontalAlignment: End, VerticalAlignment: Center);
+                    Text: "";
+                  }
+                }
+              }
+
+              Group #TxRow4 {
+                Visible: false;
+                Anchor: (Horizontal: 0, Height: 56, Bottom: 4);
+                LayoutMode: Left;
+                Padding: (Left: 10, Right: 10, Top: 6, Bottom: 6);
+                Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+                Group #TxRowIconWrap4 {
+                  Anchor: (Width: 44, Height: 44, Right: 10);
+                  Background: (TexturePath: "Textures/MedievalShop/Rarities/SlotCommon.png", Border: 10);
+
+                  Group {
+                    Anchor: (Full: 0);
+                    LayoutMode: CenterMiddle;
+
+                    ItemIcon #TxRowIcon4 {
+                      Anchor: (Width: 32, Height: 32);
+                    }
+                  }
+                }
+
+                Group #TxRowMainCol4 {
+                  FlexWeight: 1;
+                  LayoutMode: CenterMiddle;
+
+                  Group #TxRowMainStack4 {
+                    Anchor: (Full: 0);
+                    LayoutMode: Top;
+
+                    Group #TxRowTopRow4 {
+                      Anchor: (Horizontal: 0, Height: 18, Bottom: 4);
+                      LayoutMode: Left;
+
+                      Label #TxRowSourceBadge4 {
+                        Style: (FontSize: 9, TextColor: #ffffff, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, HorizontalAlignment: Center, VerticalAlignment: Center);
+                        Text: "SHOP";
+                        Anchor: (Width: 70, Height: 18, Right: 6);
+                        Background: (Color: #16a34a);
+                      }
+
+                      Label #TxRowDirectionBadge4 {
+                        Style: (FontSize: 9, TextColor: #ffffff, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, HorizontalAlignment: Center, VerticalAlignment: Center);
+                        Text: "BOUGHT";
+                        Anchor: (Width: 70, Height: 18, Right: 6);
+                        Background: (Color: #8b1e1e);
+                      }
+
+                      Label #TxRowItemName4 {
+                        Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center);
+                        Text: "";
+                        FlexWeight: 1;
+                      }
+                    }
+
+                    Label #TxRowSubLine4 {
+                      Style: (FontSize: 10, TextColor: #9c8463, VerticalAlignment: Center);
+                      Text: "";
+                      Anchor: (Horizontal: 0, Height: 14);
+                    }
+                  }
+                }
+
+                Group #TxRowAmountCol4 {
+                  Anchor: (Width: 160, Height: 44);
+                  LayoutMode: CenterMiddle;
+
+                  Group #TxRowAmountStack4 {
+                    Anchor: (Full: 0);
+                    LayoutMode: Top;
+
+                    Label #TxRowAmount4 {
+                      Style: (FontSize: 14, TextColor: #e8a93b, RenderBold: true, HorizontalAlignment: End, VerticalAlignment: Center);
+                      Text: "$0";
+                      Anchor: (Horizontal: 0, Height: 20, Bottom: 2);
+                    }
+
+                    Label #TxRowQty4 {
+                      Style: (FontSize: 10, TextColor: #d4a849, RenderBold: true, HorizontalAlignment: End, VerticalAlignment: Center);
+                      Text: "x0";
+                      Anchor: (Horizontal: 0, Height: 14);
+                    }
+                  }
+                }
+
+                Group #TxRowTimeCol4 {
+                  Anchor: (Width: 110, Height: 44, Left: 8);
+                  LayoutMode: CenterMiddle;
+
+                  Label #TxRowTime4 {
+                    Style: (FontSize: 10, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, HorizontalAlignment: End, VerticalAlignment: Center);
+                    Text: "";
+                  }
+                }
+              }
+
+              Group #TxRow5 {
+                Visible: false;
+                Anchor: (Horizontal: 0, Height: 56, Bottom: 4);
+                LayoutMode: Left;
+                Padding: (Left: 10, Right: 10, Top: 6, Bottom: 6);
+                Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+                Group #TxRowIconWrap5 {
+                  Anchor: (Width: 44, Height: 44, Right: 10);
+                  Background: (TexturePath: "Textures/MedievalShop/Rarities/SlotCommon.png", Border: 10);
+
+                  Group {
+                    Anchor: (Full: 0);
+                    LayoutMode: CenterMiddle;
+
+                    ItemIcon #TxRowIcon5 {
+                      Anchor: (Width: 32, Height: 32);
+                    }
+                  }
+                }
+
+                Group #TxRowMainCol5 {
+                  FlexWeight: 1;
+                  LayoutMode: CenterMiddle;
+
+                  Group #TxRowMainStack5 {
+                    Anchor: (Full: 0);
+                    LayoutMode: Top;
+
+                    Group #TxRowTopRow5 {
+                      Anchor: (Horizontal: 0, Height: 18, Bottom: 4);
+                      LayoutMode: Left;
+
+                      Label #TxRowSourceBadge5 {
+                        Style: (FontSize: 9, TextColor: #ffffff, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, HorizontalAlignment: Center, VerticalAlignment: Center);
+                        Text: "SHOP";
+                        Anchor: (Width: 70, Height: 18, Right: 6);
+                        Background: (Color: #16a34a);
+                      }
+
+                      Label #TxRowDirectionBadge5 {
+                        Style: (FontSize: 9, TextColor: #ffffff, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, HorizontalAlignment: Center, VerticalAlignment: Center);
+                        Text: "BOUGHT";
+                        Anchor: (Width: 70, Height: 18, Right: 6);
+                        Background: (Color: #8b1e1e);
+                      }
+
+                      Label #TxRowItemName5 {
+                        Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center);
+                        Text: "";
+                        FlexWeight: 1;
+                      }
+                    }
+
+                    Label #TxRowSubLine5 {
+                      Style: (FontSize: 10, TextColor: #9c8463, VerticalAlignment: Center);
+                      Text: "";
+                      Anchor: (Horizontal: 0, Height: 14);
+                    }
+                  }
+                }
+
+                Group #TxRowAmountCol5 {
+                  Anchor: (Width: 160, Height: 44);
+                  LayoutMode: CenterMiddle;
+
+                  Group #TxRowAmountStack5 {
+                    Anchor: (Full: 0);
+                    LayoutMode: Top;
+
+                    Label #TxRowAmount5 {
+                      Style: (FontSize: 14, TextColor: #e8a93b, RenderBold: true, HorizontalAlignment: End, VerticalAlignment: Center);
+                      Text: "$0";
+                      Anchor: (Horizontal: 0, Height: 20, Bottom: 2);
+                    }
+
+                    Label #TxRowQty5 {
+                      Style: (FontSize: 10, TextColor: #d4a849, RenderBold: true, HorizontalAlignment: End, VerticalAlignment: Center);
+                      Text: "x0";
+                      Anchor: (Horizontal: 0, Height: 14);
+                    }
+                  }
+                }
+
+                Group #TxRowTimeCol5 {
+                  Anchor: (Width: 110, Height: 44, Left: 8);
+                  LayoutMode: CenterMiddle;
+
+                  Label #TxRowTime5 {
+                    Style: (FontSize: 10, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, HorizontalAlignment: End, VerticalAlignment: Center);
+                    Text: "";
+                  }
+                }
+              }
+
+              Group #TxRow6 {
+                Visible: false;
+                Anchor: (Horizontal: 0, Height: 56, Bottom: 4);
+                LayoutMode: Left;
+                Padding: (Left: 10, Right: 10, Top: 6, Bottom: 6);
+                Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+                Group #TxRowIconWrap6 {
+                  Anchor: (Width: 44, Height: 44, Right: 10);
+                  Background: (TexturePath: "Textures/MedievalShop/Rarities/SlotCommon.png", Border: 10);
+
+                  Group {
+                    Anchor: (Full: 0);
+                    LayoutMode: CenterMiddle;
+
+                    ItemIcon #TxRowIcon6 {
+                      Anchor: (Width: 32, Height: 32);
+                    }
+                  }
+                }
+
+                Group #TxRowMainCol6 {
+                  FlexWeight: 1;
+                  LayoutMode: CenterMiddle;
+
+                  Group #TxRowMainStack6 {
+                    Anchor: (Full: 0);
+                    LayoutMode: Top;
+
+                    Group #TxRowTopRow6 {
+                      Anchor: (Horizontal: 0, Height: 18, Bottom: 4);
+                      LayoutMode: Left;
+
+                      Label #TxRowSourceBadge6 {
+                        Style: (FontSize: 9, TextColor: #ffffff, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, HorizontalAlignment: Center, VerticalAlignment: Center);
+                        Text: "SHOP";
+                        Anchor: (Width: 70, Height: 18, Right: 6);
+                        Background: (Color: #16a34a);
+                      }
+
+                      Label #TxRowDirectionBadge6 {
+                        Style: (FontSize: 9, TextColor: #ffffff, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, HorizontalAlignment: Center, VerticalAlignment: Center);
+                        Text: "BOUGHT";
+                        Anchor: (Width: 70, Height: 18, Right: 6);
+                        Background: (Color: #8b1e1e);
+                      }
+
+                      Label #TxRowItemName6 {
+                        Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center);
+                        Text: "";
+                        FlexWeight: 1;
+                      }
+                    }
+
+                    Label #TxRowSubLine6 {
+                      Style: (FontSize: 10, TextColor: #9c8463, VerticalAlignment: Center);
+                      Text: "";
+                      Anchor: (Horizontal: 0, Height: 14);
+                    }
+                  }
+                }
+
+                Group #TxRowAmountCol6 {
+                  Anchor: (Width: 160, Height: 44);
+                  LayoutMode: CenterMiddle;
+
+                  Group #TxRowAmountStack6 {
+                    Anchor: (Full: 0);
+                    LayoutMode: Top;
+
+                    Label #TxRowAmount6 {
+                      Style: (FontSize: 14, TextColor: #e8a93b, RenderBold: true, HorizontalAlignment: End, VerticalAlignment: Center);
+                      Text: "$0";
+                      Anchor: (Horizontal: 0, Height: 20, Bottom: 2);
+                    }
+
+                    Label #TxRowQty6 {
+                      Style: (FontSize: 10, TextColor: #d4a849, RenderBold: true, HorizontalAlignment: End, VerticalAlignment: Center);
+                      Text: "x0";
+                      Anchor: (Horizontal: 0, Height: 14);
+                    }
+                  }
+                }
+
+                Group #TxRowTimeCol6 {
+                  Anchor: (Width: 110, Height: 44, Left: 8);
+                  LayoutMode: CenterMiddle;
+
+                  Label #TxRowTime6 {
+                    Style: (FontSize: 10, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, HorizontalAlignment: End, VerticalAlignment: Center);
+                    Text: "";
+                  }
+                }
+              }
+
+              Group #TxRow7 {
+                Visible: false;
+                Anchor: (Horizontal: 0, Height: 56, Bottom: 4);
+                LayoutMode: Left;
+                Padding: (Left: 10, Right: 10, Top: 6, Bottom: 6);
+                Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+                Group #TxRowIconWrap7 {
+                  Anchor: (Width: 44, Height: 44, Right: 10);
+                  Background: (TexturePath: "Textures/MedievalShop/Rarities/SlotCommon.png", Border: 10);
+
+                  Group {
+                    Anchor: (Full: 0);
+                    LayoutMode: CenterMiddle;
+
+                    ItemIcon #TxRowIcon7 {
+                      Anchor: (Width: 32, Height: 32);
+                    }
+                  }
+                }
+
+                Group #TxRowMainCol7 {
+                  FlexWeight: 1;
+                  LayoutMode: CenterMiddle;
+
+                  Group #TxRowMainStack7 {
+                    Anchor: (Full: 0);
+                    LayoutMode: Top;
+
+                    Group #TxRowTopRow7 {
+                      Anchor: (Horizontal: 0, Height: 18, Bottom: 4);
+                      LayoutMode: Left;
+
+                      Label #TxRowSourceBadge7 {
+                        Style: (FontSize: 9, TextColor: #ffffff, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, HorizontalAlignment: Center, VerticalAlignment: Center);
+                        Text: "SHOP";
+                        Anchor: (Width: 70, Height: 18, Right: 6);
+                        Background: (Color: #16a34a);
+                      }
+
+                      Label #TxRowDirectionBadge7 {
+                        Style: (FontSize: 9, TextColor: #ffffff, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, HorizontalAlignment: Center, VerticalAlignment: Center);
+                        Text: "BOUGHT";
+                        Anchor: (Width: 70, Height: 18, Right: 6);
+                        Background: (Color: #8b1e1e);
+                      }
+
+                      Label #TxRowItemName7 {
+                        Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center);
+                        Text: "";
+                        FlexWeight: 1;
+                      }
+                    }
+
+                    Label #TxRowSubLine7 {
+                      Style: (FontSize: 10, TextColor: #9c8463, VerticalAlignment: Center);
+                      Text: "";
+                      Anchor: (Horizontal: 0, Height: 14);
+                    }
+                  }
+                }
+
+                Group #TxRowAmountCol7 {
+                  Anchor: (Width: 160, Height: 44);
+                  LayoutMode: CenterMiddle;
+
+                  Group #TxRowAmountStack7 {
+                    Anchor: (Full: 0);
+                    LayoutMode: Top;
+
+                    Label #TxRowAmount7 {
+                      Style: (FontSize: 14, TextColor: #e8a93b, RenderBold: true, HorizontalAlignment: End, VerticalAlignment: Center);
+                      Text: "$0";
+                      Anchor: (Horizontal: 0, Height: 20, Bottom: 2);
+                    }
+
+                    Label #TxRowQty7 {
+                      Style: (FontSize: 10, TextColor: #d4a849, RenderBold: true, HorizontalAlignment: End, VerticalAlignment: Center);
+                      Text: "x0";
+                      Anchor: (Horizontal: 0, Height: 14);
+                    }
+                  }
+                }
+
+                Group #TxRowTimeCol7 {
+                  Anchor: (Width: 110, Height: 44, Left: 8);
+                  LayoutMode: CenterMiddle;
+
+                  Label #TxRowTime7 {
+                    Style: (FontSize: 10, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, HorizontalAlignment: End, VerticalAlignment: Center);
+                    Text: "";
+                  }
+                }
+              }
+
+              Group #TxRow8 {
+                Visible: false;
+                Anchor: (Horizontal: 0, Height: 56, Bottom: 4);
+                LayoutMode: Left;
+                Padding: (Left: 10, Right: 10, Top: 6, Bottom: 6);
+                Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+                Group #TxRowIconWrap8 {
+                  Anchor: (Width: 44, Height: 44, Right: 10);
+                  Background: (TexturePath: "Textures/MedievalShop/Rarities/SlotCommon.png", Border: 10);
+
+                  Group {
+                    Anchor: (Full: 0);
+                    LayoutMode: CenterMiddle;
+
+                    ItemIcon #TxRowIcon8 {
+                      Anchor: (Width: 32, Height: 32);
+                    }
+                  }
+                }
+
+                Group #TxRowMainCol8 {
+                  FlexWeight: 1;
+                  LayoutMode: CenterMiddle;
+
+                  Group #TxRowMainStack8 {
+                    Anchor: (Full: 0);
+                    LayoutMode: Top;
+
+                    Group #TxRowTopRow8 {
+                      Anchor: (Horizontal: 0, Height: 18, Bottom: 4);
+                      LayoutMode: Left;
+
+                      Label #TxRowSourceBadge8 {
+                        Style: (FontSize: 9, TextColor: #ffffff, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, HorizontalAlignment: Center, VerticalAlignment: Center);
+                        Text: "SHOP";
+                        Anchor: (Width: 70, Height: 18, Right: 6);
+                        Background: (Color: #16a34a);
+                      }
+
+                      Label #TxRowDirectionBadge8 {
+                        Style: (FontSize: 9, TextColor: #ffffff, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, HorizontalAlignment: Center, VerticalAlignment: Center);
+                        Text: "BOUGHT";
+                        Anchor: (Width: 70, Height: 18, Right: 6);
+                        Background: (Color: #8b1e1e);
+                      }
+
+                      Label #TxRowItemName8 {
+                        Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center);
+                        Text: "";
+                        FlexWeight: 1;
+                      }
+                    }
+
+                    Label #TxRowSubLine8 {
+                      Style: (FontSize: 10, TextColor: #9c8463, VerticalAlignment: Center);
+                      Text: "";
+                      Anchor: (Horizontal: 0, Height: 14);
+                    }
+                  }
+                }
+
+                Group #TxRowAmountCol8 {
+                  Anchor: (Width: 160, Height: 44);
+                  LayoutMode: CenterMiddle;
+
+                  Group #TxRowAmountStack8 {
+                    Anchor: (Full: 0);
+                    LayoutMode: Top;
+
+                    Label #TxRowAmount8 {
+                      Style: (FontSize: 14, TextColor: #e8a93b, RenderBold: true, HorizontalAlignment: End, VerticalAlignment: Center);
+                      Text: "$0";
+                      Anchor: (Horizontal: 0, Height: 20, Bottom: 2);
+                    }
+
+                    Label #TxRowQty8 {
+                      Style: (FontSize: 10, TextColor: #d4a849, RenderBold: true, HorizontalAlignment: End, VerticalAlignment: Center);
+                      Text: "x0";
+                      Anchor: (Horizontal: 0, Height: 14);
+                    }
+                  }
+                }
+
+                Group #TxRowTimeCol8 {
+                  Anchor: (Width: 110, Height: 44, Left: 8);
+                  LayoutMode: CenterMiddle;
+
+                  Label #TxRowTime8 {
+                    Style: (FontSize: 10, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, HorizontalAlignment: End, VerticalAlignment: Center);
+                    Text: "";
+                  }
+                }
+              }
+
+              Group #TxRow9 {
+                Visible: false;
+                Anchor: (Horizontal: 0, Height: 56, Bottom: 4);
+                LayoutMode: Left;
+                Padding: (Left: 10, Right: 10, Top: 6, Bottom: 6);
+                Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+                Group #TxRowIconWrap9 {
+                  Anchor: (Width: 44, Height: 44, Right: 10);
+                  Background: (TexturePath: "Textures/MedievalShop/Rarities/SlotCommon.png", Border: 10);
+
+                  Group {
+                    Anchor: (Full: 0);
+                    LayoutMode: CenterMiddle;
+
+                    ItemIcon #TxRowIcon9 {
+                      Anchor: (Width: 32, Height: 32);
+                    }
+                  }
+                }
+
+                Group #TxRowMainCol9 {
+                  FlexWeight: 1;
+                  LayoutMode: CenterMiddle;
+
+                  Group #TxRowMainStack9 {
+                    Anchor: (Full: 0);
+                    LayoutMode: Top;
+
+                    Group #TxRowTopRow9 {
+                      Anchor: (Horizontal: 0, Height: 18, Bottom: 4);
+                      LayoutMode: Left;
+
+                      Label #TxRowSourceBadge9 {
+                        Style: (FontSize: 9, TextColor: #ffffff, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, HorizontalAlignment: Center, VerticalAlignment: Center);
+                        Text: "SHOP";
+                        Anchor: (Width: 70, Height: 18, Right: 6);
+                        Background: (Color: #16a34a);
+                      }
+
+                      Label #TxRowDirectionBadge9 {
+                        Style: (FontSize: 9, TextColor: #ffffff, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, HorizontalAlignment: Center, VerticalAlignment: Center);
+                        Text: "BOUGHT";
+                        Anchor: (Width: 70, Height: 18, Right: 6);
+                        Background: (Color: #8b1e1e);
+                      }
+
+                      Label #TxRowItemName9 {
+                        Style: (FontSize: 12, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center);
+                        Text: "";
+                        FlexWeight: 1;
+                      }
+                    }
+
+                    Label #TxRowSubLine9 {
+                      Style: (FontSize: 10, TextColor: #9c8463, VerticalAlignment: Center);
+                      Text: "";
+                      Anchor: (Horizontal: 0, Height: 14);
+                    }
+                  }
+                }
+
+                Group #TxRowAmountCol9 {
+                  Anchor: (Width: 160, Height: 44);
+                  LayoutMode: CenterMiddle;
+
+                  Group #TxRowAmountStack9 {
+                    Anchor: (Full: 0);
+                    LayoutMode: Top;
+
+                    Label #TxRowAmount9 {
+                      Style: (FontSize: 14, TextColor: #e8a93b, RenderBold: true, HorizontalAlignment: End, VerticalAlignment: Center);
+                      Text: "$0";
+                      Anchor: (Horizontal: 0, Height: 20, Bottom: 2);
+                    }
+
+                    Label #TxRowQty9 {
+                      Style: (FontSize: 10, TextColor: #d4a849, RenderBold: true, HorizontalAlignment: End, VerticalAlignment: Center);
+                      Text: "x0";
+                      Anchor: (Horizontal: 0, Height: 14);
+                    }
+                  }
+                }
+
+                Group #TxRowTimeCol9 {
+                  Anchor: (Width: 110, Height: 44, Left: 8);
+                  LayoutMode: CenterMiddle;
+
+                  Label #TxRowTime9 {
+                    Style: (FontSize: 10, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, HorizontalAlignment: End, VerticalAlignment: Center);
+                    Text: "";
+                  }
+                }
+              }
+
+              Label #LedgerEmpty {
+                Visible: false;
+                Anchor: (Horizontal: 0, Height: 60);
+                Style: (FontSize: 13, TextColor: #6e5839, HorizontalAlignment: Center, VerticalAlignment: Center, Wrap: true);
+                Text: "No transactions match this filter.";
+              }
+            }
+          }
+        }
+      }
+
+      Group #FooterRow {
+        Anchor: (Horizontal: 0, Height: 44, Top: 12);
+        LayoutMode: Left;
+
+        $C.@SmallCancelTextButton #BackButton {
+          @Anchor = (Width: 130, Height: 36);
+          @Text = "CLOSE";
+        }
+
+        Group { FlexWeight: 1; }
+
+        $C.@SmallSecondaryTextButton #PrevButton {
+          @Anchor = (Width: 130, Height: 36, Right: 10);
+          @Text = "< PREV";
+        }
+
+        Label #PageIndicator {
+          Style: (FontSize: 12, TextColor: #c9b181, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center);
+          Text: "1/1";
+          Anchor: (Width: 120, Height: 36);
+        }
+
+        $C.@SmallSecondaryTextButton #NextButton {
+          @Anchor = (Width: 130, Height: 36);
+          @Text = "NEXT >";
+        }
+      }
+    }
+  }
+}

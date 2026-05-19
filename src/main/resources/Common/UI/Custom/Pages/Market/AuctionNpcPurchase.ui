@@ -1,0 +1,81 @@
+$C = "../BetterShopCommon.ui";
+
+$C.@PageOverlay #AuctionNpcPurchaseRoot {
+  $C.@DecoratedContainer {
+    Anchor: (Width: 500, Height: 520);
+
+    #Title {
+      $C.@Title { @Text = ""; }
+      Label #PurchaseTitle {
+        Style: (FontSize: 18, TextColor: #f5e8c8, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, HorizontalAlignment: Center, ShrinkTextToFit: true, MinShrinkTextToFitFontSize: 12);
+        Text: "BUY SHOP NPC INITIATOR?";
+        Anchor: (Horizontal: 0, Height: 28);
+      }
+    }
+
+    #Content {
+      LayoutMode: Top;
+      Padding: (Full: 18);
+
+      Label #PurchaseSubtitle {
+        Style: (FontSize: 12, TextColor: #9c8463, HorizontalAlignment: Center, VerticalAlignment: Center, Wrap: true);
+        Text: "You don't have a Shop NPC Initiator block. Place it where you want your auction NPC to spawn, then run /shop createnpc again.";
+        Anchor: (Horizontal: 0, Height: 56, Bottom: 14);
+      }
+
+      Group #IconFrame {
+        Anchor: (Horizontal: 0, Height: 220, Bottom: 14);
+        LayoutMode: CenterMiddle;
+        Padding: (Full: 12);
+        Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPatch.png", Border: 14);
+
+        Group #IconCenter {
+          Anchor: (Full: 0);
+          LayoutMode: CenterMiddle;
+          ItemIcon #InitiatorIcon {
+            Anchor: (Width: 168, Height: 168);
+            ItemId: "BetterShop_NpcInitiator";
+          }
+        }
+      }
+
+      Group #PriceRow {
+        Anchor: (Horizontal: 0, Height: 44, Bottom: 14);
+        LayoutMode: Left;
+        Padding: (Horizontal: 12);
+        Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerFullPatch.png", Border: 14);
+
+        Label #PriceLabel {
+          Style: (FontSize: 12, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center);
+          Text: "PRICE";
+          Anchor: (Width: 80, Height: 32);
+        }
+
+        Group { FlexWeight: 1; }
+
+        Label #PriceValue {
+          Style: (FontSize: 16, TextColor: #fbbf24, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+          Text: "1000";
+          Anchor: (Width: 200, Height: 32);
+        }
+      }
+
+      Group #ButtonRow {
+        Anchor: (Horizontal: 0, Height: 48);
+        LayoutMode: Left;
+
+        $C.@CancelTextButton #CancelButton {
+          @Anchor = (Width: 180, Right: 8, Height: 44);
+          @Text = "CANCEL";
+        }
+
+        Group { FlexWeight: 1; }
+
+        $C.@TextButton #BuyButton {
+          @Anchor = (Width: 180, Height: 44);
+          @Text = "BUY";
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,59 @@
+$C = "../BetterShopCommon.ui";
+
+Group {
+  Anchor: (Horizontal: 0, Height: 56, Bottom: 6);
+  LayoutMode: Left;
+  Padding: (Left: 14, Right: 14, Top: 8, Bottom: 8);
+  Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8);
+
+  Group #HistoryBuyerStack {
+    FlexWeight: 1;
+    LayoutMode: Top;
+
+    Label #HistoryBuyerName {
+      Style: (FontSize: 14, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center);
+      Text: "Buyer";
+      Anchor: (Height: 18);
+    }
+
+    Label #HistoryBuyerWhen {
+      Style: (FontSize: 10, TextColor: #9c8463, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center);
+      Text: "—";
+      Anchor: (Height: 14);
+    }
+  }
+
+  Group #HistoryQtyCol {
+    Anchor: (Width: 110);
+    LayoutMode: Top;
+
+    Label #HistoryQtyCaption {
+      Style: (FontSize: 9, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, HorizontalAlignment: End, VerticalAlignment: Center);
+      Text: "QUANTITY";
+      Anchor: (Height: 12);
+    }
+
+    Label #HistoryQtyValue {
+      Style: (FontSize: 14, TextColor: #f5e8c8, RenderBold: true, HorizontalAlignment: End, VerticalAlignment: Center);
+      Text: "x1";
+      Anchor: (Height: 20);
+    }
+  }
+
+  Group #HistoryPriceCol {
+    Anchor: (Width: 140);
+    LayoutMode: Top;
+
+    Label #HistoryPriceCaption {
+      Style: (FontSize: 9, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, HorizontalAlignment: End, VerticalAlignment: Center);
+      Text: "TOTAL";
+      Anchor: (Height: 12);
+    }
+
+    Label #HistoryPriceValue {
+      Style: (FontSize: 14, TextColor: #e8a93b, RenderBold: true, HorizontalAlignment: End, VerticalAlignment: Center);
+      Text: "$0";
+      Anchor: (Height: 20);
+    }
+  }
+}

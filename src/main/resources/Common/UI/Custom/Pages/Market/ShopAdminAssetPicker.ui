@@ -1,0 +1,147 @@
+$C = "../BetterShopCommon.ui";
+
+$C.@PageOverlay {
+  LayoutMode: Middle;
+
+  $C.@DecoratedContainer #AssetPickerRoot {
+    Anchor: (Width: 1240, Height: 900);
+
+    #Title {
+      $C.@Title {
+        @Text = "";
+      }
+      Label #AssetPickerTitle {
+        Style: (FontSize: 22, TextColor: #f5e8c8, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center);
+        Text: "ALL HYTALE ASSETS";
+        Anchor: (Height: 30);
+      }
+    }
+
+    #Content {
+      LayoutMode: Top;
+      Padding: (Full: 14);
+
+      Label #AssetPickerSubtitle {
+        Style: (FontSize: 11, TextColor: #9c8463, HorizontalAlignment: Center, VerticalAlignment: Center, Wrap: true);
+        Text: "Browse the game asset folders. Click an image to use its path as the icon.";
+        Anchor: (Horizontal: 0, Height: 18, Bottom: 10);
+      }
+
+      Group #PathBar {
+        Anchor: (Horizontal: 0, Height: 40, Bottom: 8);
+        LayoutMode: Left;
+        Padding: (Left: 10, Right: 10, Top: 4, Bottom: 4);
+        Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerFullPatch.png", Border: 14);
+
+        $C.@SmallSecondaryTextButton #RootButton {
+          @Anchor = (Width: 100, Height: 30, Right: 6);
+          @Text = "ROOT";
+        }
+
+        $C.@SmallSecondaryTextButton #UpButton {
+          @Anchor = (Width: 80, Height: 30, Right: 10);
+          @Text = "UP";
+        }
+
+        Group #PathLabelBox {
+          FlexWeight: 1;
+          Anchor: (Height: 30);
+          LayoutMode: Left;
+          Padding: (Left: 10, Right: 10);
+          Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 8);
+
+          Label #PathLabel {
+            Style: (FontSize: 12, TextColor: #c9b181, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: Start);
+            Text: "Common/";
+            FlexWeight: 1;
+          }
+        }
+      }
+
+      Group #SearchBar {
+        Anchor: (Horizontal: 0, Height: 40, Bottom: 10);
+        LayoutMode: Left;
+        Padding: (Left: 10, Right: 10, Top: 4, Bottom: 4);
+        Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerFullPatch.png", Border: 14);
+
+        Label #SearchLabel {
+          Style: (FontSize: 11, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+          Text: "SEARCH";
+          Anchor: (Width: 80, Height: 30);
+        }
+
+        $C.@TextField #SearchInput {
+          @Anchor = (Height: 30);
+          FlexWeight: 1;
+          PlaceholderText: "Type to search across all assets";
+        }
+      }
+
+      Label #StatusText {
+        Style: (FontSize: 10, TextColor: #9c8463, HorizontalAlignment: Start, VerticalAlignment: Center);
+        Text: "";
+        Anchor: (Horizontal: 0, Height: 14, Bottom: 6);
+      }
+
+      Group #FolderScroll {
+        Anchor: (Horizontal: 0, Height: 100, Bottom: 8);
+        LayoutMode: TopScrolling;
+        Padding: (Left: 8, Right: 8, Top: 8, Bottom: 8);
+        Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPatch.png", Border: 14);
+        ScrollbarStyle: $C.@DefaultScrollbarStyle;
+
+        Group #FolderList {
+          LayoutMode: LeftCenterWrap;
+        }
+      }
+
+      Group #FileScroll {
+        FlexWeight: 1;
+        LayoutMode: TopScrolling;
+        Padding: (Left: 8, Right: 8, Top: 8, Bottom: 8);
+        Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPatch.png", Border: 14);
+        ScrollbarStyle: $C.@DefaultScrollbarStyle;
+
+        Group #FileList {
+          LayoutMode: LeftCenterWrap;
+        }
+      }
+
+      Group #FooterBar {
+        Anchor: (Horizontal: 0, Height: 50, Top: 10);
+        LayoutMode: Left;
+        Padding: (Left: 10, Right: 10, Top: 6, Bottom: 6);
+        Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerFullPatch.png", Border: 14);
+
+        $C.@SmallSecondaryTextButton #PrevPageButton {
+          @Anchor = (Width: 110, Height: 36, Right: 8);
+          @Text = "PREV";
+        }
+
+        Group #PageTextBox {
+          Anchor: (Width: 130, Height: 36, Right: 8);
+          LayoutMode: CenterMiddle;
+          Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 8);
+
+          Label #PageText {
+            Style: (FontSize: 13, TextColor: #c9b181, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center);
+            Text: "1/1";
+            Anchor: (Width: 130, Height: 30);
+          }
+        }
+
+        $C.@SmallSecondaryTextButton #NextPageButton {
+          @Anchor = (Width: 110, Height: 36, Right: 8);
+          @Text = "NEXT";
+        }
+
+        Group { FlexWeight: 1; }
+
+        $C.@SmallCancelTextButton #BackButton {
+          @Anchor = (Width: 140, Height: 36);
+          @Text = "BACK";
+        }
+      }
+    }
+  }
+}

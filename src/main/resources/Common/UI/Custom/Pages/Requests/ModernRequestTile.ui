@@ -1,0 +1,83 @@
+$C = "../BetterShopCommon.ui";
+
+Group {
+  Anchor: (Width: 124, Height: 178, Right: 4, Bottom: 6);
+  LayoutMode: Top;
+
+  Button #ModernRequestTile {
+    Anchor: (Full: 0);
+    LayoutMode: Top;
+    Padding: (Left: 6, Right: 6, Top: 6, Bottom: 6);
+    Style: (
+      Default: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8)),
+      Hovered: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 8)),
+      Pressed: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 8))
+    );
+
+    Group #ModernRequestIconWrap {
+      Anchor: (Width: 110, Height: 72, Bottom: 4);
+      Background: (TexturePath: "Textures/MedievalShop/Rarities/SlotCommon.png", Border: 12);
+
+      Group #ModernRequestIconCenter {
+        Anchor: (Full: 0);
+        LayoutMode: CenterMiddle;
+
+        AssetImage #ModernRequestIconAsset {
+          Anchor: (Width: 56, Height: 56);
+          Visible: false;
+        }
+
+        ItemIcon #ModernRequestIcon {
+          Anchor: (Width: 56, Height: 56);
+        }
+      }
+
+      Label #ModernRequestQtyBadge {
+        Visible: false;
+        Anchor: (Width: 36, Height: 18, Right: 4, Bottom: 4);
+        Style: (FontSize: 11, TextColor: #ffffff, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center);
+        Background: (TexturePath: "../../Textures/MedievalShop/Patches/Buttons/Tertiary.png", Border: 6);
+        Text: "x1";
+      }
+
+      Group #ModernRequestSelectedRing {
+        Visible: false;
+        Anchor: (Full: 0);
+        OutlineColor: #e8a93b;
+        OutlineSize: 2;
+      }
+
+      Label #ModernRequestModeBadge {
+        Visible: false;
+        Anchor: (Width: 50, Height: 16, Left: 4, Top: 4);
+        Style: (FontSize: 9, TextColor: #ffffff, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, HorizontalAlignment: Center, VerticalAlignment: Center);
+        Background: (Color: #9d7e2c);
+        Text: "BARTER";
+      }
+    }
+
+    Label #ModernRequestName {
+      Anchor: (Width: 110, Height: 22, Bottom: 2);
+      Style: (FontSize: 11, TextColor: #f5e8c8, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center, Wrap: true, ShrinkTextToFit: true, MinShrinkTextToFitFontSize: 9);
+      Text: "Item";
+    }
+
+    Label #ModernRequestAge {
+      Anchor: (Width: 110, Height: 14, Bottom: 4);
+      Style: (FontSize: 9, TextColor: #9c8463, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, HorizontalAlignment: Center, VerticalAlignment: Center);
+      Text: "—";
+    }
+
+    Group #ModernRequestPricePill {
+      Anchor: (Width: 110, Height: 26);
+      LayoutMode: CenterMiddle;
+      Padding: (Left: 4, Right: 4);
+      Background: (TexturePath: "../../Textures/MedievalShop/Patches/Buttons/Tertiary.png", Border: 6);
+
+      Label #ModernRequestPrice {
+        Style: (FontSize: 12, TextColor: #4ade80, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center, ShrinkTextToFit: true, MinShrinkTextToFitFontSize: 7);
+        Text: "$0";
+      }
+    }
+  }
+}

@@ -1,0 +1,34 @@
+$C = "../BetterShopCommon.ui";
+
+Group {
+  Anchor: (Width: 244, Height: 30, Bottom: 4);
+  LayoutMode: Top;
+
+  Group #StatRowTopLine {
+    Anchor: (Height: 14);
+    LayoutMode: Left;
+
+    Label #StatRowName {
+      Style: (FontSize: 11, TextColor: #c9b181, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, VerticalAlignment: Center);
+      Text: "Stat";
+      FlexWeight: 1;
+    }
+
+    Label #StatRowValue {
+      Style: (FontSize: 11, TextColor: #f5e8c8, RenderBold: true, VerticalAlignment: Center, HorizontalAlignment: End);
+      Text: "0";
+      Anchor: (Width: 60, Height: 14);
+    }
+  }
+
+  Group #StatRowBarBg {
+    Anchor: (Width: 244, Height: 10, Top: 2);
+    LayoutMode: Left;
+    Background: (TexturePath: "../../Textures/MedievalShop/Patches/Buttons/Tertiary.png", Border: 5);
+
+    Group #StatRowBarFill {
+      Anchor: (Width: 0, Height: 10, Left: 0);
+      Background: (Color: #d4a849);
+    }
+  }
+}

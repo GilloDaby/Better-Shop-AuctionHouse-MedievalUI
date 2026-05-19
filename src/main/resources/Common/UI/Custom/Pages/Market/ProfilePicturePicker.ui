@@ -1,0 +1,113 @@
+$C = "../BetterShopCommon.ui";
+
+$C.@PageOverlay {
+  LayoutMode: Middle;
+
+  $C.@DecoratedContainer #ProfilePickerRoot {
+    Anchor: (Width: 1280, Height: 900);
+
+    #Title {
+      $C.@Title { @Text = ""; }
+      Label #ProfilePickerTitle {
+        Style: (FontSize: 22, TextColor: #f5e8c8, RenderBold: true, RenderUppercase: true, LetterSpacing: 3, HorizontalAlignment: Center);
+        Text: "PICK YOUR PROFILE PICTURE";
+        Anchor: (Height: 30);
+      }
+    }
+
+    #Content {
+      LayoutMode: Top;
+      Padding: (Full: 16);
+
+      Label #ProfilePickerSubtitle {
+        Style: (FontSize: 11, TextColor: #9c8463, HorizontalAlignment: Center, VerticalAlignment: Center, Wrap: true);
+        Text: "Choose a portrait from the Hytale character gallery — click any tile to set it as your avatar.";
+        Anchor: (Horizontal: 0, Height: 18, Bottom: 12);
+      }
+
+      Group #ProfilePickerSearchBar {
+        Anchor: (Horizontal: 0, Height: 44, Bottom: 10);
+        LayoutMode: Left;
+        Padding: (Left: 14, Right: 14, Top: 6, Bottom: 6);
+        Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerFullPatch.png", Border: 14);
+
+        Label #ProfilePickerSearchLabel {
+          Style: (FontSize: 11, TextColor: #d4a849, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, VerticalAlignment: Center);
+          Text: "SEARCH";
+          Anchor: (Width: 80, Height: 32);
+        }
+
+        $C.@TextField #ProfilePickerSearchInput {
+          @Anchor = (Height: 32, Right: 12);
+          FlexWeight: 1;
+          PlaceholderText: "Filter by name (bear, fox, skeleton, ...)";
+        }
+
+        Group #ProfilePickerStatusPill {
+          Anchor: (Width: 150, Height: 32);
+          LayoutMode: CenterMiddle;
+          Padding: (Left: 10, Right: 10);
+          Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 8);
+
+          Label #ProfilePickerStatus {
+            Style: (FontSize: 11, TextColor: #c9b181, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, HorizontalAlignment: Center, VerticalAlignment: Center);
+            Text: "0 PORTRAITS";
+          }
+        }
+      }
+
+      Group #ProfilePickerScroll {
+        FlexWeight: 1;
+        LayoutMode: TopScrolling;
+        Padding: (Left: 10, Right: 10, Top: 10, Bottom: 10);
+        Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPatch.png", Border: 14);
+        ScrollbarStyle: $C.@DefaultScrollbarStyle;
+
+        Group #ProfilePickerGrid {
+          LayoutMode: LeftCenterWrap;
+        }
+      }
+
+      Group #ProfilePickerFooter {
+        Anchor: (Horizontal: 0, Height: 52, Top: 12);
+        LayoutMode: Left;
+        Padding: (Left: 14, Right: 14, Top: 6, Bottom: 6);
+        Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerFullPatch.png", Border: 14);
+
+        $C.@SmallSecondaryTextButton #ProfilePickerPrevButton {
+          @Anchor = (Width: 110, Height: 36, Right: 8);
+          @Text = "PREV";
+        }
+
+        Group #ProfilePickerPageBox {
+          Anchor: (Width: 130, Height: 36, Right: 8);
+          LayoutMode: CenterMiddle;
+          Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 8);
+
+          Label #ProfilePickerPageText {
+            Style: (FontSize: 13, TextColor: #c9b181, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center);
+            Text: "1/1";
+            Anchor: (Width: 130, Height: 30);
+          }
+        }
+
+        $C.@SmallSecondaryTextButton #ProfilePickerNextButton {
+          @Anchor = (Width: 110, Height: 36, Right: 8);
+          @Text = "NEXT";
+        }
+
+        Group { FlexWeight: 1; }
+
+        $C.@SmallSecondaryTextButton #ProfilePickerResetButton {
+          @Anchor = (Width: 200, Height: 36, Right: 8);
+          @Text = "RESET TO DEFAULT";
+        }
+
+        $C.@SmallCancelTextButton #ProfilePickerBackButton {
+          @Anchor = (Width: 140, Height: 36);
+          @Text = "BACK";
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,302 @@
+$C = "../BetterShopCommon.ui";
+
+$C.@PageOverlay {
+  LayoutMode: Middle;
+
+  $C.@DecoratedContainer {
+    Anchor: (Width: 980, Height: 720);
+
+    #Title {
+      $C.@Title {
+        @Text = "";
+      }
+      Label #TitleText {
+        Style: (FontSize: 24, TextColor: #f5e8c8, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center);
+        Text: "BETTER SHOP ADMIN HUB";
+        Anchor: (Height: 32);
+      }
+    }
+
+    #Content {
+      LayoutMode: Top;
+      Padding: (Full: 18);
+
+      Group #AdminHeroCard {
+        Anchor: (Horizontal: 0, Height: 110, Bottom: 14);
+        LayoutMode: Top;
+        Padding: (Left: 18, Right: 18, Top: 12, Bottom: 12);
+        Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerFullPatch.png", Border: 14);
+
+        Label #DeckTag {
+          Style: (FontSize: 11, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center, VerticalAlignment: Center);
+          Text: "CONTROL ROOM";
+          Anchor: (Horizontal: 0, Height: 16, Bottom: 4);
+        }
+
+        Label #HeroTitle {
+          Style: (FontSize: 22, TextColor: #f5e8c8, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center);
+          Text: "Administration Deck";
+          Anchor: (Horizontal: 0, Height: 28, Bottom: 4);
+        }
+
+        Label #HeroSubtitle {
+          Style: (FontSize: 12, TextColor: #9c8463, HorizontalAlignment: Center, VerticalAlignment: Center, Wrap: true);
+          Text: "Choose an admin panel below.";
+          Anchor: (Horizontal: 0, Height: 18, Bottom: 8);
+        }
+
+        Group #HeroSummaryRow {
+          Anchor: (Horizontal: 0, Height: 22);
+          LayoutMode: Left;
+
+          Label #HeroSummaryLeft {
+            Style: (FontSize: 11, TextColor: #4ade80, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, HorizontalAlignment: Center, VerticalAlignment: Center);
+            Text: "Shop: 0 categories";
+            FlexWeight: 1;
+          }
+
+          Label #HeroSummaryCenter {
+            Style: (FontSize: 11, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, HorizontalAlignment: Center, VerticalAlignment: Center);
+            Text: "Auction: 0 active";
+            FlexWeight: 1;
+          }
+
+          Label #HeroSummaryRight {
+            Style: (FontSize: 11, TextColor: #d4a849, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, HorizontalAlignment: Center, VerticalAlignment: Center);
+            Text: "OH: 0 requests";
+            FlexWeight: 1;
+          }
+        }
+      }
+
+      Group #TileGrid {
+        Anchor: (Horizontal: 0, Height: 412);
+        LayoutMode: Top;
+
+        Group #TileRowTop {
+          Anchor: (Horizontal: 0, Height: 200, Bottom: 12);
+          LayoutMode: Left;
+
+          Button #ConfigTile {
+            Anchor: (Width: 462, Height: 200, Right: 12);
+            LayoutMode: Top;
+            Padding: (Left: 16, Right: 16, Top: 14, Bottom: 14);
+            Style: (
+              Default: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8)),
+              Hovered: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 8)),
+              Pressed: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 8))
+            );
+
+            Label #ConfigTileBadge {
+              Style: (FontSize: 10, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center, VerticalAlignment: Center);
+              Text: "PRIMARY";
+              Anchor: (Horizontal: 0, Height: 16, Bottom: 6);
+            }
+
+            Label #ConfigTileTitle {
+              Style: (FontSize: 22, TextColor: #4ade80, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center);
+              Text: "Config Editor";
+              Anchor: (Horizontal: 0, Height: 30, Bottom: 6);
+            }
+
+            Group #ConfigTileDivider {
+              Anchor: (Horizontal: 0, Height: 4, Bottom: 8);
+              Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerSectionSeparator.png", HorizontalBorder: 4);
+            }
+
+            Label #ConfigTileDesc {
+              Style: (FontSize: 12, TextColor: #c9b181, HorizontalAlignment: Center, VerticalAlignment: Center, Wrap: true);
+              Text: "Edit full config.json in game";
+              Anchor: (Horizontal: 0, Height: 36, Bottom: 6);
+            }
+
+            Label #ConfigTileMeta {
+              Style: (FontSize: 10, TextColor: #6e5839, HorizontalAlignment: Center, VerticalAlignment: Center, Wrap: true);
+              Text: "mods/GilloDaby_BetterShopAuction/config.json";
+              Anchor: (Horizontal: 0, Height: 24, Bottom: 6);
+            }
+
+            Group { FlexWeight: 1; }
+
+            Label #ConfigTileHint {
+              Style: (FontSize: 11, TextColor: #f5e8c8, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center, VerticalAlignment: Center);
+              Text: "OPEN PANEL ->";
+              Anchor: (Horizontal: 0, Height: 18);
+            }
+          }
+
+          Button #ShopTile {
+            Anchor: (Width: 462, Height: 200);
+            LayoutMode: Top;
+            Padding: (Left: 16, Right: 16, Top: 14, Bottom: 14);
+            Style: (
+              Default: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8)),
+              Hovered: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 8)),
+              Pressed: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 8))
+            );
+
+            Label #ShopTileBadge {
+              Style: (FontSize: 10, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center, VerticalAlignment: Center);
+              Text: "COMMERCE";
+              Anchor: (Horizontal: 0, Height: 16, Bottom: 6);
+            }
+
+            Label #ShopTileTitle {
+              Style: (FontSize: 22, TextColor: #4ade80, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center);
+              Text: "Shop Admin";
+              Anchor: (Horizontal: 0, Height: 30, Bottom: 6);
+            }
+
+            Group #ShopTileDivider {
+              Anchor: (Horizontal: 0, Height: 4, Bottom: 8);
+              Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerSectionSeparator.png", HorizontalBorder: 4);
+            }
+
+            Label #ShopTileDesc {
+              Style: (FontSize: 12, TextColor: #c9b181, HorizontalAlignment: Center, VerticalAlignment: Center, Wrap: true);
+              Text: "Manage shop categories and items";
+              Anchor: (Horizontal: 0, Height: 36, Bottom: 6);
+            }
+
+            Label #ShopTileMeta {
+              Style: (FontSize: 11, TextColor: #d4a849, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center, Wrap: true);
+              Text: "0 categories | 0 items";
+              Anchor: (Horizontal: 0, Height: 24, Bottom: 6);
+            }
+
+            Group { FlexWeight: 1; }
+
+            Label #ShopTileHint {
+              Style: (FontSize: 11, TextColor: #f5e8c8, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center, VerticalAlignment: Center);
+              Text: "OPEN PANEL ->";
+              Anchor: (Horizontal: 0, Height: 18);
+            }
+          }
+        }
+
+        Group #TileRowBottom {
+          Anchor: (Horizontal: 0, Height: 200);
+          LayoutMode: Left;
+
+          Button #AuctionTile {
+            Anchor: (Width: 462, Height: 200, Right: 12);
+            LayoutMode: Top;
+            Padding: (Left: 16, Right: 16, Top: 14, Bottom: 14);
+            Style: (
+              Default: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8)),
+              Hovered: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 8)),
+              Pressed: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 8))
+            );
+
+            Label #AuctionTileBadge {
+              Style: (FontSize: 10, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center, VerticalAlignment: Center);
+              Text: "AUCTIONS";
+              Anchor: (Horizontal: 0, Height: 16, Bottom: 6);
+            }
+
+            Label #AuctionTileTitle {
+              Style: (FontSize: 22, TextColor: #4ade80, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center);
+              Text: "Auction Admin";
+              Anchor: (Horizontal: 0, Height: 30, Bottom: 6);
+            }
+
+            Group #AuctionTileDivider {
+              Anchor: (Horizontal: 0, Height: 4, Bottom: 8);
+              Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerSectionSeparator.png", HorizontalBorder: 4);
+            }
+
+            Label #AuctionTileDesc {
+              Style: (FontSize: 12, TextColor: #c9b181, HorizontalAlignment: Center, VerticalAlignment: Center, Wrap: true);
+              Text: "Moderate auction listings";
+              Anchor: (Horizontal: 0, Height: 36, Bottom: 6);
+            }
+
+            Label #AuctionTileMeta {
+              Style: (FontSize: 11, TextColor: #d4a849, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center, Wrap: true);
+              Text: "0 active | 0 expired";
+              Anchor: (Horizontal: 0, Height: 24, Bottom: 6);
+            }
+
+            Group { FlexWeight: 1; }
+
+            Label #AuctionTileHint {
+              Style: (FontSize: 11, TextColor: #f5e8c8, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center, VerticalAlignment: Center);
+              Text: "OPEN PANEL ->";
+              Anchor: (Horizontal: 0, Height: 18);
+            }
+          }
+
+          Button #OhTile {
+            Anchor: (Width: 462, Height: 200);
+            LayoutMode: Top;
+            Padding: (Left: 16, Right: 16, Top: 14, Bottom: 14);
+            Style: (
+              Default: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelPatch.png", Border: 8)),
+              Hovered: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 8)),
+              Pressed: (Background: PatchStyle(TexturePath: "../../Textures/MedievalShop/Patches/ContainerPanelLightPatch.png", Border: 8))
+            );
+
+            Label #OhTileBadge {
+              Style: (FontSize: 10, TextColor: #e8a93b, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center, VerticalAlignment: Center);
+              Text: "OFFER HOUSE";
+              Anchor: (Horizontal: 0, Height: 16, Bottom: 6);
+            }
+
+            Label #OhTileTitle {
+              Style: (FontSize: 22, TextColor: #4ade80, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center);
+              Text: "OH Admin";
+              Anchor: (Horizontal: 0, Height: 30, Bottom: 6);
+            }
+
+            Group #OhTileDivider {
+              Anchor: (Horizontal: 0, Height: 4, Bottom: 8);
+              Background: (TexturePath: "../../Textures/MedievalShop/Patches/ContainerSectionSeparator.png", HorizontalBorder: 4);
+            }
+
+            Label #OhTileDesc {
+              Style: (FontSize: 12, TextColor: #c9b181, HorizontalAlignment: Center, VerticalAlignment: Center, Wrap: true);
+              Text: "Manage buy orders";
+              Anchor: (Horizontal: 0, Height: 36, Bottom: 6);
+            }
+
+            Label #OhTileMeta {
+              Style: (FontSize: 11, TextColor: #d4a849, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center, Wrap: true);
+              Text: "0 active requests";
+              Anchor: (Horizontal: 0, Height: 24, Bottom: 6);
+            }
+
+            Group { FlexWeight: 1; }
+
+            Label #OhTileHint {
+              Style: (FontSize: 11, TextColor: #f5e8c8, RenderBold: true, RenderUppercase: true, LetterSpacing: 2, HorizontalAlignment: Center, VerticalAlignment: Center);
+              Text: "OPEN PANEL ->";
+              Anchor: (Horizontal: 0, Height: 18);
+            }
+          }
+        }
+      }
+
+      Group #ActionRow {
+        Anchor: (Horizontal: 0, Height: 44, Top: 14);
+        LayoutMode: Left;
+
+        $C.@SmallSecondaryTextButton #AuctionBlacklistButton {
+          @Anchor = (Width: 240, Height: 36, Right: 8);
+          @Text = "AUCTION BLACKLIST";
+        }
+
+        $C.@SmallSecondaryTextButton #OhBlacklistButton {
+          @Anchor = (Width: 260, Height: 36, Right: 8);
+          @Text = "OFFER HOUSE BLACKLIST";
+        }
+
+        Group { FlexWeight: 1; }
+
+        $C.@SmallCancelTextButton #BackButton {
+          @Anchor = (Width: 200, Height: 36);
+          @Text = "CLOSE";
+        }
+      }
+    }
+  }
+}
