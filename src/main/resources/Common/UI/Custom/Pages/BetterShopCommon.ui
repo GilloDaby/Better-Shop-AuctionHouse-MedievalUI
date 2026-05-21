@@ -199,6 +199,7 @@ $Sounds = "Sounds.ui";
 @TextButton = TextButton {
   @Anchor = Anchor();
   @Sounds = ();
+  @Text = "";
   Style: (
     ...@DefaultTextButtonStyle,
     Sounds: (
@@ -228,6 +229,7 @@ $Sounds = "Sounds.ui";
 @CancelTextButton = TextButton {
   @Anchor = Anchor();
   @Sounds = ();
+  @Text = "";
   Style: (
     ...@CancelTextButtonStyle,
     Sounds: (
@@ -257,6 +259,7 @@ $Sounds = "Sounds.ui";
 @SmallSecondaryTextButton = TextButton {
   @Anchor = Anchor();
   @Sounds = ();
+  @Text = "";
   Style: (
     ...@SmallSecondaryTextButtonStyle,
     Sounds: (
@@ -280,6 +283,7 @@ $Sounds = "Sounds.ui";
 @SmallTextButton = TextButton {
   @Anchor = Anchor();
   @Sounds = ();
+  @Text = "";
   Style: (
     ...@SmallPrimaryTextButtonStyle,
     Sounds: (
@@ -303,6 +307,7 @@ $Sounds = "Sounds.ui";
 @SmallCancelTextButton = TextButton {
   @Anchor = Anchor();
   @Sounds = ();
+  @Text = "";
   Style: (
     ...@SmallCancelTextButtonStyle,
     Sounds: (
@@ -326,6 +331,7 @@ $Sounds = "Sounds.ui";
 @SellTextButton = TextButton {
   @Anchor = Anchor();
   @Sounds = ();
+  @Text = "";
   Style: (
     ...@SellTextButtonStyle,
     Sounds: (
@@ -349,6 +355,7 @@ $Sounds = "Sounds.ui";
 @SmallSellTextButton = TextButton {
   @Anchor = Anchor();
   @Sounds = ();
+  @Text = "";
   Style: (
     ...@SmallSellTextButtonStyle,
     Sounds: (
@@ -372,6 +379,7 @@ $Sounds = "Sounds.ui";
 @BuyTextButton = TextButton {
   @Anchor = Anchor();
   @Sounds = ();
+  @Text = "";
   Style: (
     ...@BuyTextButtonStyle,
     Sounds: (
@@ -395,6 +403,7 @@ $Sounds = "Sounds.ui";
 @SmallBuyTextButton = TextButton {
   @Anchor = Anchor();
   @Sounds = ();
+  @Text = "";
   Style: (
     ...@SmallBuyTextButtonStyle,
     Sounds: (
@@ -410,6 +419,7 @@ $Sounds = "Sounds.ui";
 @SmallTertiaryTextButton = TextButton {
   @Anchor = Anchor();
   @Sounds = ();
+  @Text = "";
   Style: (
     ...@SmallTertiaryTextButtonStyle,
     Sounds: (
@@ -425,6 +435,7 @@ $Sounds = "Sounds.ui";
 @SecondaryTextButton = TextButton {
   @Anchor = Anchor();
   @Sounds = ();
+  @Text = "";
   Style: (
     ...@SecondaryTextButtonStyle,
     Sounds: (
@@ -454,6 +465,7 @@ $Sounds = "Sounds.ui";
 @TertiaryTextButton = TextButton {
   @Anchor = Anchor();
   @Sounds = ();
+  @Text = "";
   Style: (
     ...@TertiaryTextButtonStyle,
     Sounds: (
