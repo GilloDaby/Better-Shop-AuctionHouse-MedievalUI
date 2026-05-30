@@ -3,7 +3,7 @@ plugins {
 }
 
 group = 'com.gillodaby'
-version = '3.1.1'
+version = '5.0.0'
 
 tasks.named('jar') {
     archiveBaseName.set('BetterShopAuctionMedievalUI')

@@ -1,7 +1,7 @@
 {
     "Group":  "GilloDaby",
     "Name":  "BetterShopAuctionMedievalUI",
-    "Version":  "3.1.1",
+    "Version":  "5.0.0",
     "Description":  "Medieval UI override pack for BetterShopAuction. Adds custom parchment-and-gold textures (containers, buttons, separators) and the .ui files referencing them. When installed alongside the main BetterShopAuction plugin, this pack overrides the vanilla game-asset look with a warm medieval brown/gold/parchment theme. Remove this plugin to fall back to vanilla styling. Conflicts with the modern BetterShopAuctionExtensionsUI pack — install only one theme at a time.",
     "Authors":  [
                     {
@@ -9,7 +9,7 @@
                     }
                 ],
     "Website":  "",
-    "ServerVersion":  ">=0.5.0 <0.6.0",
+    "ServerVersion":  ">=0.5.0-pre.0 <0.6.0",
     "Dependencies":  {
                          "GilloDaby:BetterShopAuction":  "*"
                      },
